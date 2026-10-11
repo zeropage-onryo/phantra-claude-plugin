@@ -1,6 +1,6 @@
 ---
 name: write-scene
-description: Write the scene prompt for an idea on the person's Zero Page Studio board, in the shape the studio renders from, and save it with the `write_scene` tool against the photos they uploaded. Use when someone asks to write the scene, the prompt, the shots or the script for an idea, or says "make the scene" after choosing one. NOT for choosing between ideas (concept-board), NOT for pricing or rendering (render-and-status), and NOT for finding references (look-matching).
+description: Write the scene prompt for an idea the person chose, in the shape Zero Page Studio renders from, and save it with the `write_scene` tool against their own photos. Use when someone asks to write the scene, the prompt, the shots or the script, says "make the scene" after choosing an idea, or wants a saved scene changed. NOT for choosing between ideas (ideas-and-projects), NOT for pricing or rendering (price-and-hand-off), and NOT for choosing photos or a look (look-matching).
 ---
 
 # Write the scene
@@ -12,13 +12,16 @@ photographs the person uploaded as elements. You write the prompt in the chat
 
 ## Before writing
 
-1. `idea` with the card's id: read the title, hook and logline. The logline is
-   the idea; the prompt must carry it.
+1. Have the idea in one or two sentences: what we see, and why it holds. It
+   comes from this conversation (ideas-and-projects) or from the person. When
+   the scene belongs to a project, `project` with its id gives the brief and
+   the look the scene must keep to.
 2. `elements`: the person's characters, props and places with their photo
    refs. Decide which photos the scene needs. If the scene needs a face, a
-   product or a room and no element has photos of it, stop and tell the person
-   to upload them in the studio first (Elements). The studio does not render a
-   scene with no attached photos, and never from a name.
+   product or a room and no element has a photo of it, ask the person for one:
+   a picture they give you can be added with `add_element` (look-matching),
+   or they can upload it in the studio (Elements). A scene is never rendered
+   from a name, and not at all until it is held to at least one photo.
 3. Settle the length in seconds (4 to 30; 10 is the default) and whether the
    idea wants cuts or one continuous take. Default to cuts: two or more shots.
    One continuous shot only when the person asked for one.
@@ -72,19 +75,33 @@ dramatic slow motion, named films, brands or actors.
 ## Save it
 
 Show the prompt to the person first and take their edits. Then call
-`write_scene` with the idea's id, the prompt, `seconds`, and `refs`: the photo
-refs from `elements`, exactly as listed, **the most important one first** (the
-first ref is what the render anchors on: the face before the room). Pass at
-least one ref; the tool refuses a scene with none, and refuses any ref
-`elements` did not list.
+`write_scene` with:
 
-The reply says how many shots were written and the seconds. It replaces any
-scene the idea carried before. Nothing is spent.
+- `prompt`: the full scene, all five parts.
+- `seconds`: its total length.
+- `refs`: the photo refs from `elements` (or from an `add_element` reply),
+  exactly as listed, **the most important one first**. The first ref is what
+  the render anchors on: the face before the room.
+- `title`: a few words to call it.
+- `project_id`: when it belongs to a project (from `projects`).
+
+The reply gives the scene's id, how many shots were written, and its link in
+the studio. Nothing is spent.
+
+**A scene with no photos is saved as a draft.** The reply says so
+(`needs_reference`) and what to do next. A draft cannot be priced or
+rendered: add a photo (`add_element`, or one already in `elements`) and call
+`write_scene` again with the draft's `scene_id` and the `refs`.
+
+**To change a scene**, call `write_scene` with its `scene_id` and the whole
+new prompt. This replaces the text the scene had, so show the person the new
+version and get their yes first. A ref `elements` did not list is refused.
 
 ## Then
 
-Hand over to render-and-status: `pick` the idea, `quote` it, show the price,
-and only on the person's yes `approve`.
+Hand over to price-and-hand-off: `quote` the scene, say the price, and give
+the person the studio link where they approve the render. Nothing renders
+from this connector.
 
 ## Do not
 
