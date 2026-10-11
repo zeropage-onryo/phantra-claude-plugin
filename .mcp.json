@@ -2,7 +2,7 @@
   "mcpServers": {
     "zeropage-studio": {
       "type": "http",
-      "url": "https://zeropage-studio.fly.dev/mcp"
+      "url": "https://api.zeropage.studio/mcp/claude"
     }
   }
 }

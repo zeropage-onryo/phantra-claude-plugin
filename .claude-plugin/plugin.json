@@ -1,11 +1,21 @@
 {
   "name": "zeropage-studio",
-  "displayName": "Zero Page Studio",
-  "version": "0.1.0",
-  "description": "Run your Zero Page Studio idea board from a conversation: turn a brief into a few story ideas you approve before anything renders, set the look from reference images you attach, and start and follow renders with the price shown and your approval first.",
-  "author": { "name": "Zero Page Studio", "url": "https://zeropage.studio" },
+  "displayName": "Zeropage Studio",
+  "version": "0.2.0",
+  "description": "Plan video scenes with Zeropage Studio from a conversation: shape an idea, write the scene against your own reference photos, keep it in a project, and see what it would cost to render, with the render approved by you in the studio.",
+  "author": {
+    "name": "Zeropage Studio",
+    "url": "https://zeropage.studio"
+  },
   "homepage": "https://zeropage.studio",
   "repository": "https://github.com/zeropage-onryo/zeropage-studio-plugin",
   "license": "MIT",
-  "keywords": ["video", "filmmaking", "pre-production", "storyboard", "ai-video", "creators"]
+  "keywords": [
+    "video",
+    "filmmaking",
+    "pre-production",
+    "storyboard",
+    "ai-video",
+    "creators"
+  ]
 }

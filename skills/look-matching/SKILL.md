@@ -1,11 +1,11 @@
 ---
 name: look-matching
-description: Set the visual look of a scene in Zero Page Studio from the person's own reference photos and from an image or video frame they describe or attach, and explain what the studio can and cannot match. Use when someone says "make it look like this", attaches or describes a reference image or frame, asks for a mood, light or texture, or asks which photos a scene is rendered against. NOT for writing the whole scene (write-scene), NOT for rendering or prices (render-and-status), and NOT for finding or copying a real person's face.
+description: Set the visual look of a scene in Zeropage Studio from the person's own reference photos and from an image or video frame they describe or attach, and explain what the studio can and cannot match. Use when someone says "make it look like this", attaches or describes a reference image or frame, asks for a mood, light or texture, or asks which photos a scene is rendered against. NOT for writing the whole scene (write-scene), NOT for rendering or prices (render-and-status), and NOT for finding or copying a real person's face.
 ---
 
 # Look matching
 
-Zero Page Studio renders a scene against **photographs the person uploaded as
+Zeropage Studio renders a scene against **photographs the person uploaded as
 elements** (characters, props, places), never against a name and never
 against an image fetched from the web. A look is written into the scene's
 style block in cinematography terms; the photos decide identity, wardrobe,
