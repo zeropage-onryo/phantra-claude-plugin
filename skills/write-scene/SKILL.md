@@ -1,19 +1,21 @@
 ---
 name: write-scene
-description: Write the scene prompt for an idea on the person's Zero Page Studio board, in the shape the studio renders from, and save it with the `write_scene` tool against the photos they uploaded. Use when someone asks to write the scene, the prompt, the shots or the script for an idea, or says "make the scene" after choosing one. NOT for choosing between ideas (concept-board), NOT for pricing or rendering (render-and-status), and NOT for finding references (look-matching).
+description: Write a scene prompt in the shape Zeropage Studio renders from, and save it as a scene with the `write_scene` tool against the photos the person uploaded, in a project or on its own. Use when someone asks to write the scene, the prompt, the shots or the script for an idea, says "make the scene" after choosing one, or wants to change a scene they saved. NOT for coming up with ideas or opening projects (projects-and-ideas), NOT for pricing or rendering (render-and-status), and NOT for finding references (look-matching).
 ---
 
 # Write the scene
 
-A scene in Zero Page Studio is ONE paste-ready prompt a video model reads top
+A scene in Zeropage Studio is ONE paste-ready prompt a video model reads top
 to bottom. The studio renders it one timed shot at a time, against the
 photographs the person uploaded as elements. You write the prompt in the chat
 (no model credit is spent for that), then save it with `write_scene`.
 
 ## Before writing
 
-1. `idea` with the card's id: read the title, hook and logline. The logline is
-   the idea; the prompt must carry it.
+1. The chosen idea is in this conversation (projects-and-ideas). If the scene
+   belongs to a project, `project` with its id gives the brief and look the
+   scene must follow. To change a scene saved before, `scene` with its id
+   gives the prompt as it stands.
 2. `elements`: the person's characters, props and places with their photo
    refs. Decide which photos the scene needs. If the scene needs a face, a
    product or a room and no element has photos of it, stop and tell the person
@@ -72,19 +74,26 @@ dramatic slow motion, named films, brands or actors.
 ## Save it
 
 Show the prompt to the person first and take their edits. Then call
-`write_scene` with the idea's id, the prompt, `seconds`, and `refs`: the photo
-refs from `elements`, exactly as listed, **the most important one first** (the
-first ref is what the render anchors on: the face before the room). Pass at
-least one ref; the tool refuses a scene with none, and refuses any ref
-`elements` did not list.
+`write_scene` with:
 
-The reply says how many shots were written and the seconds. It replaces any
-scene the idea carried before. Nothing is spent.
+- `prompt`, `seconds`, and a short `title` (a few words);
+- `refs`: the photo refs from `elements`, exactly as listed, **the most
+  important one first** (the first ref is what the render anchors on: the face
+  before the room). Pass at least one; the tool refuses a scene with none, and
+  refuses any ref `elements` did not list;
+- `project_id` when the scene belongs to a project;
+- `scene_id` only to REWRITE a scene saved before. Without it a new scene is
+  made. A rewrite replaces the scene's prompt; any stills or clips it had stay
+  in the studio's Library but are no longer the scene's, and the reply says so.
+  Say that to the person before rewriting a scene that has renders.
+
+The reply carries the `scene_id`, how many shots were written, the seconds and
+`studio_url`, the scene's page in the studio. Nothing is spent.
 
 ## Then
 
-Hand over to render-and-status: `pick` the idea, `quote` it, show the price,
-and only on the person's yes `approve`.
+Hand over to render-and-status: `quote` the scene, show the price, and go on
+only on the person's yes.
 
 ## Do not
 
