@@ -1,8 +1,8 @@
 {
   "name": "zeropage-studio",
   "displayName": "Zero Page Studio",
-  "version": "0.1.0",
-  "description": "Run your Zero Page Studio idea board from a conversation: turn a brief into a few story ideas you approve before anything renders, set the look from reference images you attach, and start and follow renders with the price shown and your approval first.",
+  "version": "0.2.0",
+  "description": "Plan video scenes for Zero Page Studio from a conversation: turn a brief into a few ideas, write the scene against your own photos, see what rendering it would cost, and open it in the studio to approve the render. Nothing in the connector renders or spends credits.",
   "author": { "name": "Zero Page Studio", "url": "https://zeropage.studio" },
   "homepage": "https://zeropage.studio",
   "repository": "https://github.com/zeropage-onryo/zeropage-studio-plugin",
