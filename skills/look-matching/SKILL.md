@@ -25,8 +25,10 @@ asked for a celebrity, a public figure or "someone who looks like X".
   is a room the scene can be set in; a product they photographed is the exact
   product on screen.
 - If the look needs a photo they do not have (a product, a location, a
-  wardrobe), say which and ask them to upload it in the studio (Elements).
-  Nothing here can fetch one.
+  wardrobe), say which and ask for it. An image file they give you as an https
+  address is added with `add_element`; otherwise they upload it in the studio
+  (Elements). Never search the web for one, and never pass an address you
+  guessed.
 - Refs go into `write_scene` as listed by `elements`, most important first:
   the face before the room, the product before the backdrop. The first ref is
   what the render anchors on.

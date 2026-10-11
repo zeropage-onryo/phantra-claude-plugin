@@ -7,14 +7,16 @@ description: Explain what is free and what costs credits in Zeropage Studio, rea
 
 ## What is free
 
-Every call but one is free. Reading never charges: `projects`, `project`,
-`project_chat`, `elements`, `scene`, `quote`, `job`. Writing never charges
-either: `create_project`, `write_scene`. Writing the scene prompt happens in
+Almost every call is free. Reading never charges: `projects`, `project`,
+`project_chat`, `elements`, `scene`, `quote`, `job`, `image_models`. Writing
+never charges either: `create_project`, `add_element` (the picture is saved as
+it is, nothing is drawn), `write_scene`. Writing the scene prompt happens in
 this chat, so it costs the studio nothing.
 
-The one call that spends is `approve`, and only the full connector has it.
 On the Claude connector nothing spends at all: renders are approved in the
-studio.
+studio. Only the full connector has calls that spend: `approve` (a scene's
+keyframes or clip) and `generate_image` (one still). Each is priced first and
+runs only after the person's yes.
 
 ## What costs credits
 

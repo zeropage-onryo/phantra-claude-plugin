@@ -32,9 +32,11 @@ credits before anything is spent.
   - `credits-and-limits`: what is free, what costs credits, what a refusal or
     a 429 means.
 
-The connector offers eight tools: `projects`, `project`, `project_chat`,
-`create_project`, `elements`, `write_scene`, `scene`, `quote`. None of them
-spends.
+The connector offers nine tools: `projects`, `project`, `project_chat`,
+`create_project`, `elements`, `add_element`, `write_scene`, `scene`, `quote`.
+None of them spends. `add_element` saves a picture you hand over (an image's
+https address) as one of your characters, props or places, so a scene can be
+held to it.
 
 **Projects** are the same ones on your projects board in the studio.
 `projects` lists them; `project` reopens one, whether you made it here or in
@@ -48,7 +50,7 @@ one, and `write_scene` with its id files a scene in it.
 | address | for | renders from the chat? |
 |---|---|---|
 | `https://api.zeropage.studio/mcp/claude` | this plugin and the Claude directory | no: `quote` returns the scene's studio link, and you approve the render there |
-| `https://api.zeropage.studio/mcp` | ChatGPT, or anyone who wants to approve renders in the chat | yes: `quote`, your yes, then `approve` (plus `job` to follow it) |
+| `https://api.zeropage.studio/mcp` | ChatGPT, or anyone who wants to approve renders in the chat | yes: `quote`, your yes, then `approve` (plus `job` to follow it); also `image_models` and `generate_image` for a single still, priced first |
 
 The skills work with either: `render-and-status` checks whether the connector
 has an `approve` tool and follows that path.
@@ -81,7 +83,8 @@ has an `approve` tool and follows that path.
 
 ## Data
 
-The connector sends the scene prompts Claude writes with you, the ids of your
+The connector sends the scene prompts Claude writes with you, the address of
+any image you hand over to add as an element, the ids of your
 own element photos, projects and scenes, and a project's name, brief and look
 when you create one, to your Zeropage Studio account at `api.zeropage.studio`,
 over HTTPS, with the OAuth sign-in you approve. It does not send the text of
