@@ -1,4 +1,9 @@
-# Zero Page Studio
+# Zero Page Studio Skills
+
+The Claude plugin for the **Zero Page Studio** connector. Two things with one name are easy to
+mix up, so: the *connector* is the studio's remote MCP server (`https://api.zeropage.studio/mcp/claude`,
+listed as "Zero Page Studio"); this *plugin*, `zeropage-studio-skills`, is the set of skills that
+teaches Claude how to work in it, and it declares that connector.
 
 Work in [Zero Page Studio](https://zeropage.studio) from a conversation with
 Claude: open your projects, bring in your own photos and clips, write scenes
@@ -141,7 +146,7 @@ Open an issue at https://github.com/zeropage-onryo/zeropage-studio-plugin/issues
 
 ## Validated
 
-`claude plugin validate .` on 2026-10-12 (Claude Code 2.1.285):
+`claude plugin validate .` on 2026-10-12 (Claude Code 2.1.285; again after the rename to `zeropage-studio-skills`, 0.3.1):
 
 ```
 ✔ Validation passed

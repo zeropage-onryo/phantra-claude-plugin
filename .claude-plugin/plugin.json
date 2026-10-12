@@ -1,11 +1,21 @@
 {
-  "name": "zeropage-studio",
-  "displayName": "Zero Page Studio",
-  "version": "0.3.0",
-  "description": "Work in Zero Page Studio from a conversation: open your projects, bring in your own photos and clips, write scenes held to them, see what a render would cost in credits and approve it in the studio; trim, reshape, join and share what you made for free; read what has worked for you. Nothing in the connector renders or spends credits.",
-  "author": { "name": "Zero Page Studio", "url": "https://zeropage.studio" },
+  "name": "zeropage-studio-skills",
+  "displayName": "Zero Page Studio Skills",
+  "version": "0.3.1",
+  "description": "The Claude plugin for the Zero Page Studio connector: twenty-two skills that teach Claude the studio's workflow. Work in Zero Page Studio from a conversation: open your projects, bring in your own photos and clips, write scenes held to them, see what a render would cost in credits and approve it in the studio; trim, reshape, join and share what you made for free; read what has worked for you. Nothing in the connector renders or spends credits.",
+  "author": {
+    "name": "Zero Page Studio",
+    "url": "https://zeropage.studio"
+  },
   "homepage": "https://zeropage.studio",
   "repository": "https://github.com/zeropage-onryo/zeropage-studio-plugin",
   "license": "MIT",
-  "keywords": ["video", "filmmaking", "pre-production", "storyboard", "ai-video", "creators"]
+  "keywords": [
+    "video",
+    "filmmaking",
+    "pre-production",
+    "storyboard",
+    "ai-video",
+    "creators"
+  ]
 }
