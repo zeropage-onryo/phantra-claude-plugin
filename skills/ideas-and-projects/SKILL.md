@@ -20,8 +20,8 @@ bottle ad", "what am I working on"). `project` with a project's id opens it:
 read its brief, its look and its scenes before proposing anything, so a new
 idea fits what is already there.
 
-If a call errors with "no account" or a sign-in message, the person has not
-created their workspace yet: ask them to sign in once at
+If a call errors with "no workspace yet" or a sign-in message, the person has
+not created their workspace yet: ask them to sign in once at
 https://zeropage.studio (the workspace is created on the first sign-in) and
 reconnect.
 
