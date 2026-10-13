@@ -1,6 +1,6 @@
 ---
 name: price-and-hand-off
-description: Price a Zero Page Studio scene and hand the person to the studio to approve its render, then report where the scene stands. Use when someone says render it, draw the stills, make the clip, how much will it cost, or asks whether a scene is done. This connector renders nothing: it quotes, gives the studio link, and reads the status back. NOT for writing the scene (write-scene), NOT for choosing ideas (ideas-and-projects), and NOT for explaining plans or balances in general (credits-and-limits).
+description: Price a Phantra scene and hand the person to the studio to approve its render, then report where the scene stands. Use when someone says render it, draw the stills, make the clip, how much will it cost, or asks whether a scene is done. This connector renders nothing: it quotes, gives the studio link, and reads the status back. NOT for writing the scene (write-scene), NOT for choosing ideas (ideas-and-projects), and NOT for explaining plans or balances in general (credits-and-limits).
 ---
 
 # Price and hand off
@@ -40,7 +40,7 @@ renders, draws or spends. What you do here:
   person says "go ahead" or "render it", give them `approve_url` and say that
   the render starts when they press it in the studio.
 - If `affordable` is false, say so before giving the link, and point to the
-  studio's Plan & credits page (https://zeropage.studio/studio/settings/plan)
+  studio's Plan & credits page (https://phantra.ai/studio/settings/plan)
   instead of promising a render.
 - If `quote` is refused, report its own words:
   - the scene has no photos (a draft): add one with `add_element` or pick one

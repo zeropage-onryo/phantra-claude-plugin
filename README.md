@@ -1,13 +1,13 @@
-# Zero Page Studio
+# Phantra
 
-Work in [Zero Page Studio](https://zeropage.studio) from a conversation with
+Work in [Phantra](https://phantra.ai) from a conversation with
 Claude: open your projects, bring in your own photos and clips, write scenes
 held to them, see what rendering would cost in credits and approve the render
 in the studio; trim, reshape, join and share what you made for free; and read
 what has worked for you. Each piece of work lives in a project you can come
 back to.
 
-Zero Page Studio is an AI pre-production studio for creators and filmmakers.
+Phantra is an AI pre-production studio for creators and filmmakers.
 You give it an idea and reference photos; a scene is one paste-ready prompt,
 rendered one timed shot at a time, with a price in front of every spend.
 
@@ -19,12 +19,12 @@ reshape, join) run on the studio's own server and cost nothing.
 ## What the plugin contains
 
 - **A connector**: the studio's remote MCP server at
-  `https://api.zeropage.studio/mcp/claude`. You sign in with your Zero Page
-  Studio account; the tools read and write your own projects, scenes,
+  `https://api.phantra.ai/mcp/claude`. You sign in with your Phantra
+  account; the tools read and write your own projects, scenes,
   elements and library and nobody else's.
 - **Twenty-two skills** that teach Claude the studio workflow. Start with
-  `zeropage-use`, which Claude loads before any write:
-  - the work: `zeropage-use`, `start-a-project`, `ideas-and-projects`,
+  `phantra-use`, which Claude loads before any write:
+  - the work: `phantra-use`, `start-a-project`, `ideas-and-projects`,
     `storyboard`, `write-scene`, `series-and-continuity`, `ad-variations`,
     `price-and-hand-off`
   - the look and the pictures: `look-matching`, `brand-kit-from-my-work`,
@@ -63,11 +63,11 @@ project's id is filed in it.
 
 ## Before you use it
 
-1. Sign in once at https://zeropage.studio. Your workspace is created on the
+1. Sign in once at https://phantra.ai. Your workspace is created on the
    first sign-in and comes with a one-time trial grant of credits. The
    connector cannot create a workspace by itself; until you have one it
    answers "this sign-in has no workspace yet" and says where to sign in.
-2. Add the plugin, then connect the Zero Page Studio connector on its
+2. Add the plugin, then connect the Phantra connector on its
    Connectors tab and approve the sign-in.
 
 ## A 90-second demo
@@ -94,8 +94,8 @@ project's id is filed in it.
 
 ## Data
 
-The connector sends to your Zero Page Studio account at
-`api.zeropage.studio`, over HTTPS, with the OAuth sign-in you approve:
+The connector sends to your Phantra account at
+`api.phantra.ai`, over HTTPS, with the OAuth sign-in you approve:
 
 - the scene prompts Claude writes with you, with a title, a length and what
   each photo is for;
@@ -122,8 +122,8 @@ entry), and nothing is deleted through the connector. Keyframes and renders are 
 and are charged in credits from your balance only after the price is shown
 there and you approve. A `share_link` is a time-limited download address for
 one of your own files: anyone holding it can download that file until it
-expires. See the studio's [privacy policy](https://zeropage.studio/privacy)
-and [terms](https://zeropage.studio/terms) for what is kept and for how long.
+expires. See the studio's [privacy policy](https://phantra.ai/privacy)
+and [terms](https://phantra.ai/terms) for what is kept and for how long.
 The plugin itself runs no code, stores nothing, and sends nothing anywhere
 else.
 
@@ -137,7 +137,7 @@ hundred). A `429` carries `Retry-After` in seconds.
 
 ## Support
 
-Open an issue at https://github.com/zeropage-onryo/zeropage-studio-plugin/issues.
+Open an issue at https://github.com/zeropage-onryo/phantra-claude-plugin/issues.
 
 ## Validated
 
