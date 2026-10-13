@@ -19,8 +19,8 @@ reshape, join) run on the studio's own server and cost nothing.
 ## What the plugin contains
 
 - **A connector**: the studio's remote MCP server at
-  `https://api.phantra.ai/mcp/claude`. You sign in with your Zero Page
-  Studio account; the tools read and write your own projects, scenes,
+  `https://api.phantra.ai/mcp/claude`. You sign in with your Phantra
+  account; the tools read and write your own projects, scenes,
   elements and library and nobody else's.
 - **Twenty-two skills** that teach Claude the studio workflow. Start with
   `phantra-use`, which Claude loads before any write:
