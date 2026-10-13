@@ -1,8 +1,8 @@
 {
   "mcpServers": {
-    "zeropage-studio": {
+    "phantra": {
       "type": "http",
-      "url": "https://api.zeropage.studio/mcp/claude"
+      "url": "https://api.phantra.ai/mcp/claude"
     }
   }
 }
