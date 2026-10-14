@@ -1,12 +1,12 @@
 ---
 name: explainer
-description: Plan and write a short explainer video in Phantra -- what it is, how it works, why now -- as timed shots held to the person's own product or place photos, then join the rendered scenes and make one copy per platform. Use when someone asks for an explainer, a how-it-works video, a product walkthrough, a launch clip or "a video that tells people what this does". NOT for one dramatic scene (write-scene), NOT for pricing or rendering (price-and-hand-off), NOT for the sound in detail (sound-plan), and NOT for choosing a look (look-matching).
+description: Plan and write a short explainer video in Phantra -- what it is, how it works, why now -- as timed shots held to the person's product or place elements, then join the rendered scenes and make one copy per platform. Use when someone asks for an explainer, a how-it-works video, a product walkthrough, a launch clip or "a video that tells people what this does". NOT for one dramatic scene (write-scene), NOT for pricing or rendering (price-and-hand-off), NOT for the sound in detail (sound-plan), and NOT for choosing a look (look-matching).
 ---
 
 # Explainer
 
 An explainer is three beats -- WHAT it is, HOW it works, WHY now -- written as
-timed shots the studio renders one at a time against the person's own photos.
+timed shots the studio renders one at a time against the person's elements.
 Words come after the render: on-screen captions live in the studio's editor,
 not in the prompt, and the voice is recorded by the person. Nothing here
 generates speech, and nothing in this connector renders or spends credits.
