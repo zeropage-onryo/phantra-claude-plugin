@@ -1,4 +1,4 @@
-# Phantra
+# Phantra AI
 
 Work in [Phantra](https://phantra.ai) from a conversation with
 Claude: open your projects, bring in your own photos and clips, write scenes
@@ -23,8 +23,8 @@ reshape, join) run on the studio's own server and cost nothing.
   account; the tools read and write your own projects, scenes,
   elements and library and nobody else's.
 - **Twenty-two skills** that teach Claude the studio workflow. Start with
-  `phantra-use`, which Claude loads before any write:
-  - the work: `phantra-use`, `start-a-project`, `ideas-and-projects`,
+  `phantra-ai-use`, which Claude loads before any write:
+  - the work: `phantra-ai-use`, `start-a-project`, `ideas-and-projects`,
     `storyboard`, `write-scene`, `series-and-continuity`, `ad-variations`,
     `price-and-hand-off`
   - the look and the pictures: `look-matching`, `brand-kit-from-my-work`,
@@ -137,7 +137,7 @@ hundred). A `429` carries `Retry-After` in seconds.
 
 ## Support
 
-Open an issue at https://github.com/zeropage-onryo/phantra-claude-plugin/issues.
+Open an issue at https://github.com/zeropage-onryo/phantra-ai-claude-plugin/issues.
 
 ## Validated
 

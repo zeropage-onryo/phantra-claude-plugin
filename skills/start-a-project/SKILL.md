@@ -7,7 +7,7 @@ description: Take a one-line idea to a Phantra project holding its first scene: 
 
 From one line ("a 15-second vertical ad for my candle shop") to a project
 holding its first scene, priced, with the studio link. Nothing here renders or
-spends credits. Load phantra-use first; its habits apply throughout.
+spends credits. Load phantra-ai-use first; its habits apply throughout.
 
 ## Ask at most three short questions
 
