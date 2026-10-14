@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "phantra": {
+    "phantra-ai": {
       "type": "http",
       "url": "https://api.phantra.ai/mcp/claude"
     }

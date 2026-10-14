@@ -9,7 +9,7 @@ A brand kit here is a short set of visual rules -- palette, light, lens and
 framing, finish, how the product and people are shown, what to avoid --
 written in cinematography terms and read off what the person already made and
 kept. Nothing is invented: every rule points at a render, a photo or a sentence
-of theirs. Nothing here renders or spends credits. Load phantra-use first.
+of theirs. Nothing here renders or spends credits. Load phantra-ai-use first.
 
 ## 1. Read their work (every call is free)
 
