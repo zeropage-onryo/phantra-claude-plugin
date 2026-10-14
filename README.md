@@ -1,15 +1,14 @@
 # Phantra AI
 
 Work in [Phantra](https://phantra.ai) from a conversation with
-Claude: open your projects, bring in your own photos and clips, write scenes
-held to them, see what rendering would cost in credits and approve the render
-in the studio; trim, reshape, join and share what you made for free; and read
+Claude: open your projects, write scenes, see what rendering would cost in
+credits and approve the render in the studio; trim, reshape, join and share what you made for free; and read
 what has worked for you. Each piece of work lives in a project you can come
 back to.
 
-Phantra is an AI pre-production studio for creators and filmmakers.
-You give it an idea and reference photos; a scene is one paste-ready prompt,
-rendered one timed shot at a time, with a price in front of every spend.
+Phantra is an AI image and video generator. You give it an idea; a scene is
+one paste-ready prompt, rendered one timed shot at a time, with a price in
+front of every spend.
 
 **Nothing in this connector renders, draws or spends credits.** Claude writes
 and saves the scene and prices it; the render is approved by you, in the
@@ -138,6 +137,10 @@ hundred). A `429` carries `Retry-After` in seconds.
 ## Support
 
 Open an issue at https://github.com/zeropage-onryo/phantra-claude-plugin/issues.
+
+## Support
+
+`support@phantra.ai` · https://phantra.ai/support
 
 ## Validated
 

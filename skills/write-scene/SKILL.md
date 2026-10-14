@@ -1,13 +1,13 @@
 ---
 name: write-scene
-description: Write the scene prompt for an idea the person chose, in the shape Phantra renders from, and save it with the `write_scene` tool against their own photos. Use when someone asks to write the scene, the prompt, the shots or the script, says "make the scene" after choosing an idea, or wants a saved scene changed. NOT for choosing between ideas (ideas-and-projects), NOT for pricing or rendering (price-and-hand-off), and NOT for choosing photos or a look (look-matching).
+description: Write the scene prompt for an idea the person chose, in the shape Phantra renders from, and save it with the `write_scene` tool against their elements. Use when someone asks to write the scene, the prompt, the shots or the script, says "make the scene" after choosing an idea, or wants a saved scene changed. NOT for choosing between ideas (ideas-and-projects), NOT for pricing or rendering (price-and-hand-off), and NOT for choosing photos or a look (look-matching).
 ---
 
 # Write the scene
 
 A scene in Phantra is ONE paste-ready prompt a video model reads top
 to bottom. The studio renders it one timed shot at a time, against the
-photographs the person uploaded as elements. You write the prompt in the chat
+elements the person added. You write the prompt in the chat
 (no model credit is spent for that), then save it with `write_scene`.
 
 ## Before writing
