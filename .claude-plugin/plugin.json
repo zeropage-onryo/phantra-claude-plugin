@@ -5,7 +5,7 @@
   "description": "Work in Phantra from a conversation: open your projects, bring in your own photos and clips, write scenes held to them, see what a render would cost in credits and approve it in the studio; trim, reshape, join and share what you made for free; read what has worked for you. Nothing in the connector renders or spends credits.",
   "author": { "name": "Phantra", "url": "https://phantra.ai" },
   "homepage": "https://phantra.ai",
-  "repository": "https://github.com/zeropage-onryo/phantra-ai-claude-plugin",
+  "repository": "https://github.com/zeropage-onryo/phantra-claude-plugin",
   "license": "MIT",
   "keywords": ["video", "filmmaking", "storyboard", "ai-video", "creators"]
 }

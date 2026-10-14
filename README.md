@@ -137,7 +137,7 @@ hundred). A `429` carries `Retry-After` in seconds.
 
 ## Support
 
-Open an issue at https://github.com/zeropage-onryo/phantra-ai-claude-plugin/issues.
+Open an issue at https://github.com/zeropage-onryo/phantra-claude-plugin/issues.
 
 ## Validated
 
