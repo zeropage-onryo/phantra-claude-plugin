@@ -1,14 +1,17 @@
 # Phantra AI
 
-Work in [Phantra](https://phantra.ai) from a conversation with
-Claude: open your projects, write scenes, see what rendering would cost in
-credits and approve the render in the studio; trim, reshape, join and share what you made for free; and read
-what has worked for you. Each piece of work lives in a project you can come
-back to.
+Plan, write, organise, price and edit short video scenes from your own
+photos and clips, in a conversation with Claude. Open your projects in
+[Phantra](https://phantra.ai), bring your photos and clips in as elements,
+write a scene as timed shots held to them, see what it would cost in credits,
+and trim, reshape, join and share what you already have for free. Each piece
+of work lives in a project you can come back to.
 
-Phantra is an AI image and video generator. You give it an idea; a scene is
-one paste-ready prompt, rendered one timed shot at a time, with a price in
-front of every spend.
+Renders are approved and made in the Phantra studio, never in the chat. A
+scene saved here opens on its own page in the studio, where the price is
+shown again and you press Render.
+
+Documentation: https://phantra.ai/mcp/claude
 
 **Nothing in this connector renders, draws or spends credits.** Claude writes
 and saves the scene and prices it; the render is approved by you, in the
@@ -136,16 +139,14 @@ hundred). A `429` carries `Retry-After` in seconds.
 
 ## Support
 
-Open an issue at https://github.com/zeropage-onryo/phantra-claude-plugin/issues.
-
-## Support
-
-`support@phantra.ai` · https://phantra.ai/support
+`support@phantra.ai` · https://phantra.ai/support. Bugs in the plugin can
+also be filed at https://github.com/zeropage-onryo/phantra-claude-plugin/issues.
 
 ## Validated
 
-`claude plugin validate .` on 2026-10-12 (Claude Code 2.1.285):
+`claude plugin validate .` passed on 0.6.0 (2026-10-15, Claude Code 2.1.300).
+Re-validate on 0.6.0 after any change and before submitting:
 
 ```
-✔ Validation passed
+claude plugin validate .
 ```

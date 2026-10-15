@@ -1,6 +1,6 @@
 ---
 name: series-and-continuity
-description: Make several Phantra scenes that read as one series -- episodes, a campaign, a run of posts -- by holding every scene to one project with a look, the same elements and refs in the same order with the same roles, the same style block carried across unchanged, and a fixed length, frame and model, each new episode started from the last with `duplicate_scene`. Use when someone wants part two, a series, episodes, "the same as the last one but…", or asks why two scenes look different. NOT for writing a single scene from scratch (write-scene), NOT for choosing a look in the first place (look-matching), NOT for starting the project or choosing between ideas (ideas-and-projects), and NOT for pricing or rendering (price-and-hand-off).
+description: Makes several Phantra scenes read as one series (episodes, a campaign): one project and look, the same refs in the same order and roles, the same style block, a fixed length, frame and model, each episode started from the last with `duplicate_scene`. Use when someone wants part two, a series, episodes, "the same as the last one but...", or asks why two scenes differ. NOT for a single scene (write-scene), choosing a look (look-matching) or choosing between ideas (ideas-and-projects).
 ---
 
 # Series and continuity
@@ -81,7 +81,7 @@ person kept most, which is the one to hold the series to.
   rewritten in place.
 - Never move one episode to another model or frame to save credits without
   saying the look will shift; price the draft frame instead, where the series'
-  model has one (`video_models` says; today Wan 3.0 and Seedance 2.5):
+  model has one (`video_models` says which do):
   `set_preferences` with `draft_first` true, then `quote` with no renderer named.
 - Never promise two renders will match exactly. What you can promise is the
   same photos, words, length, frame and model.

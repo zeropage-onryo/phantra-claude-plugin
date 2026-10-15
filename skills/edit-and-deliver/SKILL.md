@@ -1,6 +1,6 @@
 ---
 name: edit-and-deliver
-description: Finish a video from the chat with Phantra's free edits: find the clips in the library, trim one, join several (a cut or a crossfade, music as an audio file uploaded in the studio's editor), reformat to a platform's shape, and hand over a download link. Use when someone says trim it, cut these together, put the music under it, make a square or vertical version, send me the file, or asks for a download link. Every result is a new item, sources are untouched, and nothing here spends credits. NOT for rendering or pricing a scene (price-and-hand-off), NOT for which shape and length each platform wants (platform-delivery), and NOT for writing the scene (write-scene).
+description: Finishes a video with Phantra's free edits: finds clips in the library, trims one, joins several (a cut or a crossfade), reformats to a platform's shape and hands over a download link. Every result is a new item and nothing spends credits. Use when someone says trim it, cut these together, make a vertical version or send me the file. NOT for the shape each platform wants (platform-delivery), writing the scene (write-scene) or pricing (price-and-hand-off).
 ---
 
 # Edit and deliver

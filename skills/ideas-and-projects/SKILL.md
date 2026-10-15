@@ -1,6 +1,6 @@
 ---
 name: ideas-and-projects
-description: Turn a brief into a few story ideas the person chooses between in the chat, and keep the work in a Phantra project. Use when someone describes a video, ad, short or scene they want made, asks what they are working on, wants to open or start a project, or wants to decide between ideas. NOT for writing the scene (write-scene), NOT for prices or rendering (price-and-hand-off, credits-and-limits), and NOT for choosing a visual look (look-matching).
+description: Turns a brief into a few story ideas the person chooses between in the chat, and keeps the work in a Phantra project. Use when someone describes a video, ad, short or scene they want made, asks what they are working on, wants to open or start a project, or wants to decide between ideas. NOT for writing the scene (write-scene), prices or rendering (price-and-hand-off, credits-and-limits), or choosing a visual look (look-matching).
 ---
 
 # Ideas and projects

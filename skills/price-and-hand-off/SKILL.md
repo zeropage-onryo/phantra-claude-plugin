@@ -1,6 +1,6 @@
 ---
 name: price-and-hand-off
-description: Price a Phantra scene and hand the person to the studio to approve its render, then report where the scene stands. Use when someone says render it, draw the stills, make the clip, how much will it cost, or asks whether a scene is done. This connector renders nothing: it quotes, gives the studio link, and reads the status back. NOT for writing the scene (write-scene), NOT for choosing ideas (ideas-and-projects), and NOT for explaining plans or balances in general (credits-and-limits).
+description: Prices a Phantra scene in credits and hands the person to the studio to approve its render, then reports where the scene stands. This connector renders nothing: it quotes, gives the studio link, and reads the status back. Use when someone says render it, draw the stills, make the clip or how much will it cost, or asks whether a scene is done. NOT for writing the scene (write-scene), choosing ideas (ideas-and-projects) or plans and balances in general (credits-and-limits).
 ---
 
 # Price and hand off

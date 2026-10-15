@@ -1,6 +1,6 @@
 ---
 name: storyboard
-description: Plan a piece as a sequence of scenes in Phantra before any scene is written: a beat list agreed in the chat, then one `write_scene` per scene (timed shots inside each), all filed in one project and held to the same photos with the same roles so the scenes cut together. Use when someone wants a whole ad, short or sequence planned, asks for a storyboard or a beat sheet, has several places or moments in one idea, or wants alternates of a scene. NOT for writing one scene's prompt (write-scene), NOT for pricing or rendering (price-and-hand-off), and NOT for choosing between ideas before the piece is settled (ideas-and-projects).
+description: Plans a piece as a sequence of Phantra scenes before any is written: a beat list agreed in the chat, then one `write_scene` per scene, all in one project and held to the same photos with the same roles so the scenes cut together. Use when someone wants a whole ad, short or sequence planned, asks for a storyboard or a beat sheet, or has several places or moments in one idea. NOT for one scene's prompt (write-scene), pricing (price-and-hand-off) or choosing between ideas (ideas-and-projects).
 ---
 
 # Storyboard

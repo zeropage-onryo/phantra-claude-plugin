@@ -1,6 +1,6 @@
 ---
 name: model-prompting
-description: Choose the video model a Phantra scene renders on and write the scene for it -- `video_models` for what each takes (lengths, frames, credits, the draft frame), `recommend_model` for a job described in words, then the few wording choices that follow from what the catalogue says (a model that generates sound hears the diegetic sound line; a model that takes long clips allows one continuous take). Use when someone asks which model to use, what a model takes, why a quote is what it is, or how to write for a given model. NOT for the scene's story and beats (write-scene), NOT for pricing a scene and handing it to the studio (price-and-hand-off), NOT for the balance and plans (credits-and-limits), and NOT for camera language (camera-moves).
+description: Chooses the video model a Phantra scene renders on and writes the scene for it: `video_models` for what each model takes (lengths, frames, credits, a draft frame), `recommend_model` for a job described in words, and the wording that follows from the catalogue. Use when someone asks which model to use, what a model takes, why a quote is what it is, or how to write for a model. NOT for the scene's story and beats (write-scene), the balance (credits-and-limits) or camera language (camera-moves).
 ---
 
 # Model prompting
@@ -43,8 +43,8 @@ Nothing here renders or spends.
   model whose lengths stop near 10 seconds renders a ten-shot scene one shot
   at a time, but cannot take a 20-second single take. Default to cuts of 2 to
   10 seconds either way; one take only when the person asked for one.
-- **Frame and draft.** The frame multiplies the price. A draft frame (Wan
-  3.0 and Seedance 2.5 have a cheaper 480p one) is for choosing a take; it is
+- **Frame and draft.** The frame multiplies the price. A draft frame (a
+  cheaper one, where `video_models` lists it) is for choosing a take; it is
   finished in the studio. `set_preferences` with `video_model` and
   `draft_first` true makes a `quote` given no renderer choice price that
   model's draft frame; a `quote` passed `model` or `frame` ignores the
