@@ -1,6 +1,6 @@
 ---
 name: ad-variations
-description: Make A/B variants of a scene in Phantra without rewriting it from scratch -- `duplicate_scene` with a changed hook, a changed length, a different first shot, a different product photo or a different video model -- each a new scene in the same project, told apart by their ids in the chat, priced one by one, and read back later with `what_works` to see which was kept. Use when someone asks for versions, variants, an A/B test, "try it shorter", "same ad with the other photo" or "which model would be cheaper for this one". NOT for writing the first version (write-scene, ugc-ad, product-shots), NOT for pricing in general (price-and-hand-off), and NOT for setting a look (look-matching).
+description: Makes A/B variants of a saved Phantra scene with `duplicate_scene`, changing one thing (the hook, the length, the first shot, the product photo or the video model), each a new scene priced on its own and read back later with `what_works`. Use when someone asks for versions, variants, an A/B test, "try it shorter" or "same ad with the other photo". NOT for the first version (write-scene), pricing in general (price-and-hand-off) or setting a look (look-matching).
 ---
 
 # Ad variations

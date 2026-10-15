@@ -1,6 +1,6 @@
 ---
 name: ugc-ad
-description: Write a UGC-style ad scene in Phantra -- a person talking to their phone camera about a product they hold -- rendered against the person's own face and their own product photos in a handheld phone feel, with every spoken line and every claim coming from the person. Use when someone asks for a UGC ad, a creator-style ad, a testimonial-style spot, a talk-to-camera product video or "something that looks like a customer filmed it". NOT for a product-only scene with no face (product-shots), NOT for A/B versions of an ad already written (ad-variations), NOT for the general scene shape (write-scene), and NOT for pricing or rendering (price-and-hand-off).
+description: Writes a UGC-style ad scene in Phantra: a person talking to their phone camera about a product they hold, rendered against their own face and product photos in a handheld feel, with every spoken line and claim coming from the person. Use when someone asks for a UGC ad, a creator-style ad, a testimonial-style spot or a talk-to-camera product video. NOT for a product-only scene with no face (product-shots), A/B versions (ad-variations) or the general scene shape (write-scene).
 ---
 
 # UGC-style ad

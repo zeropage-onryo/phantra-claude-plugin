@@ -1,6 +1,6 @@
 ---
 name: ad-formats
-description: Pick the shape of a short ad in Phantra and turn it into a shot plan -- product spot, demo, before/after, problem-solution, unboxing, comparison of the person's own products, teaser -- each with its length, shot count, the photos it is held to and a `write_scene` shape, with `duplicate_scene` for variants. Use when someone says "make an ad", names one of these shapes, or asks which format suits their product. NOT for writing the whole scene prompt (write-scene), NOT for a creator talking to camera (ugc-ad), NOT for a still packshot (product-shots), NOT for cutting variants of a finished ad (ad-variations), and NOT for pricing or rendering (price-and-hand-off).
+description: Picks the shape of a short ad in Phantra (product spot, demo, before/after, problem-solution, unboxing, comparison, teaser) and turns it into a shot plan: length, shot count, the photos it is held to and a `write_scene` shape. A still is drawn in the Phantra studio. Use when someone says "make an ad", names one of these shapes, or asks which format suits their product. NOT for the full scene prompt (write-scene), a creator talking to camera (ugc-ad) or variants of a finished ad (ad-variations).
 ---
 
 # Ad formats
