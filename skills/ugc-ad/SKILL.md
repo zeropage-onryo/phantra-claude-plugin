@@ -1,6 +1,6 @@
 ---
 name: ugc-ad
-description: Writes a UGC-style ad scene in Phantra: a person talking to their phone camera about a product they hold, rendered against their own face and product photos in a handheld feel, with every spoken line and claim coming from the person. Use when someone asks for a UGC ad, a creator-style ad, a testimonial-style spot or a talk-to-camera product video. NOT for a product-only scene with no face (product-shots), A/B versions (ad-variations) or the general scene shape (write-scene).
+description: Writes a UGC-style ad scene in Phantra: a person talking to their phone camera about a product they hold, rendered against their own face and product photos in a handheld feel, with every spoken line and claim coming from the person. Use when someone asks for a UGC ad, a creator-style ad, a talk-to-camera product video or "something that looks like a customer filmed it". NOT for a verdict after use (ugc-review), an unboxing (ugc-unboxing) or a product-only scene with no face (product-shots).
 ---
 
 # UGC-style ad
@@ -10,7 +10,7 @@ a phone talking about a thing they use. In Phantra that person is
 the one you are talking to, or someone whose face they have the right to
 use, and the thing is their own product: both are elements, and the scene is
 held to those photos. The words are theirs too. You write the prompt here
-(free), save it with `write_scene`, then price it (price-and-hand-off).
+(free), save it with `write_scene`, then price it (price-and-render).
 
 ## The two elements it needs
 
@@ -82,10 +82,18 @@ Avoid: plastic AI sheen, CGI-looking skin, cartoon reactions, slow motion,
 added captions or logos, named brands or people.
 ```
 
-## Save and hand off
+## Save, price and render
 
 Show the prompt, take their edits, then `write_scene` with `prompt`,
 `seconds`, `refs` (face first), `roles`, `title`, and `project_id` when it
-belongs to a project. Then `quote` it and give the `approve_url`: the render
-is approved in the studio, never here. Versions of this ad (a new hook, a
-new length) are ad-variations.
+belongs to a project. Then `quote` the `scene_id`: it prices the keyframes
+(`stills` x `each`) and the clip (one render per shot, each with `credits`
+and a `token`; a window is fitted up to the model's shortest length) beside
+the `balance`. Say the quote's numbers plainly -- the keyframes and their
+credits, the shots and theirs, the balance -- and WAIT for a yes in this chat naming what to
+run. Only then `approve` with `what` (`keyframes` or `clip`), the quote's
+`tokens` and the same renderer choice; `job` (`wait` 15) until `done`;
+`scene` shows the stills, the clips and the studio link. Tokens last an
+hour and work once; an edit means a new `quote` and a new yes. Never approve
+unasked or twice; refused for credits (`insufficient_credits`), stop and say
+credits are added in the studio. Versions of this ad are ad-variations.

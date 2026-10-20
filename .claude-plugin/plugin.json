@@ -1,20 +1,21 @@
 {
   "name": "phantra-ai",
   "displayName": "Phantra AI",
-  "version": "0.6.0",
-  "description": "Plan, write, organise, price and edit short video scenes from your own photos and clips in a conversation with Claude. Projects, elements, timed-shot scenes, prices in credits and free trims, reshapes and joins. Renders are approved and made in the Phantra studio, never in the chat: nothing in this connector draws, renders or spends credits.",
+  "version": "0.7.0",
+  "description": "Make AI images and video from an idea or a product photo, right in the chat with Claude: stills, timed-shot scenes rendered clip by clip, effects on what you made, and projects that keep a brand's look. Every still, clip and effect is quoted in credits first and made only on your yes.",
   "author": {
     "name": "Phantra",
     "url": "https://phantra.ai"
   },
-  "homepage": "https://phantra.ai/mcp/claude",
+  "homepage": "https://phantra.ai/mcp",
   "repository": "https://github.com/zeropage-onryo/phantra-claude-plugin",
   "license": "MIT",
   "keywords": [
     "video",
     "filmmaking",
+    "ai-video",
+    "image-generation",
     "storyboard",
-    "scene-planning",
     "creators"
   ]
 }

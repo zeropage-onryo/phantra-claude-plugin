@@ -1,6 +1,6 @@
 ---
 name: platform-delivery
-description: Delivers a Phantra video in the shape and length each platform wants (9:16 for Reels, TikTok and Shorts; 16:9 for YouTube; 1:1 or 4:5 for a feed): sets a default length, writes each scene to its platform's length, reformats a finished clip per platform and hands over a download link. Use when someone names a platform, asks what size or length a video needs, or wants versions per platform (the studio does not post). NOT for the edit steps (edit-and-deliver) or writing the shots (write-scene).
+description: Delivers a Phantra video in the shape and length each platform wants (9:16 for Reels, TikTok and Shorts; 16:9 for YouTube; 1:1 or 4:5 for a feed): sets a default length, writes each scene to its platform's length, reformats a finished clip per platform and hands over a download link. Use when someone names a platform, asks what size or length a video needs, or wants versions per platform (the studio does not post). NOT for the edit steps (edit-and-deliver) or a cover image (thumbnails).
 ---
 
 # Platform delivery
@@ -8,7 +8,8 @@ description: Delivers a Phantra video in the shape and length each platform want
 The studio makes the file. Posting is the person's, on the platform itself:
 nothing in this connector posts, schedules or publishes anywhere, and say so
 plainly when asked. Reformatting runs on the studio's own server and spends
-nothing; a second render of a scene is priced and approved in the studio.
+nothing; a render of a scene is priced by `quote` and runs only after the
+person's yes in this chat, through `approve` (price-and-render).
 
 ## Shapes and lengths the studio advises, per platform
 
@@ -39,8 +40,13 @@ the studio's advice, and the person's own `what_works` numbers outrank it.
    idea at another length is `duplicate_scene` with `seconds` and a `prompt`
    whose windows are rewritten to fit; its stills and clips are never copied,
    so it is a fresh scene to price.
-4. **Render in the studio.** `quote` the scene; give the person `approve_url`
-   (price-and-hand-off). Read `scene` for the clips once they have landed.
+4. **Render.** `quote` the scene; show the person the credits and wait for
+   their yes in this chat. Then `approve` with what=clip, the quote's
+   `tokens` and the same renderer choice (provider, model, frame, duration;
+   price-and-render); `job` with `wait=15` until done, then `scene` for the
+   clips. Never approve on the person's behalf, never twice; a refusal
+   `insufficient_credits` (with `needs` and `available`) means stop and say
+   credits are added in the studio.
 5. **One shape per platform.** `reformat` the finished clip (a `gen:<id>` from
    `library` or `recent`; `scene` says the clip has landed but lists it by
    address, not id) once per shape, each a new item; poll `job` with
@@ -61,9 +67,12 @@ Person: "This is for Reels, and I want a feed version too."
 
 1. Leading platform Reels, so 9:16; `set_preferences` seconds=10 on a yes.
 2. `write_scene` with seconds=10 and "Ultra-realistic grounded ... in 9:16"
-   as the opening line; the windows fill 0 to 10 s.
-3. `quote`, then `approve_url`. Later, `scene` shows the clip has landed;
-   `library` with kind=video lists it newest first as gen:920.
+   as the opening line; two windows fill 0 to 10 s.
+3. `quote` with model=ltx2.3 prices the two windows as two six-second LTX 2.3
+   shots, each with its credits, and their total against the balance. On the person's
+   yes, `approve` what=clip with the two tokens and the same renderer choice;
+   `job` wait=15 until done. `scene` shows the clip has landed; `library`
+   with kind=video lists it newest first as gen:920.
 4. `reformat` ref=gen:920, aspect=4:5, fit=crop (the face is centred). `job`
    until done: gen:921.
 5. `share_link` for gen:920 and gen:921, each named. "Post them on the
@@ -76,3 +85,5 @@ Person: "This is for Reels, and I want a feed version too."
 - Never crop a clip whose edges carry the action; ask, or pad.
 - Never state a platform's limits as fact; say what the studio advises.
 - Never price a second render yourself; its credits come from `quote`.
+- Never call `approve` without a yes in this chat to the price `quote`
+  showed, and never on a quote already approved.

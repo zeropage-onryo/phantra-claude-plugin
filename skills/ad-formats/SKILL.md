@@ -1,13 +1,14 @@
 ---
 name: ad-formats
-description: Picks the shape of a short ad in Phantra (product spot, demo, before/after, problem-solution, unboxing, comparison, teaser) and turns it into a shot plan: length, shot count, the photos it is held to and a `write_scene` shape. A still is drawn in the Phantra studio. Use when someone says "make an ad", names one of these shapes, or asks which format suits their product. NOT for the full scene prompt (write-scene), a creator talking to camera (ugc-ad) or variants of a finished ad (ad-variations).
+description: Picks the shape of a short ad in Phantra (product spot, demo, before/after, problem-solution, unboxing, comparison, teaser) and turns it into a shot plan: length, shot count, the photos it is held to and a `write_scene` shape, with `duplicate_scene` for variants. Use when someone says "make an ad", names one of these shapes, or asks which format suits their product. NOT for the full scene prompt (write-scene), a creator talking to camera (ugc-ad) or a set of ad stills (product-ad-set).
 ---
 
 # Ad formats
 
 An ad here is one scene: 4 to 30 seconds of timed shots, held to the person's
 elements: the product, the place and any face. The shape decides the
-shots. Nothing in this skill renders or spends.
+shots. Choosing it and writing the scene spends nothing; the render is quoted
+in credits and started only on the person's yes (price-and-render).
 
 ## Before choosing
 
@@ -62,7 +63,10 @@ captions, named brands or actors.
 Show it to the person, take their edits, then `write_scene` with `prompt`,
 `seconds` 8, `refs` [the bottle's ref, the kitchen's ref], `roles` {the
 kitchen's ref: "place"}, a `title`, and `project_id` when it belongs to a
-project. Nothing is spent. Then `quote` and hand over (price-and-hand-off).
+project. Nothing is spent. Then `quote` it (the keyframes and one render per
+shot, in credits), show the person the price, and only on their yes `approve`
+with the quote's `tokens` and the same renderer choice; `job` until done, then
+`scene` for the clips (price-and-render).
 
 ## Variants
 

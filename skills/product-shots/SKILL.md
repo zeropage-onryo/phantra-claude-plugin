@@ -1,16 +1,14 @@
 ---
 name: product-shots
-description: Writes a product-led Phantra scene: the product as the subject, in macro and turntable shots, held to the person's own product photos, and says what a 4:5 or 1:1 reformat does afterwards. A still is drawn in the Phantra studio; here it is the clip. Use when someone asks for product shots, a product video, a pack shot in motion or a hero clip. NOT for a person to camera (ugc-ad), A/B versions (ad-variations) or the general scene shape (write-scene).
+description: Writes a product-led Phantra scene: the product as the subject, in macro and turntable shots, held to the person's own product photos, and says what a 4:5 or 1:1 reformat does afterwards. A pack-shot still can be drawn too (`generate_image`, quoted first). Use when someone asks for product shots, a product video, a pack shot in motion or a hero clip. NOT for a person to camera (ugc-ad), a set of ad stills (product-ad-set) or A/B versions (ad-variations).
 ---
 
 # Product shots
 
 A product scene is held to the person's own product photos: the exact
 object, label and colour on screen come from them, and the scene's job is to
-light it, move around it and show its surfaces. Stills are drawn on the
-studio's own pages; this connector writes and saves the **scene** the clip is
-rendered from: you write the prompt here (free), save it with `write_scene`,
-then price it (price-and-hand-off).
+light it, move around it and show its surfaces. The clip is a **scene**, written
+here free, saved with `write_scene`, quoted, and rendered on the person's yes.
 
 ## Get the product in as a prop
 
@@ -82,14 +80,20 @@ Avoid: plastic AI sheen, invented text on the label, extra bottles, lens
 flare, named brands for the look.
 ```
 
-## Save, price, and the shape afterwards
+## Save, quote, approve, and the shape afterwards
 
 Show the prompt, take edits, then `write_scene` (`prompt`, `seconds`, `refs`
-pack shot first, `roles`, `title`, `project_id`). `quote` it and give
-`approve_url`; the render is approved in the studio. Once a clip has landed
-(`scene` shows it; `library` lists it as `gen:<id>`), `reformat` makes a copy
-in 4:5 or 1:1 for a feed: `fit` pad keeps the whole picture with black bars
-where the shapes differ; `fit` crop fills the frame and keeps the middle,
-which is why the product should sit near the centre of the scene. It spends
-nothing, runs in the background (`job` with `wait`), and the source is
-untouched.
+pack shot first, `roles`, `title`, `project_id`). `quote` it: `keyframes`
+(`stills` x `each`), `clip` (a render per timed shot, each with a `token`) and
+`balance`. Say them in the quote's own numbers -- the model, the shots and
+their credits, the keyframes, the balance -- and WAIT for an explicit yes; only then `approve`
+(`what` clip or keyframes, the quote's `tokens`, its renderer choice), `job`
+until done; `scene` shows `clips`. A still is `generate_image` (the prop's
+`ref` in `references`; `image_models` says which take them): the first call is
+the quote only, the same call plus its `quote_token` the draw, once. Never
+approve for the person or reuse a token; `refused: insufficient_credits` means
+stop: credits are added in the studio. Once a clip has landed, `reformat` (its
+`gen:<id>` from `library`) makes a copy in 4:5 or 1:1 for a feed (free, a
+`job`, the source untouched): `fit` pad keeps the whole picture with black bars
+where the shapes differ; `fit` crop fills the frame and keeps the middle, which
+is why the product should sit near the centre of the scene.
