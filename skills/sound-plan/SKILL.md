@@ -83,7 +83,7 @@ different renderer is a new quote and a new yes. Refused for
 
 1. Music: `assemble_clips` over the rendered `gen:<id>`s with `music` = the
    audio `asset:<id>` from `library`. The bed is trimmed to the picture and
-   lowered under the clips' own sound. Free; poll `job` with `wait`. The
+   lowered under the clips' own sound. No credits; poll `job` with `wait`. The
    result is a new `gen:<id>` and an editable cut in the studio's editor,
    where the person balances it. For one clip alone, the editor.
 2. The voice: the person records it (a phone in a quiet room is enough) and

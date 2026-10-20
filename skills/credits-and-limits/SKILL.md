@@ -1,17 +1,17 @@
 ---
 name: credits-and-limits
-description: Explains what is free and what costs credits in Phantra, reads the balance and where credits went, walks the quote, yes, spend flow, sets up draft-first rendering, and explains a refusal or a rate limit (429). Use when someone asks what something costs, what credits or a quote token are, what their balance is, how to render cheaper, or why a call was refused. NOT for pricing and rendering one scene (price-and-render) or choosing ideas (ideas-and-projects).
+description: Explains what costs credits and what does not in Phantra, reads the balance and where credits went, walks the quote, yes, spend flow, sets up draft-first rendering, and explains a refusal or a rate limit (429). Use when someone asks what something costs, what credits or a quote token are, what their balance is, how to render cheaper, or why a call was refused. NOT for pricing and rendering one scene (price-and-render) or choosing ideas (ideas-and-projects).
 ---
 
 # Credits and limits
 
-## What is free
+## What spends nothing
 
 **Every read and every write spends nothing.** Reads: `projects`, `project`, `elements`,
 `scene`, `quote`, `image_models`, `video_models`, `library`, `balance`, `credit_history`,
 `recommend_model`, `what_works`, `job`...; writes: `create_project`, `add_element`,
 `upload_link`, `write_scene`, `duplicate_scene`, `set_preferences`, `save_recipe`. The
-free edits -- `reformat`, `trim_clip`, `assemble_clips` -- run on the studio's own server
+edits -- `reformat`, `trim_clip`, `assemble_clips` -- run on the studio's own server
 and spend nothing: each starts a job you follow with `job` (`wait` holds up to 15 seconds)
 and makes a NEW item in the library, the source untouched. Writing the prompt happens in
 this chat. Only `generate_image`, the effect tools and `approve` spend, each quoted first.
@@ -80,7 +80,7 @@ false, say so first and that credits are added in the studio, and make no call.
   `elements` again and use a ref exactly as listed.
 - `add_element` refused: the address was not https, neither an image file nor a product
   page, or too large. Say which; ask for the picture itself (or give an `upload_link`).
-- `set_preferences` or a free edit refused: the value is not in the live catalogue
+- `set_preferences` or an edit refused: the value is not in the live catalogue
   (`preferences` lists the choices), the range lay outside the clip, the clips' shapes
   differ (`letterbox` on `assemble_clips`), or the id was not one `library` listed.
 - "no scene N" / "no project N": the id is not one this person can see. Re-read `projects`

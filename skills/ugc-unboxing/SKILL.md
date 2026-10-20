@@ -8,7 +8,7 @@ description: Writes a UGC-style unboxing scene in Phantra: a person opening a pa
 An unboxing is the moment before the review: hands, a package, and what the
 person thinks the first time they see the thing. Most of it is hands and
 sound; the face appears at the start and the end. You write the prompt here
-(free), save it with `write_scene`, then price it.
+(no credits), save it with `write_scene`, then price it.
 
 ## The elements it needs
 

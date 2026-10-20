@@ -7,7 +7,7 @@ description: Writes the scene prompt for an idea the person chose, in the shape 
 
 A scene in Phantra is ONE paste-ready prompt a video model reads top
 to bottom, rendered one timed shot at a time against the elements the
-person added. You write it in the chat (free), then `write_scene` saves it.
+person added. You write it in the chat (no credits), then `write_scene` saves it.
 
 ## Before writing
 

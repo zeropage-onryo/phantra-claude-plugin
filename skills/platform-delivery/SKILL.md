@@ -68,7 +68,7 @@ Person: "This is for Reels, and I want a feed version too."
 1. Leading platform Reels, so 9:16; `set_preferences` seconds=10 on a yes.
 2. `write_scene` with seconds=10 and "Ultra-realistic grounded ... in 9:16"
    as the opening line; two windows fill 0 to 10 s.
-3. `quote` with model=ltx2.3 prices the two windows as two six-second LTX 2.3
+3. `quote` with the chosen model prices the two windows as two six-second
    shots, each with its credits, and their total against the balance. On the person's
    yes, `approve` what=clip with the two tokens and the same renderer choice;
    `job` wait=15 until done. `scene` shows the clip has landed; `library`

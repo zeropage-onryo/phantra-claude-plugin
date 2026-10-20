@@ -76,12 +76,12 @@ Say: "For a spot with sound the catalogue ranks <first pick> first: <its
 reason>, <its credits> credits for 10 seconds at <its frame>. <Runner-up>
 is <its reason> at <its credits>. Which one? I can set it as your default."
 
-quote(scene_id=411, model="ltx2.3", frame="1080p")
+quote(scene_id=411, model="<id from video_models>", frame="1080p")
 -> clip: one 6s shot with its credits and one token; keyframes: 1 still; the balance
-Say: "On LTX 2.3 at 1080p that is one 6-second shot for <its credits> (its
+Say: "On <model> at 1080p that is one 6-second shot for <its credits> (its
 still would be <each> more); you have <balance>. Render it?" On a yes:
-approve(scene_id=411, what="clip", tokens=[that token], provider="fal",
-model="ltx2.3", frame="1080p", duration=6), then job until done.
+approve(scene_id=411, what="clip", tokens=[that token],
+model="<the same id>", frame="1080p", duration=6), then job until done.
 ```
 
 ## Do not

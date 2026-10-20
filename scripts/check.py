@@ -11,8 +11,8 @@ Ported from the ChatGPT plugin's scripts/check.py (zeropage-onryo/phantra-chatgp
 which checks OpenAI's limits; this one checks the same skills against the same tool list
 (scripts/mcp-tools.txt, read off the studio server's code) and Claude's listing rules:
   - the connector is the render server, https://api.phantra.ai/mcp;
-  - the listing text (plugin.json description, README) names no other company's model
-    and no price or promotion ("free", a plan price);
+  - the listing text (plugin.json description, README) and every skill name no other
+    company's model and no price or promotion ("free", a plan price);
   - a skill description is at most 500 characters (this package's own rule since 0.6.0);
   - no skill says renders happen only in the studio: the connector renders in the chat.
 """
@@ -35,7 +35,8 @@ PROMOTION = re.compile(r"\bfree\b|\bfree of charge\b|\bno cost\b|\bdiscount|\bpe
 MODEL_NAMES = re.compile(r"\b(kling|veo|seedance|ltx|wan|flux|seedream|gpt[- ]image|ideogram"
                          r"|nano banana|gemini|imagen|topaz|mmaudio|pixverse|runway"
                          r"|higgsfield|sora|midjourney|minimax|hailuo|recraft|bria"
-                         r"|openai|google|bytedance|alibaba|black forest)\b", re.I)
+                         r"|openai|google|bytedance|alibaba|black forest|fal)\b", re.I)
+FREE = re.compile(r"\bfree\b", re.I)   # a skill may say "never write a discount"
 STUDIO_ONLY = re.compile(r"renders? (are|is) (approved and )?made in the (phantra )?studio"
                          r"|never in the chat|press(es)? render|nothing in this connector (draws|renders)"
                          r"|renders? only in the studio", re.I)
@@ -153,6 +154,13 @@ def check_skills(plugin: str, tools: set[str], show_tools: bool) -> None:
                          f"field or a value: {line.strip()[:90]}")
             if n > end and PRICE.search(line):
                 fail(f"{folder.name}:{n} types a price; the tools give prices: "
+                     f"{line.strip()[:90]}")
+            m = MODEL_NAMES.search(line)
+            if m:
+                fail(f"{folder.name}:{n} names {m.group(0)!r}; name a model by what "
+                     f"`video_models` / `image_models` answer: {line.strip()[:90]}")
+            if FREE.search(line):
+                fail(f"{folder.name}:{n} says \"free\"; say it spends no credits: "
                      f"{line.strip()[:90]}")
             if STUDIO_ONLY.search(line):
                 fail(f"{folder.name}:{n} says renders happen only in the studio; the "

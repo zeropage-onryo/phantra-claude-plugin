@@ -5,7 +5,7 @@ description: Shows what Phantra can do before anything is made: the effects (ima
 
 # Browse presets
 
-Browsing is free and changes nothing. Looking at a menu never starts an
+Browsing spends nothing and changes nothing. Looking at a menu never starts an
 effect, a still or a render: running one is a separate step, quoted in
 credits first, and only on the person's yes. Say that once, in one line, if
 they seem unsure.

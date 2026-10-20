@@ -8,7 +8,7 @@ description: The habits every Phantra skill assumes, loaded before any writing t
 Every other skill in this plugin assumes these five habits. Read this once,
 then keep to it on every call. Only `generate_image` (a still), the effect
 tools (`edit_image`, `remove_background` and the rest) and `approve` (a scene's keyframes or clip) spend credits, each after a
-quote and the person's yes; the rest reads, saves text or starts a free edit.
+quote and the person's yes; the rest reads, saves text or starts an edit that spends nothing.
 
 ## 1. Reuse what exists before making anything
 
@@ -19,7 +19,7 @@ Before a new project, element, scene or recipe, look for the one already there:
   project when one fits; `search` with a few words finds it.
 - `elements`: the characters, props and places with their photo refs. A name
   already there gains a photo instead of becoming a second element.
-- `library`: renders (`gen:<id>`) and uploads (`asset:<id>`), the ids the free
+- `library`: renders (`gen:<id>`) and uploads (`asset:<id>`), the ids the
   edits and `share_link` take.
 - `recipes`, then `recipe`: the studio's shelf and the person's own, so a way
   of working they saved is used, not reinvented.
@@ -53,7 +53,7 @@ words: never your own arithmetic, never a currency; credits only.
 
 ## 4. Browsing never spends, and nothing spends without a yes
 
-Every read tool is free, and `reformat`, `trim_clip` and `assemble_clips` spend
+No read tool spends credits, and `reformat`, `trim_clip` and `assemble_clips` spend
 nothing: they start jobs, so poll `job` (`wait` holds up to 15 seconds). A
 render is quote, yes, approve: show the quote's price, wait for an explicit yes
 in this chat (never approve on the person's behalf), then spend once -- a scene

@@ -10,7 +10,7 @@ a phone talking about a thing they use. In Phantra that person is
 the one you are talking to, or someone whose face they have the right to
 use, and the thing is their own product: both are elements, and the scene is
 held to those photos. The words are theirs too. You write the prompt here
-(free), save it with `write_scene`, then price it (price-and-render).
+(no credits), save it with `write_scene`, then price it (price-and-render).
 
 ## The two elements it needs
 

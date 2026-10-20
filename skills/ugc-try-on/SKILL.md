@@ -7,7 +7,7 @@ description: Writes a UGC-style try-on scene in Phantra: a person trying on clot
 
 A try-on answers one question: what does this look like on a real person.
 So the two photos matter more than the writing. You write the prompt here
-(free), save it with `write_scene`, then price it.
+(no credits), save it with `write_scene`, then price it.
 
 ## The two elements it needs
 

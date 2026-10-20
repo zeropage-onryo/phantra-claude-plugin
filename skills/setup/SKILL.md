@@ -45,7 +45,7 @@ workspace is empty: say so and offer one of the three things above.
 
 ## 4. The one rule about spending
 
-Reading, writing scenes, the free edits and everything else cost nothing.
+Reading, writing scenes, trims, reshapes, joins and everything else spend no credits.
 Only a still (`generate_image`), an effect (one of the effect tools) and a render
 (`approve`, after `quote`) spend the account's credits, and each one is quoted first: show the person the
 price in credits and the balance, wait for their yes in this chat, and only
@@ -58,4 +58,4 @@ added in the studio; start nothing.
 - "Make me ads from this photo" → product-ad-set. "A cover" → thumbnails.
 - "Start a project" → start-a-project. "Write the scene" → write-scene.
 - "What would it cost, render it" → price-and-render.
-- "What is free, where did my credits go" → credits-and-limits.
+- "What costs credits, where did my credits go" → credits-and-limits.

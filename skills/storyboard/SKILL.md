@@ -73,7 +73,7 @@ made with; then `job` (`wait` up to 15) until done, and `scene` for the clips.
 One yes covers exactly the quotes the person was shown
 and named; anything else needs its own yes. A token works once (a repeat answers `already_used`
 and spends nothing) and a quote lasts one hour. Said in the chat, against the
-beat list above, on LTX 2.3 at 1080p:
+beat list above, on the chosen model at 1080p:
 
 ```
 1 of 3 -- Kitchen: 2 shots, <the clip's credits> (keyframes <theirs> more).
@@ -81,7 +81,7 @@ Balance <balance> -> <what is left> for the clip. Render scene 1?
 ```
 
 Once the clips have landed, `assemble_clips` with their `gen:<id>`s from
-`library`, in order (cut or crossfade), joins them free as a new item in the
+`library`, in order (cut or crossfade), joins them, spending no credits, as a new item in the
 library; poll `job` for the result.
 
 ## Do not

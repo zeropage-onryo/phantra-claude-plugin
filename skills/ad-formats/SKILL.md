@@ -21,7 +21,7 @@ in credits and started only on the person's yes (price-and-render).
    not say it. Ask once, then use their words.
 3. Length: `preferences` holds the default `seconds`, used when `write_scene`
    is passed none. The studio renders in its own vertical frame; other shapes
-   are free `reformat` copies afterwards (platform-delivery).
+   are `reformat` copies (no credits) afterwards (platform-delivery).
 
 ## The seven shapes
 

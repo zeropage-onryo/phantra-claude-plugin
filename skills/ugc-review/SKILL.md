@@ -7,7 +7,7 @@ description: Writes a UGC-style review scene in Phantra: a person telling their 
 
 A review is one person's verdict on a thing they have used, said to their
 phone. It differs from an ad in its order: the opinion comes first, then the
-evidence. You write the prompt here (free), save it with `write_scene`, then
+evidence. You write the prompt here (no credits), save it with `write_scene`, then
 price it. The person reviewing is the one you are talking to, or someone
 whose face they have the right to use.
 

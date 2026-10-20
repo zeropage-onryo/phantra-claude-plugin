@@ -74,11 +74,11 @@ Source 412 is a 15 s to-camera ad with three windows and the person wants a
 shorter one. Re-time it: (0-4s) the open unchanged, (4-10s) the product shot
 two seconds shorter with the closing line moved to its end, the third window
 dropped. Then `duplicate_scene` with `scene_id` 412, the re-timed `prompt`
-and `seconds` 10: it gives scene 419. `quote` 419 with `model` ltx2.3 reads
+and `seconds` 10: it gives scene 419. `quote` 419 with the `model` they chose reads
 two shots, each with its credits, and their total (each window is fitted up
 to the model's shortest length), beside the balance. Say that and wait. On "yes", `approve`
-419, `what` "clip", the two `tokens`, `provider` fal, `model` ltx2.3, `frame`
-1080p; `job` until it is done; `scene` 419 shows the clip.
+419, `what` "clip", the two `tokens` and the same `model` and `frame`
+the quote priced; `job` until it is done; `scene` 419 shows the clip.
 
 ## Reading the result
 

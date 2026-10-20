@@ -79,7 +79,7 @@ several scenes, one per beat, each saved on its own and joined later.
 4. Several scenes become one video with `assemble_clips`: their `gen:<id>`s
    from `library` in beat order, `transition` cut or crossfade, and an
    optional `music` bed that is an audio `asset:<id>` uploaded in the
-   studio's editor. Free; it starts a job, so poll `job` with `wait`. The
+   studio's editor. It spends no credits; it starts a job, so poll `job` with `wait`. The
    result is a new `gen:<id>` and an editable cut in the editor.
 5. The captions (the name, the claims, the offer) and the recorded voice go
    on in that editor. Say so; never write them into the prompt.

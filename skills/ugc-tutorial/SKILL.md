@@ -8,7 +8,7 @@ description: Writes a UGC-style tutorial scene in Phantra: a person showing thei
 A tutorial shows a way of doing something, in the order it is done, by the
 person who does it. Each step is one shot, because each timed shot is
 rendered as its own clip: one action, one camera setup, 2 to 10 seconds. You
-write the prompt here (free), save it with `write_scene`, then price it.
+write the prompt here (no credits), save it with `write_scene`, then price it.
 
 ## The two elements it needs
 

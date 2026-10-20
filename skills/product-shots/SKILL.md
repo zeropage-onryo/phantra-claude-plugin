@@ -8,7 +8,7 @@ description: Writes a product-led Phantra scene: the product as the subject, in 
 A product scene is held to the person's own product photos: the exact
 object, label and colour on screen come from them, and the scene's job is to
 light it, move around it and show its surfaces. The clip is a **scene**, written
-here free, saved with `write_scene`, quoted, and rendered on the person's yes.
+here, saved with `write_scene`, quoted, and rendered on the person's yes.
 
 ## Get the product in as a prop
 
@@ -93,7 +93,7 @@ until done; `scene` shows `clips`. A still is `generate_image` (the prop's
 the quote only, the same call plus its `quote_token` the draw, once. Never
 approve for the person or reuse a token; `refused: insufficient_credits` means
 stop: credits are added in the studio. Once a clip has landed, `reformat` (its
-`gen:<id>` from `library`) makes a copy in 4:5 or 1:1 for a feed (free, a
+`gen:<id>` from `library`) makes a copy in 4:5 or 1:1 for a feed (no credits, a
 `job`, the source untouched): `fit` pad keeps the whole picture with black bars
 where the shapes differ; `fit` crop fills the frame and keeps the middle, which
 is why the product should sit near the centre of the scene.

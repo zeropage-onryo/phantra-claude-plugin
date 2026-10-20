@@ -1,6 +1,6 @@
 ---
 name: effects
-description: Changes something already in the person's Phantra library with one of the seven effect tools: `edit_image`, `remove_background`, `animate_still`, `camera_move`, `upscale_clip`, `add_sound`, `reframe_clip`. Quotes it in credits and runs it only on the person's yes. Use when someone asks to edit, animate, cut out, upscale, reshape or add sound to something already made. NOT for a new still (thumbnails), the free edits (edit-and-deliver) or a scene's sound line (sound-plan).
+description: Changes something already in the person's Phantra library with one of the seven effect tools: `edit_image`, `remove_background`, `animate_still`, `camera_move`, `upscale_clip`, `add_sound`, `reframe_clip`. Quotes it in credits and runs it only on the person's yes. Use when someone asks to edit, animate, cut out, upscale, reshape or add sound to something already made. NOT for a new still (thumbnails), trims, reshapes and joins (edit-and-deliver) or a scene's sound line (sound-plan).
 ---
 
 # Effects
@@ -9,11 +9,11 @@ An effect takes something that already exists in the person's library and
 makes a NEW item from it; the source is never changed. Every effect spends
 credits, so every one is quoted first and runs only on their yes.
 
-## 1. Is there a free way first?
+## 1. Is there a way with no credits first?
 
 A new shape by padding or cropping is `reformat`; a shorter clip or clips
 joined is `trim_clip` or `assemble_clips`. None costs credits. Use an effect
-when the picture itself has to change, and say so when a free edit would do.
+when the picture itself has to change, and say so when a trim, reshape or join would do.
 
 ## 2. Pick the tool
 

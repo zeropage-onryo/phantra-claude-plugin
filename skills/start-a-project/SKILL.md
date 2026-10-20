@@ -81,12 +81,12 @@ before `create_project`. Never ask for what a tool can read.
   address the person gave: the element comes back with its photo ref.
 - `write_scene` with the two-shot prompt, `seconds` 10, that ref first and
   `project_id` 7: scene 41 and its link.
-- `quote` for scene 41 on LTX 2.3: two keyframes and two 6-second shots, each
+- `quote` for scene 41 on the model they chose: two keyframes and two 6-second shots, each
   with its credits, and the balance; say them. "Yes, keyframes first": `approve`
   scene 41, `what` keyframes, its `tokens`; `job` 1 ends done.
-- The stills look right; `quote` again (free) for the clip. "Yes, render it":
-  `approve` scene 41, `what` clip, its `tokens`, `provider` fal, `model` ltx2.3,
-  `frame` 1080p; `job` 2 ends done; `scene` 41 has two clips; `balance` says what is left.
+- The stills look right; `quote` again (no spend) for the clip. "Yes, render it":
+  `approve` scene 41, `what` clip, its `tokens` and the same `model` and
+  `frame` the quote priced; `job` 2 ends done; `scene` 41 has two clips; `balance` says what is left.
 
 ## Do not
 
