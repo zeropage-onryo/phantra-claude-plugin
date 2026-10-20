@@ -1,18 +1,21 @@
 # Phantra AI
 
-Plan, write and price AI images and video from your own photos, in a
-conversation with Claude. Open your projects in [Phantra](https://phantra.ai),
-bring your photos and clips in as elements, write a scene as timed shots held
-to them, see what it would cost in credits, and trim, reshape, join and share
-what you already have. Each piece of work lives in a project you can come
-back to.
+Work on media you provide, in a conversation with Claude. Edit one of your
+own stills by instruction, cut out its subject, animate it, give it a camera
+move, add sound to a clip, upscale it or reshape it; plan and write video
+scenes held to your photos and see what they would cost; trim, reshape, join
+and share what you already have. Each piece of work lives in a project in
+[Phantra](https://phantra.ai) you can come back to.
 
-**Images, clips and effects are made in the Phantra studio, on your approval
-there.** When you ask for one, Claude writes the prompt with you and hands
-you a link: a scene's own page in the studio (from `quote`), or the studio's
-composer with the prompt already in the box (`open_in_studio`). You see the
-price in credits there and approve it. Nothing in the chat draws, renders or
-spends credits, and nothing is bought, posted or deleted through the plugin.
+**Every change to your media is quoted in credits first and made only on your
+yes.** Claude shows the price and your balance and waits; only then does it
+make the call that spends, with the quote's one-time token.
+
+**New images and video from a prompt are made in the Phantra studio.** Claude
+writes the prompt with you and hands you a link: the studio's composer with
+the prompt already in the box (`open_in_studio`), or a scene's own page (from
+`quote`). You see the price in credits there and approve it. Nothing is
+bought, posted or deleted through the plugin.
 
 Documentation: https://phantra.ai/mcp/claude
 
@@ -41,7 +44,11 @@ you.
 
 ## The connector's tools
 
-Thirty-three; none of them draws, renders or spends credits.
+Forty. The seven effect tools are the only ones that spend credits: each
+works only on one of your own images or clips, by id from `library`, and is
+always two calls -- the first returns a quote and spends nothing; only a
+second call with that quote's token, made after your yes, runs it. None of
+them makes an image or a clip from a prompt alone.
 
 | Tool | What it does |
 |---|---|
@@ -49,7 +56,8 @@ Thirty-three; none of them draws, renders or spends credits.
 | `elements` / `add_element` / `upload_link` | the characters, products and places a scene is held to, with their photos; add a picture from an address, a product page or a render; a one-time page to upload a file from your device |
 | `write_scene` / `duplicate_scene` / `scene` | save a scene Claude wrote with you, copy one with changes, read one back |
 | `quote` | price a scene's keyframes and clips in credits beside your balance, with the scene's page in the studio where you render it |
-| `open_in_studio` | a link that opens the studio with a prompt in the box: an image, a clip, or an effect on one of your renders, inside a project if you like |
+| `edit_image` / `remove_background` / `animate_still` / `camera_move` / `upscale_clip` / `add_sound` / `reframe_clip` | effects on your own media: edit a still by instruction, cut out a subject, animate a still with a template, a camera move, upscale a clip, add sound, reshape a clip to a new frame (each **spends**, after a quote and your yes) |
+| `open_in_studio` | a link that opens the studio with a prompt in the box, for a new image or clip, inside a project if you like |
 | `video_models` / `recommend_model` | the video models with their frames, lengths and credits; which model suits a job |
 | `library` / `share_link` | what is in your library (renders and uploads); a download link for one of them |
 | `reformat` / `trim_clip` / `assemble_clips` / `job` | a clip or still in a new shape, a range of a clip, clips joined into one with an optional music bed, on the studio's server; follow the job |
@@ -76,18 +84,18 @@ id is filed in it, and a studio link with one opens inside it.
 ## A short demo
 
 1. "What am I working on?" → `whoami`, `recent`, `projects`.
-2. "Draw an ad still of my bottle on a wet gym floor." → Claude writes the
-   prompt with you and calls `open_in_studio`; you open the link, attach the
-   bottle's photo, see the price and approve it in the studio.
-3. "Keep that as the Bottle element." → `library` finds the still,
-   `add_element` keeps it with the still as its source.
+2. "Here is my bottle." → `upload_link`; you pick the photo on your phone and
+   it lands in your library and on a Bottle element.
+3. "Put it on a wet gym floor." → `edit_image` on that photo answers a
+   quote: the credits and your balance after. You say yes; the same call with
+   the quote's token makes the new version, and `job` brings it back.
 4. "Write a 10-second spot around it." → Claude writes the scene as timed
    shots in the chat, takes your edits and saves it with `write_scene`, held
    to the bottle's photo.
 5. "What would it cost?" → `quote`: the keyframes, the clip per shot, your
    balance, and the scene's page in the studio, where you press Render.
-6. "Give it a slow push-in and some sound." → `open_in_studio` with the clip
-   as its source opens the studio's effects on it, with the instruction ready.
+6. "Give it a slow push-in and some sound." → `camera_move` on the edited
+   still, then `add_sound` on that clip, each quoted and run only on your yes.
 7. "A square cut of the first two seconds, and a link I can send." →
    `trim_clip`, `reformat`, `share_link`.
 
@@ -97,8 +105,10 @@ The connector sends to your Phantra account at `api.phantra.ai`, over HTTPS,
 with the OAuth sign-in you approve:
 
 - the scene prompts Claude writes with you, with a title, a length and what
-  each photo is for, and the prompt, kind, frame and source of a studio link
+  each photo is for, and the prompt, kind, frame and project of a studio link
   (`open_in_studio` puts the prompt in the link's address);
+- for an effect: the id of your image or clip, the instruction and choices
+  you agreed, and the quote's token once you said yes;
 - a project's name, brief and look when you create one;
 - the ids of your projects, scenes, renders, uploads and element photos;
 - for `add_element`: the element's kind, name and a few words about it, and
@@ -113,9 +123,10 @@ with the OAuth sign-in you approve:
   words of a `search`, the job you describe to `recommend_model`, and a new
   scene text you give `duplicate_scene`.
 
-It does not send the conversation. Stills, clips and effects are made in the
-studio, on its AI providers, and are charged in credits from your balance only
-after the price is shown there and you approve it. The studio stores the scenes, elements, uploads,
+It does not send the conversation. Effects, stills and clips are made by the
+studio on its AI providers and are charged in credits from your balance only
+after the price is shown and you say yes (an effect, in the chat) or approve
+it (a still or a scene, in the studio). The studio stores the scenes, elements, uploads,
 renders and projects you make under your account until you remove them in
 the studio, and keeps your preferences, recipes and feedback notes as dated
 entries (there is no page to remove those yet; ask through Support). Every
@@ -127,8 +138,8 @@ can download that file until it expires. See the studio's
 [terms](https://phantra.ai/terms) for what is kept and for how long. The
 plugin itself runs no code, stores nothing, and sends nothing anywhere else.
 
-Nothing in the plugin can draw, render, buy credits, change a plan, post
-anywhere, or remove your work. Rewriting a scene replaces the text it had before.
+Nothing in the plugin can make an image or a clip from a prompt alone, buy
+credits, change a plan, post anywhere, or remove your work. Rewriting a scene replaces the text it had before.
 
 ## Rate limit
 

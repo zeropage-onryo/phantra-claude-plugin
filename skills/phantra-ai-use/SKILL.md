@@ -6,10 +6,12 @@ description: The habits every Phantra skill assumes, loaded before any writing t
 # Use the studio well
 
 Every other skill in this plugin assumes these five habits. Read this once,
-then keep to it on every call. Nothing in this connector makes media or
-spends credits: a still, an effect and a scene's render are made in the
-studio, on the person's approval there. The tools here read, save text, price,
-hand over studio links, or start an edit that spends nothing.
+then keep to it on every call. This connector works on media the person
+provides: the effect tools make a new version of one of their own images or
+clips, each after a quote and their yes. A new still or clip from a prompt,
+and a scene's render, are made in the studio on their approval there. The
+rest reads, saves text, prices, hands over studio links, or starts an edit
+that spends nothing.
 
 ## 1. Reuse what exists before making anything
 
@@ -21,11 +23,10 @@ Before a new project, element, scene or recipe, look for the one already there:
 - `elements`: the characters, props and places with their photo refs. A name
   already there gains a photo instead of becoming a second element.
 - `library`: renders (`gen:<id>`) and uploads (`asset:<id>`), the ids the
-  edits and `share_link` take.
+  edits, the effects and `share_link` take.
 - `recipes`, then `recipe`: the studio's shelf and the person's own, so a way
   of working they saved is used, not reinvented.
-- `recent` is the quick version of the first and third: the latest projects,
-  open scenes and renders. It lists no elements, uploads or recipes.
+- `recent`: the latest projects, open scenes and renders, in one call.
 
 ## 2. A picture on every scene
 
@@ -51,27 +52,28 @@ the quote's own words: never your own arithmetic, never a currency; credits
 only. `recommend_model` and `video_models` help choose a model; `quote` with
 `model` or `frame` prices that choice exactly.
 
-## 4. Making happens in the studio
+## 4. Nothing spends without a yes; new media is made in the studio
 
-No tool here spends credits. `reformat`, `trim_clip` and `assemble_clips`
-start jobs, so poll `job` (`wait` holds up to 15 seconds). Everything that
-makes media is a link the person opens:
+`reformat`, `trim_clip` and `assemble_clips` spend nothing; they start jobs,
+so poll `job` (`wait` holds up to 15 seconds). Three things cost:
 
-- a scene's keyframes or clip: `quote`'s `approve_url`;
-- a still, a clip from a prompt, or an effect on a render: `open_in_studio`
-  with the `prompt` you wrote together, `kind` (image or video), an `aspect`,
-  a `project_id`, and for an effect the render's `gen:<id>` as `source`.
+- an effect on their own media (`edit_image`, `remove_background` and the
+  rest, a `gen:<id>` or `asset:<id>` from `library`): the first call, with no
+  `quote_token`, IS the quote. Show it, wait for an explicit yes in this chat
+  (never on their behalf), then the SAME call plus its `quote_token`, once;
+  `job` until done. A token works once, for one hour;
+- a scene's keyframes or clip: `quote`'s `approve_url`, rendered in the studio;
+- a new still or clip from a prompt: `open_in_studio` with the `prompt` you
+  wrote together, `kind`, an `aspect` and a `project_id`; made in the studio.
 
-Give the link: the person approves it there, where the price is shown. Never say anything was made or charged until `scene` or
-`library` shows it. If `affordable` is false, say so and that credits are
-added in the studio.
+`refused: insufficient_credits` or `affordable` false: stop, and say that
+credits are added in the studio.
 
 ## 5. Nothing is overwritten
 
 Every edit makes a new item: `reformat` and `trim_clip` make copies,
 `assemble_clips` a new clip, `duplicate_scene` a fresh scene, `save_recipe` a
-new version, `set_preferences` a new entry; a still or an effect made in the
-studio is a new item too. The
+new version, `set_preferences` a new entry, an effect or a still a new item. The
 one exception is `write_scene` with a `scene_id`: it replaces that scene's TEXT.
 Show the person the whole new version and get a yes before calling it.
 
@@ -83,9 +85,8 @@ Show the person the whole new version and get a yes before calling it.
 - **Refusals** come back in plain words. Repeat them to the person and change
   something; never retry the identical call. "no scene N" or "no project N"
   means the id is not this person's: re-read `project` or `recent`.
-- **Ids are never invented.** A `scene_id`, `project_id`, `gen:<id>`,
-  `asset:<id>` or photo ref comes from a tool's reply in this
-  conversation, never from memory or a guess.
+- **Ids are never invented.** Every id, photo ref or quote token comes from a
+  tool's reply in this conversation, never from memory or a guess.
 
 ## Worked example
 
@@ -94,7 +95,6 @@ Show the person the whole new version and get a yes before calling it.
 1. `recent` shows project 12 "Coffee" with render `gen:88` in 16:9.
 2. `reformat` with `ref` `gen:88`, `aspect` 9:16, `fit` pad, `project_id` 12;
    `job` with `wait` 15 until it finishes; it returns `gen:91`, a new item.
-3. `share_link` with `ref` `gen:91`: hand the person the link and say when it
-   expires.
+3. `share_link` with `ref` `gen:91`: hand over the link and when it expires.
 
 Nothing was rendered, nothing was spent, and `gen:88` is untouched.
