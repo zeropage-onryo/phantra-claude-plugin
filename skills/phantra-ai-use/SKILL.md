@@ -1,14 +1,15 @@
 ---
 name: phantra-ai-use
-description: The habits every Phantra skill assumes, loaded before any writing tool: reuse what the person has, hold every scene to a photo, quote before anything costs, wait for the person's yes before anything spends, and never overwrite. Use when work on the connector starts, before the first `write_scene`, `create_project` or `add_element`, or when unsure what a tool spends or changes. NOT for one job's steps: a scene (write-scene), a render (price-and-render) or credits (credits-and-limits).
+description: The habits every Phantra skill assumes, loaded before any writing tool: reuse what the person has, hold every scene to a photo, quote before anything costs, send making to the studio, and never overwrite. Use when work on the connector starts, before the first `write_scene`, `create_project` or `add_element`, or when unsure what a tool spends or changes. NOT for one job's steps: a scene (write-scene), a render (price-and-render) or credits (credits-and-limits).
 ---
 
 # Use the studio well
 
 Every other skill in this plugin assumes these five habits. Read this once,
-then keep to it on every call. Only `generate_image` (a still), the effect
-tools (`edit_image`, `remove_background` and the rest) and `approve` (a scene's keyframes or clip) spend credits, each after a
-quote and the person's yes; the rest reads, saves text or starts an edit that spends nothing.
+then keep to it on every call. Nothing in this connector makes media or
+spends credits: a still, an effect and a scene's render are made in the
+studio, on the person's approval there. The tools here read, save text, price,
+hand over studio links, or start an edit that spends nothing.
 
 ## 1. Reuse what exists before making anything
 
@@ -43,34 +44,34 @@ no element fits:
 
 ## 3. Quote before anything costs credits
 
-Making media is the only thing that costs, and it is quoted first. For a scene,
-`quote` with the `scene_id` before anyone decides: the keyframes, the clip per
-shot, the balance. For a still or an effect, the first `generate_image` or
-effect-tool call, with no `quote_token`, IS the quote. Say the price in the quote's own
-words: never your own arithmetic, never a currency; credits only.
-`recommend_model`, `video_models` and `image_models` help choose a model;
-`quote` with `model` or `frame` prices that choice exactly.
+Making media is the only thing that costs. For a scene, `quote` with the
+`scene_id` before anyone decides: the keyframes, the clip per shot, the
+balance, and `approve_url`, the scene's page in the studio. Say the price in
+the quote's own words: never your own arithmetic, never a currency; credits
+only. `recommend_model` and `video_models` help choose a model; `quote` with
+`model` or `frame` prices that choice exactly.
 
-## 4. Browsing never spends, and nothing spends without a yes
+## 4. Making happens in the studio
 
-No read tool spends credits, and `reformat`, `trim_clip` and `assemble_clips` spend
-nothing: they start jobs, so poll `job` (`wait` holds up to 15 seconds). A
-render is quote, yes, approve: show the quote's price, wait for an explicit yes
-in this chat (never approve on the person's behalf), then spend once -- a scene
-through `approve` with the `scene_id`, `what` (keyframes or clip), the quote's
-`tokens` and the same renderer choice; a still or an effect through the same call
-again, the SAME arguments plus its `quote_token`. Tokens last one hour; a `quote_token`
-works once (a repeat answers `already_used` and charges nothing), a changed
-argument is refused, and a new render is a new quote and a new yes; never call
-`approve` twice on one yes. Then `job` with `wait` until done, and `scene` shows
-what landed. `refused: insufficient_credits` means stop: say it needs more
-credits than the workspace has, and that credits are added in the studio.
+No tool here spends credits. `reformat`, `trim_clip` and `assemble_clips`
+start jobs, so poll `job` (`wait` holds up to 15 seconds). Everything that
+makes media is a link the person opens:
+
+- a scene's keyframes or clip: `quote`'s `approve_url`;
+- a still, a clip from a prompt, or an effect on a render: `open_in_studio`
+  with the `prompt` you wrote together, `kind` (image or video), an `aspect`,
+  a `project_id`, and for an effect the render's `gen:<id>` as `source`.
+
+Give the link: the person approves it there, where the price is shown. Never say anything was made or charged until `scene` or
+`library` shows it. If `affordable` is false, say so and that credits are
+added in the studio.
 
 ## 5. Nothing is overwritten
 
 Every edit makes a new item: `reformat` and `trim_clip` make copies,
 `assemble_clips` a new clip, `duplicate_scene` a fresh scene, `save_recipe` a
-new version, `set_preferences` a new entry, a still or an effect a new item. The
+new version, `set_preferences` a new entry; a still or an effect made in the
+studio is a new item too. The
 one exception is `write_scene` with a `scene_id`: it replaces that scene's TEXT.
 Show the person the whole new version and get a yes before calling it.
 
@@ -83,7 +84,7 @@ Show the person the whole new version and get a yes before calling it.
   something; never retry the identical call. "no scene N" or "no project N"
   means the id is not this person's: re-read `project` or `recent`.
 - **Ids are never invented.** A `scene_id`, `project_id`, `gen:<id>`,
-  `asset:<id>`, photo ref or quote token comes from a tool's reply in this
+  `asset:<id>` or photo ref comes from a tool's reply in this
   conversation, never from memory or a guess.
 
 ## Worked example

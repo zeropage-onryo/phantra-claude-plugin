@@ -10,7 +10,7 @@ model is handed the same scene text, with the studio's own continuity line in
 front of each shot; you never write a model's own syntax. What changes with
 the model is what it can take (length, frame) and what it does with the words
 (sound, one long take). Read those off the catalogue, never from memory.
-Reading the catalogue spends nothing; a render waits on a quote and a yes.
+Reading the catalogue spends nothing; a render is priced by a quote and approved in the studio.
 
 ## Read the catalogue
 
@@ -59,12 +59,10 @@ Reading the catalogue spends nothing; a render waits on a quote and a yes.
 3. Write the scene as write-scene says. The words do not change by model
    beyond the two points above.
 4. `quote` with `model` and `frame`. Say the price from the quote (each
-   shot's seconds and credits, the keyframes, the balance) and WAIT for the
-   person's yes in this chat. Only then `approve` with `what="clip"`, the
-   quote's `tokens` and the same `provider`, `model` and `frame` (and
-   `duration` for a one-take scene); `job` until it is done, `scene` for the
-   clips (price-and-render). A short balance answers `insufficient_credits`:
-   start nothing, and say credits are added in the studio.
+   shot's seconds and credits, the keyframes, the balance) and give its
+   `approve_url`: the person renders it in the studio on the same model and
+   frame; `scene` shows the clips once they land (price-and-render). If
+   `affordable` is false, say so: credits are added in the studio.
 
 A worked exchange, with the names and numbers taken from the tools' replies:
 
@@ -77,11 +75,10 @@ reason>, <its credits> credits for 10 seconds at <its frame>. <Runner-up>
 is <its reason> at <its credits>. Which one? I can set it as your default."
 
 quote(scene_id=411, model="<id from video_models>", frame="1080p")
--> clip: one 6s shot with its credits and one token; keyframes: 1 still; the balance
+-> clip: one 6s shot with its credits; keyframes: 1 still; the balance
 Say: "On <model> at 1080p that is one 6-second shot for <its credits> (its
-still would be <each> more); you have <balance>. Render it?" On a yes:
-approve(scene_id=411, what="clip", tokens=[that token],
-model="<the same id>", frame="1080p", duration=6), then job until done.
+still would be <each> more); you have <balance>. Render it here, on the
+same model and frame: <approve_url>". Then scene(scene_id=411) when they ask.
 ```
 
 ## Do not
@@ -91,9 +88,8 @@ model="<the same id>", frame="1080p", duration=6), then job until done.
   the same scene text.
 - Never quote credits per second from memory; read `video_models` or `quote`.
 - Never pick for the person: rank, say why, and let them choose. A changed
-  model or frame re-prices the scene, so `quote` again and approve only with
-  the new quote's tokens and that same renderer choice.
-- Never call `approve` before the person has said yes to the quoted price in
-  this chat, never on their behalf, and never twice for one quote.
+  model or frame re-prices the scene, so `quote` again and say which model
+  and frame to pick in the studio.
+- Never say a render started; the person approves it in the studio.
 - Never pass a length or frame a model does not list, and never promise a
   model will match a render made on another one.

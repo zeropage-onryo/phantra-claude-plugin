@@ -66,16 +66,13 @@ several scenes, one per beat, each saved on its own and joined later.
 
 1. `quote` prices the scene in credits, beside the `balance`: `keyframes` (one
    still per shot, with the credits for `each`) and `clip` (one render per
-   timed shot, each with its credits and a `token`, and the total for all
-   three shots above). Say the quote's credits and WAIT for a yes in chat.
-2. On the yes, `approve` with `scene_id`, `what` "clip", the quote's `tokens`
-   and the renderer choice it priced (`provider`, `model`, `frame`, `duration`):
-   every shot without a clip yet, at exactly the quoted credits. `what`
-   "keyframes" draws the stills first, on their own yes, to see the look
-   before the clip. A token works once, for one hour; a stale quote is
-   refused. `affordable: false`, or `insufficient_credits` (`needs`,
-   `available`), means stop: credits are added in the studio.
-3. `job` with `wait` until done; `scene` shows `keyframe`, `clips`, `rendered`.
+   timed shot, each with its credits, and the total for all
+   three shots above). Say the quote's credits.
+2. Give its `approve_url`, the scene's page in the studio: the person renders
+   it there after seeing the price again, the keyframes first if they want to
+   see the look before the clip. Nothing renders from the chat.
+   `affordable: false` means say so: credits are added in the studio.
+3. When they come back, `scene` shows `keyframe`, `clips`, `rendered`.
 4. Several scenes become one video with `assemble_clips`: their `gen:<id>`s
    from `library` in beat order, `transition` cut or crossfade, and an
    optional `music` bed that is an audio `asset:<id>` uploaded in the
@@ -93,6 +90,6 @@ several scenes, one per beat, each saved on its own and joined later.
 - Never write dialogue, a voice-over or on-screen text into the scene.
 - Never state a benefit, a number or a review the person did not give you.
 - Never pass a URL as a ref; refs are ids exactly as `elements` lists them.
-- Never call `approve` without the person's yes to that quote in this chat, or
-  for more than it priced; never point them at a page for credits.
+- Never say a render started or what it cost; it is approved in the studio.
+  Never point them at a page for credits.
 - Never say a render or a join has finished: read `scene` or `job`.

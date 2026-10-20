@@ -23,14 +23,10 @@ per variant, so what gets kept says something.
    the rest is copied. The reply gives the new `scene_id` and `copied_from`.
 4. Note which is which (below), then `quote` each variant and say its price:
    `keyframes` (stills, `each` credits a still) and `clip` (its `credits` in
-   all), beside the `balance`. Then WAIT. One yes covers exactly the quotes the
-   person was shown and named; anything else needs its own yes.
-5. On the yes, `approve` with that `scene_id`, `what` "clip", the `tokens`
-   from its quote and the same `provider`, `model` and `frame` the quote was
-   priced with (and its `duration` when the scene is one shot). Tokens are
-   good for one hour; a changed choice is refused, never re-priced. `what`
-   "keyframes" draws the stills instead, on a yes of its own. Then `job` with
-   the returned id (`wait` up to 15) until it is done; `scene` shows the clips.
+   all), beside the `balance`.
+5. Give each variant's `approve_url`: the person renders the ones they want
+   in the studio, on the model and frame the quote priced, after seeing the
+   price again there. `scene` shows each variant's clips once they land.
 6. Later, `what_works` reads what was kept.
 
 ## The five changes
@@ -49,11 +45,10 @@ per variant, so what gets kept says something.
   `elements` did not list is refused.
 - **Model**: a scene carries no model; it is picked at the quote, so no copy
   is needed. `recommend_model` ranks models for the job in words; `quote`
-  with `model` (and `frame`) prices the same scene on another one, and
-  `approve` with those tokens and that same choice renders it there;
+  with `model` (and `frame`) prices the same scene on another one, which the
+  person picks in the studio when they render it;
   `set_preferences` with `video_model` makes it the default wherever a call
-  passes nothing (the quote then says so in `preference`; name it again at
-  `approve`), and `draft_first` true prices the cheaper draft frame where a
+  passes nothing (the quote then says so in `preference`), and `draft_first` true prices the cheaper draft frame where a
   model has one. `video_models` lists them with credits per frame.
 
 ## Telling variants apart
@@ -76,9 +71,8 @@ two seconds shorter with the closing line moved to its end, the third window
 dropped. Then `duplicate_scene` with `scene_id` 412, the re-timed `prompt`
 and `seconds` 10: it gives scene 419. `quote` 419 with the `model` they chose reads
 two shots, each with its credits, and their total (each window is fitted up
-to the model's shortest length), beside the balance. Say that and wait. On "yes", `approve`
-419, `what` "clip", the two `tokens` and the same `model` and `frame`
-the quote priced; `job` until it is done; `scene` 419 shows the clip.
+to the model's shortest length), beside the balance. Say that and give its `approve_url`; once
+they render it in the studio on that model, `scene` 419 shows the clip.
 
 ## Reading the result
 
@@ -91,10 +85,9 @@ shows which clips landed, with its studio link.
 ## Do not
 
 - Never change two variables in one copy and call it a test.
-- Never call `approve` without a yes in this chat to that variant's own
-  price, never approve on the person's behalf, and never carry one yes over
-  to the next variant or a second render of the same one.
-- When `quote` or `approve` answers `insufficient_credits` (with `needs` and
-  `available`), stop and say so: credits are added in the studio.
+- Never say a variant was rendered; each one is approved in the studio, at
+  its own price.
+- When `quote` answers `affordable` false, say so: credits are added in the
+  studio.
 - Never put a URL in `refs` (exactly as `elements` lists them), and never
   rewrite the source with `write_scene` to make a variant; copy it.

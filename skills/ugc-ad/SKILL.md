@@ -87,13 +87,11 @@ added captions or logos, named brands or people.
 Show the prompt, take their edits, then `write_scene` with `prompt`,
 `seconds`, `refs` (face first), `roles`, `title`, and `project_id` when it
 belongs to a project. Then `quote` the `scene_id`: it prices the keyframes
-(`stills` x `each`) and the clip (one render per shot, each with `credits`
-and a `token`; a window is fitted up to the model's shortest length) beside
+(`stills` x `each`) and the clip (one render per shot, each with `credits`; a window is fitted up to the
+model's shortest length) beside
 the `balance`. Say the quote's numbers plainly -- the keyframes and their
-credits, the shots and theirs, the balance -- and WAIT for a yes in this chat naming what to
-run. Only then `approve` with `what` (`keyframes` or `clip`), the quote's
-`tokens` and the same renderer choice; `job` (`wait` 15) until `done`;
-`scene` shows the stills, the clips and the studio link. Tokens last an
-hour and work once; an edit means a new `quote` and a new yes. Never approve
-unasked or twice; refused for credits (`insufficient_credits`), stop and say
+credits, the shots and theirs, the balance -- and give its `approve_url`, the
+scene's page in the studio, where the person renders it after seeing the price
+again; nothing renders from the chat. `scene` shows the stills, the clips and
+the studio link once they land. If `affordable` is false, say so and that
 credits are added in the studio. Versions of this ad are ad-variations.

@@ -10,7 +10,7 @@ remembers the last one. What makes two scenes read as one series is what you
 carry across on purpose: the same photos in the same order with the same
 roles, the same style block word for word, the same length, frame and model.
 Setting a series up and writing its episodes spends nothing; a render is
-`quote`, the person's yes in chat, then `approve` (price-and-render).
+`quote`, then the person renders it in the studio (price-and-render).
 
 ## Set up once
 
@@ -43,15 +43,13 @@ Setting a series up and writing its episodes spends nothing; a render is
    style block word for word, keep the sound line's shape, keep the avoid
    list, and name the same photos the same way.
 4. Show it to the person, then `quote` it: the keyframes (the credits for
-   `each` still) and the clip, one render per shot with its credits and a
-   token, against the balance; with a series default set,
-   `preference` says which model it priced. Say the price in credits and WAIT
-   for the person's yes in chat.
-5. Only on that yes: `approve` with the quote's tokens and the same renderer
-   choice (provider, model, frame, duration), then `job` until done and
-   `scene` for the clips. Never approve on the person's behalf, never twice;
-   `insufficient_credits` (needs, available) means stop and say credits are
-   added in the studio (price-and-render).
+   `each` still) and the clip, one render per shot with its credits,
+   against the balance; with a series default set,
+   `preference` says which model it priced. Say the price in credits.
+5. Give the quote's `approve_url`: the person renders the episode in the
+   studio on the same model and frame as the others; `scene` shows the clips
+   once they land. `affordable` false means say so: credits are added in the
+   studio (price-and-render).
 
 Episode 2 from scene 418, with episode 1's opening line and style block
 pasted in unchanged (replace the beats):
@@ -94,6 +92,6 @@ the one to hold the series to.
   saying the look will shift; price the draft frame instead, where the series'
   model has one (`video_models` says which do):
   `set_preferences` with `draft_first` true, then `quote` with no renderer
-  named, and `approve` naming the model and frame the quote answered.
+  named, and say which model and frame to pick in the studio.
 - Never promise two renders will match exactly. What you can promise is the
   same photos, words, length, frame and model.

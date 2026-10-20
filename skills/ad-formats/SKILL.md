@@ -8,7 +8,7 @@ description: Picks the shape of a short ad in Phantra (product spot, demo, befor
 An ad here is one scene: 4 to 30 seconds of timed shots, held to the person's
 elements: the product, the place and any face. The shape decides the
 shots. Choosing it and writing the scene spends nothing; the render is quoted
-in credits and started only on the person's yes (price-and-render).
+in credits and rendered by the person in the studio (price-and-render).
 
 ## Before choosing
 
@@ -64,9 +64,9 @@ Show it to the person, take their edits, then `write_scene` with `prompt`,
 `seconds` 8, `refs` [the bottle's ref, the kitchen's ref], `roles` {the
 kitchen's ref: "place"}, a `title`, and `project_id` when it belongs to a
 project. Nothing is spent. Then `quote` it (the keyframes and one render per
-shot, in credits), show the person the price, and only on their yes `approve`
-with the quote's `tokens` and the same renderer choice; `job` until done, then
-`scene` for the clips (price-and-render).
+shot, in credits), say the price and give its `approve_url`, where the person
+renders it in the studio; `scene` shows the clips once they land
+(price-and-render).
 
 ## Variants
 

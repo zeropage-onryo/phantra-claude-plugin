@@ -51,8 +51,8 @@ Save with `write_scene`. To change the opening of a saved scene, call
 no `refs` the scene becomes a draft with no photos). It replaces the text the
 scene had and detaches any clips already on it, so show the new version and
 get a yes first; to keep the original and its clips, `duplicate_scene` with
-the new `prompt` instead. Then `quote`, the person's yes, and `approve` with
-the quote's tokens (price-and-render).
+the new `prompt` instead. Then `quote` it and give its `approve_url`, where the
+person renders it in the studio (price-and-render).
 
 ## Evidence first: `what_works`
 

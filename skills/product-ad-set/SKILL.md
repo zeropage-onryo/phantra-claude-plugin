@@ -1,14 +1,15 @@
 ---
 name: product-ad-set
-description: Turns one product photo into a set of Phantra ads: three or four ad stills in different styles and, when wanted, two or three short video ads with different hooks. Agrees the set, quotes every still and scene separately and makes only what the person says yes to. Use when someone asks for ads, a campaign or a launch set, or gives a product photo and says "make me ads". NOT for one product film (product-shots), a person to camera (ugc-ad) or versions of an existing ad (ad-variations).
+description: Turns one product photo into a set of Phantra ads: three or four ad still prompts in different styles, opened in the studio to be drawn, and, when wanted, two or three short video ads with different hooks, each priced with `quote` and rendered in the studio. Use when someone asks for ads, a campaign or a launch set, or gives a product photo and says "make me ads". NOT for one product film (product-shots), a person to camera (ugc-ad) or versions of an existing ad (ad-variations).
 ---
 
 # A set of ads from one product photo
 
-One photo of the product in, a handful of finished ads out. A still is drawn
-by `generate_image`, ONE image per call; a video ad is a scene. Each still
-and each scene has its own quote in credits and runs only on the person's
-yes. Planning, writing and saving cost nothing.
+One photo of the product in, a handful of finished ads out. A still is written
+here and drawn in the studio from the link `open_in_studio` gives; a video ad
+is a scene, priced by `quote` and rendered at its `approve_url`. Every still
+and every render is priced and approved in the studio, one at a time.
+Planning, writing and saving here spend no credits.
 
 ## 1. Get the product in
 
@@ -37,9 +38,9 @@ Offer directions in craft terms, never as a brand's or an artist's name:
 - **Bold graphic**: a flat colour field, the product large, a short
   headline in their words.
 
-Then say the size of the set plainly: "four stills is four quotes, and each
-video ad is its own quote". Agree the frame (4:5 or 1:1 for a feed, 9:16
-for a story), and keep the set together with `create_project` (a title, a
+Then say the size of the set plainly: "four stills is four approvals in the
+studio, and each video ad is its own". Agree the frame (1:1 or 3:4 for a
+feed, with 4:5 copies by `reformat`; 9:16 for a story), and keep the set together with `create_project` (a title, a
 brief, a look), passing its `project_id` on every call below.
 
 Every headline, claim, number, price and offer on an ad comes from the
@@ -48,21 +49,18 @@ did not give you.
 
 ## 3. The stills
 
-1. `image_models`: read each model's own line. To show THEIR product,
-   choose a model whose `max_references` is 1 or more and pass the prop's
-   `ref` in `references`; a model with 0 draws from the prompt alone. For a
-   headline on the image, prefer one whose line says it is good at text.
-2. Write one prompt per style: the product ("the attached photo is the
+1. Write one prompt per style: the product ("the attached photo is the
    exact product and label"), where it sits, the light, the lens, the
    background, any words in quotes with their place, and "no other text".
-3. For each still, `generate_image` with `prompt`, `model`, `aspect`,
-   `references` and NO `quote_token`: it draws nothing and answers a quote.
-4. Show the quotes together, one line each, in the quotes' own numbers, with
-   the balance. WAIT. The person names which to draw; a still they did not
-   name is not drawn.
-5. For each one named, call `generate_image` again with the SAME arguments
-   plus its own `quote_token`; `job` with `wait` 15 until `done` gives the
-   image's address and its `ref` (a `gen:<id>`).
+   Show them together and take edits.
+2. For each still the person wants, `open_in_studio` with `prompt`, `kind`
+   image, the `aspect` and the `project_id`. Give them the links, one line
+   each.
+3. In the studio they attach the product photo, pick a model that takes
+   reference pictures (one good at text for a headline), see the price and
+   approve it. A model that draws from the prompt alone will not show their
+   exact product; say so.
+4. Each still lands in `library` with its `gen:<id>`.
 
 ## 4. The video ads (when wanted)
 
@@ -73,10 +71,9 @@ did not give you.
    `prompt` whose FIRST window alone is rewritten (the product arriving in
    frame, a hand reaching for it, a detail first). One change per copy.
 3. `quote` each `scene_id`: the keyframes and the clip, one render per timed
-   shot, with a `token` each. Show the quotes side by side and WAIT.
-4. On a yes to a named scene, `approve` with that `scene_id`, `what`
-   (`keyframes` or `clip`), its `tokens` and the same renderer choice;
-   `job` until `done`; `scene` shows the clips.
+   shot. Show the quotes side by side with each scene's `approve_url`.
+4. The person renders the ones they want in the studio; `scene` shows the
+   clips once they land.
 
 ## 5. Hand over the set
 
@@ -87,13 +84,10 @@ download link for each. Later, `what_works` reads which they kept.
 
 ## The spending rules
 
-- One yes covers exactly the quotes the person was shown
-  and named; anything else needs its own yes. Never draw or approve on their behalf,
-  and never a second time on one yes.
-- A token is good for one hour and for exactly that request; a changed
-  prompt, model or frame needs a new quote and a new yes.
-- `refused: insufficient_credits` (with `needs` and `available`): stop, say
-  both numbers and that credits are added in the studio. Offer a smaller
-  set.
+- Nothing here draws, renders or spends: each still and each render is
+  priced and approved in the studio. Never say one was made until `library`
+  or `scene` shows it.
+- `affordable` false on a quote: say so and that credits are added in the
+  studio. Offer a smaller set.
 - Never state a price yourself or add quotes up in your head: read each
   number from its quote.

@@ -68,16 +68,13 @@ have sound: plan for its sound to be laid on in the editor.
 
 `quote` with `model` prices the scene on the one chosen and spends nothing:
 `keyframes` (the stills to draw, `each` in credits), `clip` (one render per
-timed shot, each with its credits and a `token`), `balance` and
+timed shot, each with its credits), `balance` and
 `credits_needed`. Repeat the quote's own numbers -- `each` for a still, the
-credits of each shot's render -- never a guess, and WAIT for a yes
-in this chat; never say it for the person. Only then `approve` with the
-`scene_id`, `what` ("keyframes" draws the stills, "clip" renders every shot
-without one), the quote's `tokens` and the SAME `provider`, `model`, `frame`
-and `duration`; poll `job` with `wait`, then `scene` shows the keyframe, the
-clips and the scene's studio link. Tokens live one hour and work once; a
-different renderer is a new quote and a new yes. Refused for
-`insufficient_credits`? Stop, and say credits are added in the studio.
+credits of each shot's render -- never a guess, and give its
+`approve_url`: the person renders it in the studio on the same model, where
+the price is shown again. `scene` shows the keyframe, the clips and the
+scene's studio link once they land. `affordable` false: say credits are added
+in the studio.
 
 ## Music and voice, after the render
 
@@ -97,4 +94,4 @@ different renderer is a new quote and a new yes. Refused for
 - Never say a voice or a track was generated here; nothing is.
 - Never pass audio through `upload_link` or `add_element`.
 - Never promise a clip has sound unless the model's catalogue line says so.
-- Never `approve` without the price shown and a yes here, and never twice.
+- Never say a render started; it is approved in the studio.

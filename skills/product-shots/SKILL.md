@@ -1,6 +1,6 @@
 ---
 name: product-shots
-description: Writes a product-led Phantra scene: the product as the subject, in macro and turntable shots, held to the person's own product photos, and says what a 4:5 or 1:1 reformat does afterwards. A pack-shot still can be drawn too (`generate_image`, quoted first). Use when someone asks for product shots, a product video, a pack shot in motion or a hero clip. NOT for a person to camera (ugc-ad), a set of ad stills (product-ad-set) or A/B versions (ad-variations).
+description: Writes a product-led Phantra scene: the product as the subject, in macro and turntable shots, held to the person's own product photos, and says what a 4:5 or 1:1 reformat does afterwards. A pack-shot still can be opened in the studio too (`open_in_studio`). Use when someone asks for product shots, a product video, a pack shot in motion or a hero clip. NOT for a person to camera (ugc-ad), a set of ad stills (product-ad-set) or A/B versions (ad-variations).
 ---
 
 # Product shots
@@ -8,7 +8,7 @@ description: Writes a product-led Phantra scene: the product as the subject, in 
 A product scene is held to the person's own product photos: the exact
 object, label and colour on screen come from them, and the scene's job is to
 light it, move around it and show its surfaces. The clip is a **scene**, written
-here, saved with `write_scene`, quoted, and rendered on the person's yes.
+here, saved with `write_scene`, quoted, and rendered by the person in the studio.
 
 ## Get the product in as a prop
 
@@ -84,15 +84,13 @@ flare, named brands for the look.
 
 Show the prompt, take edits, then `write_scene` (`prompt`, `seconds`, `refs`
 pack shot first, `roles`, `title`, `project_id`). `quote` it: `keyframes`
-(`stills` x `each`), `clip` (a render per timed shot, each with a `token`) and
+(`stills` x `each`), `clip` (a render per timed shot) and
 `balance`. Say them in the quote's own numbers -- the model, the shots and
-their credits, the keyframes, the balance -- and WAIT for an explicit yes; only then `approve`
-(`what` clip or keyframes, the quote's `tokens`, its renderer choice), `job`
-until done; `scene` shows `clips`. A still is `generate_image` (the prop's
-`ref` in `references`; `image_models` says which take them): the first call is
-the quote only, the same call plus its `quote_token` the draw, once. Never
-approve for the person or reuse a token; `refused: insufficient_credits` means
-stop: credits are added in the studio. Once a clip has landed, `reformat` (its
+their credits, the keyframes, the balance -- and give its `approve_url`, where
+the person renders it in the studio; `scene` shows `clips` once they land. A
+pack-shot still is `open_in_studio` (`kind` image, the `aspect`, the prompt
+written here); they attach the product photo and approve it in the studio.
+`affordable` false: say credits are added in the studio. Once a clip has landed, `reformat` (its
 `gen:<id>` from `library`) makes a copy in 4:5 or 1:1 for a feed (no credits, a
 `job`, the source untouched): `fit` pad keeps the whole picture with black bars
 where the shapes differ; `fit` crop fills the frame and keeps the middle, which

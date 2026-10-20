@@ -1,6 +1,6 @@
 ---
 name: credits-and-limits
-description: Explains what costs credits and what does not in Phantra, reads the balance and where credits went, walks the quote, yes, spend flow, sets up draft-first rendering, and explains a refusal or a rate limit (429). Use when someone asks what something costs, what credits or a quote token are, what their balance is, how to render cheaper, or why a call was refused. NOT for pricing and rendering one scene (price-and-render) or choosing ideas (ideas-and-projects).
+description: Explains what costs credits and what does not in Phantra, reads the balance and where credits went, explains where spending is approved (the studio), sets up draft-first rendering, and explains a refusal or a rate limit (429). Use when someone asks what something costs, what credits are, what their balance is, how to render cheaper, or why a call was refused. NOT for pricing and rendering one scene (price-and-render) or choosing ideas (ideas-and-projects).
 ---
 
 # Credits and limits
@@ -8,31 +8,32 @@ description: Explains what costs credits and what does not in Phantra, reads the
 ## What spends nothing
 
 **Every read and every write spends nothing.** Reads: `projects`, `project`, `elements`,
-`scene`, `quote`, `image_models`, `video_models`, `library`, `balance`, `credit_history`,
+`scene`, `quote`, `video_models`, `library`, `balance`, `credit_history`,
 `recommend_model`, `what_works`, `job`...; writes: `create_project`, `add_element`,
-`upload_link`, `write_scene`, `duplicate_scene`, `set_preferences`, `save_recipe`. The
+`upload_link`, `write_scene`, `duplicate_scene`, `set_preferences`, `save_recipe`,
+`open_in_studio`. The
 edits -- `reformat`, `trim_clip`, `assemble_clips` -- run on the studio's own server
 and spend nothing: each starts a job you follow with `job` (`wait` holds up to 15 seconds)
 and makes a NEW item in the library, the source untouched. Writing the prompt happens in
-this chat. Only `generate_image`, the effect tools and `approve` spend, each quoted first.
+this chat. Nothing in this connector spends credits: making media is approved in the studio.
 
-## What costs credits
+## What costs credits (approved in the studio)
 
-- **A still**: `generate_image` WITHOUT `quote_token` draws nothing and answers the quote:
-  the credits (`image_models` lists each model's at 1:1), the balance after
-  it and a `quote_token`. The SAME call WITH that token starts the job.
-- **An effect** (`edit_image`, `remove_background`, `animate_still`, `camera_move`, `upscale_clip`, `add_sound` or `reframe_clip`): the call WITHOUT `quote_token` runs nothing
-  and answers the quote; the SAME call WITH its token starts the job (effects).
+- **A still**: drawn in the studio from the prompt `open_in_studio` puts in its box; the
+  studio shows the model's credits and the person approves them there.
+- **An effect** (an edit, a cut-out, a template, a camera move, an upscale, sound, a new
+  shape): `open_in_studio` with the render as `source` opens the studio's effects on it,
+  each with its price (effects).
 - **Keyframes**: one still per shot. `quote` says how many are still to draw and the
-  credits for `each`; `approve` with `what="keyframes"` and its `tokens` draws them.
+  credits for `each`.
 - **The clip**: one render per shot still without a clip, priced by model, length and
-  frame. `quote` lists `clip.renders` (part, seconds, credits, `token`) and the
-  total. `approve` with `what="clip"`, those `tokens` and
-  the same `provider`, `model`, `frame` and `duration` renders at exactly that price.
+  frame. `quote` lists `clip.renders` (part, seconds, credits) and the total.
 
-A token is good for one hour, for exactly that request, and once. Credit is held when the
-job starts and released if the render fails; `job` follows it and `scene` shows what
-landed. Credits are added in the studio, never here. Prices are in credits in every tool reply; repeat them as returned and never convert to money.
+Keyframes and the clip are approved on the scene's page in the studio, `quote`'s
+`approve_url`, where the price is shown again. Credit is held when a render starts and
+released if it fails; `scene` and `library` show what landed. Credits are added in the
+studio, never here. Prices are in credits in every tool reply; repeat them as returned and
+never convert to money.
 
 ## The balance, and where credits went
 
@@ -56,23 +57,22 @@ has one. Drafting pays when not every take is kept:
 2. `set_preferences` with `video_model` set to one of those models and `draft_first` true
    makes `quote` (called with no renderer choice) price the draft frame and say so in
    `preference`; a value the catalogue lacks is refused.
-3. Show the draft price, get the yes, then `approve` with the quote's `tokens` and
-   renderer choice. A take they like is **finished (upscaled) in the studio**, not here.
+3. Show the draft price and give `approve_url`; the person renders the draft in the
+   studio. A take they like is **finished (upscaled) in the studio**, not here.
 
-## Say the cost, then wait for the yes
+## Say the cost, then hand over the link
 
-Before any call that spends, say what it would cost from the quote, in credits beside the
-balance, and WAIT for an explicit yes in this chat. Never approve on the person's behalf,
-never spend twice, never pass a token or call `approve` on a guess. If `affordable` is
-false, say so first and that credits are added in the studio, and make no call.
+Before the person goes to make anything, say what it would cost from the quote, in
+credits beside the balance, then give the studio link. Never say something was made or
+charged until `scene`, `library` or `credit_history` shows it. If `affordable` is false,
+say so first and that credits are added in the studio.
 
 ## Refusals you will see (repeat them in their own words; never retry the same call)
 
 - `insufficient_credits` (`needs`, `available`): stop; nothing was charged. Say `needs`
   against `available` and that credits are added in the studio; pass on no link.
-- `already_used` on a token: the first call started the job; poll `job` for it. Nothing
-  new was charged; a new render needs a new quote and a new yes. A stale, expired or
-  changed quote is refused the same way: quote again, show the new price, get a new yes.
+- `open_in_studio` refused: an empty prompt, a frame not on its list, or a `source`
+  that is not one of their renders in `library`. Fix that one argument.
 - `needs_reference` on a saved scene: it has no photos, so it waits as a draft scene. Add
   one (`add_element`, `upload_link`, or a ref from `elements`) and save it again with its
   `scene_id`. It cannot be priced.
@@ -94,7 +94,7 @@ false, say so first and that credits are added in the studio, and make no call.
 
 ## What is never charged or changed through this connector
 
-Nothing is posted or removed, no payment method is touched, and nothing is rendered or
-drawn without a quote shown and a yes in this chat. Every edit makes a new item; rewriting
+Nothing is posted or removed, no payment method is touched, and nothing is rendered,
+drawn or charged from the chat: making is approved in the studio. Every edit makes a new item; rewriting
 a scene with `write_scene` replaces the text it had, so show the new version and get a yes
 first. Buying credits and changing a plan happen in the studio, never here.

@@ -1,13 +1,14 @@
 ---
 name: thumbnails
-description: Draws a cover image in Phantra (a YouTube thumbnail, a Reels, TikTok or Shorts cover, a feed cover) as a still with `generate_image`, in the platform's frame, with a few words that stay readable small, on a model from `image_models`; quoted first and drawn on the person's yes. Use when someone asks for a thumbnail, a cover, a title card or a poster frame. NOT for editing an existing still (effects), the first seconds of the video (hooks-and-first-seconds) or a set of ad stills (product-ad-set).
+description: Writes a cover image for Phantra (a YouTube thumbnail, a Reels, TikTok or Shorts cover, a feed cover) as one still prompt in the platform's frame, with a few words that stay readable small, and opens it in the studio with `open_in_studio` to be drawn on the person's approval. Use when someone asks for a thumbnail, a cover, a title card or a poster frame. NOT for editing a still (effects), the first seconds (hooks-and-first-seconds) or a set of ad stills (product-ad-set).
 ---
 
 # Thumbnails and covers
 
-A cover is one still: `generate_image` draws ONE image per call, quoted in
-credits first and drawn only on the person's yes. Writing the prompt, picking
-the model and making other shapes afterwards cost nothing.
+A cover is one still. You write its prompt with the person here; it is drawn
+in the studio, where they see the price in credits and approve it.
+`open_in_studio` gives the link that opens the studio with the prompt ready.
+Writing the prompt and making other shapes afterwards spend no credits.
 
 ## 1. What it is a cover for, and its frame
 
@@ -18,10 +19,10 @@ will be seen. Frames the studio advises (its advice, not a platform's rule):
 |---|---|
 | a YouTube video | 16:9 |
 | a Reels, TikTok or Shorts cover | 9:16 |
-| a feed post | 4:5 or 1:1 |
+| a feed post | 1:1, or 3:4 and a 4:5 copy with `reformat` |
 
-`image_models` lists the aspects every model takes. Draw the cover AT the
-frame it will be shown in: text placed for 16:9 does not survive a crop.
+Draw the cover AT the frame it will be shown in: text placed for 16:9 does
+not survive a crop.
 
 ## 2. One idea, readable small
 
@@ -39,18 +40,16 @@ Never put a claim, a number, a price, a quote or a result on a cover that
 the person did not give you, and never draw a fake screenshot, a made-up
 review or another company's logo.
 
-## 3. The model
+## 3. The model and the photo
 
-Call `image_models` and read each model's own line; never pick from memory.
+The image model is picked in the studio, in the box the link opens.
 
-- **Words on the image**: choose a model whose line says it is good at text
-  or typography.
-- **Their own face or product**: it must come from a photo. Choose a model
-  whose `max_references` is 1 or more and pass the photo's `ref` (from
-  `elements`) in `references`. A model with `max_references` 0 draws from the
-  prompt alone and will not show their face or product; say so.
-- **Both**: prefer a model whose line names text and takes references. When
-  none fits, say the trade-off and let the person choose.
+- **Words on the image**: tell them to pick a model whose line there says it
+  is good at text or typography.
+- **Their own face or product**: it must come from a photo. Check it is in
+  `elements` (or `library`); in the studio they attach it to the prompt, on a
+  model that takes reference pictures. A model that draws from the prompt
+  alone will not show their face or product; say so.
 
 No photo yet? `upload_link` (with `element_kind` and `element_name`) for a
 file on their device, or `add_element` for a picture at an address they gave.
@@ -72,26 +71,22 @@ the right third, two lines of heavy white sans-serif with a thin dark
 outline: "I FIXED IT" above "IN 5 MIN". No other text, no logos.
 ```
 
-## 5. Quote, yes, draw
+## 5. Open it in the studio
 
-1. `generate_image` with `prompt`, `model`, `aspect` and `references`, and
-   NO `quote_token`: it draws nothing and answers the quote (the model, the
-   credits, the balance and the balance after, a `quote_token`).
-2. Say the quote's own numbers and wait for an explicit yes in this chat.
-3. Call again with the SAME arguments plus that `quote_token`. It answers a
-   `job_id`; `job` with `wait` 15 until `done` gives the image's address and
-   its `ref` (a `gen:<id>`).
+1. `open_in_studio` with `prompt`, `kind` image, the `aspect`, and
+   `project_id` when the cover belongs to a project. It answers a `url`.
+2. Give them the link: the studio opens with the prompt in the box; they
+   attach the photo if there is one, send it, see the price and approve it.
+   Nothing is drawn or spent until they do.
+3. When they come back, `library` lists the cover as a `gen:<id>`.
 
-A token works once and for exactly that request. Never draw on the person's
-behalf, and never twice on one yes. `refused: insufficient_credits` means
-stop: say what it needs and what there is, and that credits are added in
-the studio.
+Never say the cover was drawn or what it cost; the studio shows both.
 
 ## 6. Options and other shapes
 
-- **A second option** is a second call, a second quote and a second yes.
-  Change one thing (the words, the expression, the colour) so the choice
-  means something. Say how many quotes a request for "a few" will be.
+- **A second option** is a second prompt and a second link, each approved
+  in the studio. Change one thing (the words, the expression, the colour) so
+  the choice means something.
 - **Another shape of the same cover**: `reformat` with its `gen:<id>`,
   `aspect` (9:16, 16:9, 1:1 or 4:5) and `fit` pad or crop. It costs no
   credits and the original is untouched. A crop can cut the words off: when

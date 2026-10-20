@@ -84,13 +84,11 @@ prompt: it replaces the text, so show the new version and get a yes first.
 
 ## Then
 
-Price-and-render: `quote` the scene (keyframes and clip in credits, a signed
-token per render, good for an hour); show the price and WAIT for the person's
-yes; only then `approve` with `what` ("keyframes" or "clip"), the quote's
-`tokens` and the same renderer choice; `job` until done, `scene` for the clips.
-One yes covers exactly the quotes the person was shown and named; anything else
-needs its own yes. Refused for credits: stop; credits are added in the studio.
-The scene's page in the studio is the other place they can approve it.
+Price-and-render: `quote` the scene (keyframes and clip in credits, beside the
+balance); say the price and give its `approve_url`, the scene's page in the
+studio, where the person renders it after seeing the price again. Nothing
+renders from the chat; `scene` shows the clips once they land. If `affordable`
+is false, say so and that credits are added in the studio.
 
 ## Do not
 

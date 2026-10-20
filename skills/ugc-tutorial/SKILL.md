@@ -83,12 +83,9 @@ captions, slow motion, named brands or people.
 Show the prompt and take their edits. Then `write_scene` with `prompt`,
 `seconds`, `refs` (the face first), `roles`, a `title`, and `project_id` when
 it belongs to a project. `quote` the `scene_id`: it prices the keyframes and
-the clip (one render per timed shot, each with a `token`) beside the
-`balance`; more steps means more shots to render, so say the count. Say the
-quote's own numbers and WAIT for a yes in this chat naming what to run. Only
-then `approve` with `what` (`keyframes` or `clip`), the quote's `tokens` and
-the same renderer choice; `job` (`wait` 15) until `done`; `scene` shows the
-stills, the clips and the studio link. Tokens last an hour and work once; an
-edit means a new `quote` and a new yes. Never approve unasked or twice;
-refused `insufficient_credits`, stop and say credits are added in the
-studio. The steps in full are price-and-render.
+the clip (one render per timed shot) beside the
+`balance`; more steps means more shots to render, so say the count. Say the quote's own numbers and give its `approve_url`, the scene's
+page in the studio, where the person renders it after seeing the price again;
+nothing renders from the chat. `scene` shows the stills, the clips and the
+studio link once they land. If `affordable` is false, say so and that credits
+are added in the studio. The steps in full are price-and-render.

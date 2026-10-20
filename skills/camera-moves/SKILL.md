@@ -66,14 +66,14 @@ it, sound, a long take, a cheap test or a final deliverable -- and with
 walking shot with a face in it", "a final product spot, realistic, with
 sound"); `video_models` lists their lengths and frames. Say the reason; the
 person picks the model, and that pick goes on `quote` as `model`, so the price
-they see is for that model, then on `approve` with the quote's tokens once
-they have seen the price and said yes in this chat (price-and-render).
+they see is for that model; they pick the same one in the studio when they
+render it at the quote's `approve_url` (price-and-render).
 
 ## Then
 
 Fold the beats into the full scene (opening line, style, beats, sound, avoid)
 and save it with `write_scene` (write-scene). Pricing and the render --
-`quote`, the person's yes in this chat, `approve` -- are price-and-render.
+`quote` and its `approve_url` in the studio -- are price-and-render.
 
 ## Do not
 

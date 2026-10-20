@@ -74,7 +74,7 @@ voice they record.
   storyboard (one `write_scene` per scene, filed in one project made with
   `create_project`) or write a single one with write-scene.
 - Writing and saving a scene spends no credits. Rendering is priced per scene by
-  `quote` and runs only on their yes, through `approve`
+  `quote`, and the person renders it in the studio at its `approve_url`
   (price-and-render). Say how many scenes the plan is before quoting any.
 - Finished clips are in `library`; `assemble_clips` joins them (no credits)
   and `share_link` hands over the file for their own editor, where the

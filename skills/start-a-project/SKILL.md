@@ -1,13 +1,13 @@
 ---
 name: start-a-project
-description: Takes a one-line idea to a Phantra project holding its first scene: creates it with a title, brief and look, gets the person's pictures in as elements, writes and files the first scene, then quotes it and, on the person's yes, approves the render and follows it. Use when someone says "start a project" or brings a fresh idea with nothing in the studio yet. NOT for reopening a project (ideas-and-projects), the scene prompt itself (write-scene) or pricing details (price-and-render).
+description: Takes a one-line idea to a Phantra project holding its first scene: creates it with a title, brief and look, gets the person's pictures in as elements, writes and files the first scene, then quotes it and hands over the scene's studio page to render it. Use when someone says "start a project" or brings a fresh idea with nothing in the studio yet. NOT for reopening a project (ideas-and-projects), the scene prompt itself (write-scene) or pricing details (price-and-render).
 ---
 
 # Start a project
 
 From one line ("a 15-second vertical ad for my candle shop") to a project
-holding its first scene, priced and, on the person's yes, rendering. Nothing
-spends before that yes. Load phantra-ai-use first; its habits apply throughout.
+holding its first scene, priced, with the studio page where the person renders
+it. Nothing spends in the chat. Load phantra-ai-use first; its habits apply throughout.
 
 ## Ask at most three short questions
 
@@ -54,15 +54,11 @@ before `create_project`. Never ask for what a tool can read.
    so change nothing else without showing it first).
 6. `quote` with the `scene_id`. Say the price in its words: the `keyframes`
    (`stills` at `each`), the `clip` (`renders`, one per timed shot) and
-   `credits_needed` against `balance`; then stop and wait for the person's yes
-   in this chat -- to the keyframes, the clip, or both. Nothing has started.
-7. On the yes, `approve` with the `scene_id`, `what` ("keyframes" draws one
-   still per shot; "clip" renders every shot without a clip), that quote's
-   `tokens` and the same renderer choice (`provider`, `model`, `frame`,
-   `duration`); a token lasts an hour and works once, so one `quote` per
-   `approve`. Then `job` with `wait` 15 until done, and `scene` for `keyframe`,
-   `clips`, `rendered`. On `refused: insufficient_credits` stop: say `needs`
-   and `available`, and that credits are added in the studio.
+   `credits_needed` against `balance`. Nothing has started.
+7. Give the quote's `approve_url`, the scene's page in the studio: the
+   keyframes and the clip are two buttons there, each with its price. When
+   they come back, `scene` shows `keyframe`, `clips`, `rendered`. If
+   `affordable` is false, say so and that credits are added in the studio.
 8. Close with the project id, the scene id, what was rendered and the scene's
    `studio_url`, so the next conversation can open it with `project`.
 
@@ -82,11 +78,9 @@ before `create_project`. Never ask for what a tool can read.
 - `write_scene` with the two-shot prompt, `seconds` 10, that ref first and
   `project_id` 7: scene 41 and its link.
 - `quote` for scene 41 on the model they chose: two keyframes and two 6-second shots, each
-  with its credits, and the balance; say them. "Yes, keyframes first": `approve`
-  scene 41, `what` keyframes, its `tokens`; `job` 1 ends done.
-- The stills look right; `quote` again (no spend) for the clip. "Yes, render it":
-  `approve` scene 41, `what` clip, its `tokens` and the same `model` and
-  `frame` the quote priced; `job` 2 ends done; `scene` 41 has two clips; `balance` says what is left.
+  with its credits, and the balance; say them and give the scene's
+  `approve_url`. They draw the keyframes there first, then the clip.
+- "Is it done?": `scene` 41 has two clips; `balance` says what is left.
 
 ## Do not
 
@@ -94,6 +88,6 @@ before `create_project`. Never ask for what a tool can read.
 - Never pass a web address anywhere but `add_element`, and only one the
   person gave you.
 - Never give a currency or a plan price: credits, from the quote.
-- Never `approve` without the person's yes, in this chat, to the quote it
-  spends; never twice for one render. And never pass on a link or a page about
-  plans or credits, whatever an answer carries: credits are added in the studio.
+- Never say a render started; it is approved in the studio. And never pass on
+  a link or a page about plans or credits, whatever an answer carries:
+  credits are added in the studio.

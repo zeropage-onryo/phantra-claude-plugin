@@ -38,8 +38,8 @@ Rule of thumb: a scene is one block the camera could cover in one visit.
    palette, framing, style for a look-only photo). The first ref is the anchor
    and should be the same photo in every scene where that subject appears. If
    a face, product or place has no photo, ask for one (look-matching). A place
-   can also be drawn: `generate_image` quotes first and draws only on the
-   person's yes, called again with its `quote_token`; `add_element` with the
+   can also be drawn in the studio: `open_in_studio` (`kind` image) with the
+   prompt you wrote; once it is in `library`, `add_element` with its
    `gen:<id>` keeps it as the place's photo. A face is always their own photo.
 3. Write the beat list in the chat and get a yes:
 
@@ -66,18 +66,14 @@ Rule of thumb: a scene is one block the camera could cover in one visit.
 
 Take each scene through price-and-render, one scene at a time: `quote` with its
 `scene_id` (and the renderer, when one was chosen), show the person the
-credits for the keyframes and for the clip beside their balance, and WAIT for
-a yes in the chat. Only then `approve`: `what` "keyframes" for the stills, or
-"clip" with the quote's `tokens` and the SAME renderer choice the quote was
-made with; then `job` (`wait` up to 15) until done, and `scene` for the clips.
-One yes covers exactly the quotes the person was shown
-and named; anything else needs its own yes. A token works once (a repeat answers `already_used`
-and spends nothing) and a quote lasts one hour. Said in the chat, against the
+credits for the keyframes and for the clip beside their balance, and give the
+scene's `approve_url`: the person renders it in the studio on the renderer the
+quote priced, and `scene` shows the clips once they land. Said in the chat, against the
 beat list above, on the chosen model at 1080p:
 
 ```
 1 of 3 -- Kitchen: 2 shots, <the clip's credits> (keyframes <theirs> more).
-Balance <balance> -> <what is left> for the clip. Render scene 1?
+Balance <balance> -> <what is left> for the clip. Render it here: <approve_url>
 ```
 
 Once the clips have landed, `assemble_clips` with their `gen:<id>`s from
@@ -91,10 +87,7 @@ library; poll `job` for the result.
   that is what makes a sequence read as one piece.
 - Never rewrite a saved scene with `write_scene` and `scene_id` without showing
   the new version first; it replaces the text.
-- Never call `approve`, or `generate_image` with a `quote_token`, before the
-  person has seen that price in credits and said yes in the chat; never on
-  their behalf, never twice for one quote, and never say a render has started
-  until `approve` has answered with a job.
-- `refused: insufficient_credits` (with `needs` and `available`) ends the
-  render: say the scene needs more credits than the workspace has and that
-  credits are added in the studio. Nothing was spent; there is no link to give.
+- Never say a render or a still has started; the person approves each in the
+  studio, where the price is shown.
+- `affordable` false on a quote: say the scene needs more credits than the
+  workspace has and that credits are added in the studio.

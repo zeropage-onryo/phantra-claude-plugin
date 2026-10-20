@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the Claude plugin against the /mcp tool list and its own listing rules.
+"""Check the Claude plugin against the /mcp/claude tool list and its own listing rules.
 
     python3 scripts/check.py            # the manifest, the connector, every skill
     python3 scripts/check.py --tools    # also print which tools each skill names
@@ -10,11 +10,13 @@ Run `claude plugin validate .` as well: this checks what that does not.
 Ported from the ChatGPT plugin's scripts/check.py (zeropage-onryo/phantra-chatgpt-plugin),
 which checks OpenAI's limits; this one checks the same skills against the same tool list
 (scripts/mcp-tools.txt, read off the studio server's code) and Claude's listing rules:
-  - the connector is the render server, https://api.phantra.ai/mcp;
+  - the connector is the Claude door, https://api.phantra.ai/mcp/claude, which makes
+    nothing: a skill names none of the render door's making tools (`generate_image`,
+    `approve`, the effect tools, ...; scripts/other-tools.txt), not even unquoted, and
+    never a quote token for one; an image, a clip or an effect is `open_in_studio`;
   - the listing text (plugin.json description, README) and every skill name no other
     company's model and no price or promotion ("free", a plan price);
   - a skill description is at most 500 characters (this package's own rule since 0.6.0);
-  - no skill says renders happen only in the studio: the connector renders in the chat.
 """
 from __future__ import annotations
 
@@ -25,7 +27,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-CONNECTOR = "https://api.phantra.ai/mcp"
+CONNECTOR = "https://api.phantra.ai/mcp/claude"
 SKILL_LINES = 100
 SKILL_DESCRIPTION = 500
 IDENTITY = 64              # "plugin-name:skill-name"
@@ -37,9 +39,10 @@ MODEL_NAMES = re.compile(r"\b(kling|veo|seedance|ltx|wan|flux|seedream|gpt[- ]im
                          r"|higgsfield|sora|midjourney|minimax|hailuo|recraft|bria"
                          r"|openai|google|bytedance|alibaba|black forest|fal)\b", re.I)
 FREE = re.compile(r"\bfree\b", re.I)   # a skill may say "never write a discount"
-STUDIO_ONLY = re.compile(r"renders? (are|is) (approved and )?made in the (phantra )?studio"
-                         r"|never in the chat|press(es)? render|nothing in this connector (draws|renders)"
-                         r"|renders? only in the studio", re.I)
+# the render door's making tools, matched anywhere (a code block, a bare word)
+MAKERS = re.compile(r"\b(generate_image|image_models|edit_image|remove_background|animate_still"
+                    r"|camera_move|upscale_clip|add_sound|reframe_clip|apply_effect"
+                    r"|quote_token)\b|\bapprove\(|`approve`")
 
 fails: list[str] = []
 warns: list[str] = []
@@ -68,7 +71,7 @@ def names(path: str) -> tuple[list[str], list[str]]:
 def listing_text(label: str, text: str) -> None:
     for pattern, what in ((PRICE, "a price"), (PROMOTION, "pricing or promotion wording"),
                           (MODEL_NAMES, "another company's model or name"),
-                          (STUDIO_ONLY, "that renders happen only in the studio")):
+                          (MAKERS, "a making tool the Claude door does not have")):
         for m in pattern.finditer(text):
             fail(f"{label} states {what}: {m.group(0)!r}")
 
@@ -94,8 +97,8 @@ def check_manifest() -> dict:
     for key in ("homepage", "repository"):
         if not str(manifest.get(key, "")).startswith("https://"):
             fail(f"{key} must be an https URL")
-    if manifest.get("homepage") != "https://phantra.ai/mcp":
-        fail(f"homepage is {manifest.get('homepage')!r}; it is https://phantra.ai/mcp")
+    if manifest.get("homepage") != "https://phantra.ai/mcp/claude":
+        fail(f"homepage is {manifest.get('homepage')!r}; it is https://phantra.ai/mcp/claude")
     listing_text("plugin.json description", desc)
     listing_text("README.md", (ROOT / "README.md").read_text())
     return manifest
@@ -148,9 +151,9 @@ def check_skills(plugin: str, tools: set[str], show_tools: bool) -> None:
                 if token in tools:
                     named.add(token)
                 elif token in banned:
-                    fail(f"{folder.name}:{n} names `{token}`, which is not a tool on /mcp")
+                    fail(f"{folder.name}:{n} names `{token}`, which is not a tool on /mcp/claude")
                 elif token in soft:
-                    warn(f"{folder.name}:{n} `{token}` is not a tool on /mcp; fine as a "
+                    warn(f"{folder.name}:{n} `{token}` is not a tool on /mcp/claude; fine as a "
                          f"field or a value: {line.strip()[:90]}")
             if n > end and PRICE.search(line):
                 fail(f"{folder.name}:{n} types a price; the tools give prices: "
@@ -162,9 +165,11 @@ def check_skills(plugin: str, tools: set[str], show_tools: bool) -> None:
             if FREE.search(line):
                 fail(f"{folder.name}:{n} says \"free\"; say it spends no credits: "
                      f"{line.strip()[:90]}")
-            if STUDIO_ONLY.search(line):
-                fail(f"{folder.name}:{n} says renders happen only in the studio; the "
-                     f"connector renders in the chat: {line.strip()[:90]}")
+            m = MAKERS.search(line)
+            if m:
+                fail(f"{folder.name}:{n} names {m.group(0)!r}, which the Claude door does not "
+                     f"have; making is `open_in_studio` or `quote`'s approve_url: "
+                     f"{line.strip()[:90]}")
         for other in re.findall(r"\(([a-z][a-z0-9-]+)\)", description):
             if other not in {f.name for f in folders} and "-" in other:
                 fail(f"{folder.name}: its description points at ({other}), "
@@ -176,7 +181,7 @@ def check_skills(plugin: str, tools: set[str], show_tools: bool) -> None:
 
 def main() -> int:
     tools = set(names("scripts/mcp-tools.txt")[0])
-    print(f"{len(tools)} tools on /mcp (scripts/mcp-tools.txt)")
+    print(f"{len(tools)} tools on /mcp/claude (scripts/mcp-tools.txt)")
     manifest = check_manifest()
     print(f"{manifest['name']} {manifest['version']}, description "
           f"{len(manifest['description'])}/1024")

@@ -1,34 +1,39 @@
 ---
 name: setup
-description: The first minutes with Phantra in Claude: what the person can make here, the one sign-in, a look at what the workspace holds, and the one rule about spending. Use right after the plugin is installed, when the person asks how to start or what this can do, or when a call answers that the sign-in has no workspace yet. NOT for the work itself: writing a scene (write-scene), pricing and rendering (price-and-render) or explaining credits (credits-and-limits).
+description: The first minutes with Phantra in Claude: what the person can plan and make here, the one sign-in, a look at what the workspace holds, and the one rule about spending. Use right after the plugin is installed, when the person asks how to start or what this can do, or when a call answers that the sign-in has no workspace yet. NOT for the work itself: writing a scene (write-scene), pricing and rendering (price-and-render) or explaining credits (credits-and-limits).
 ---
 
 # Setting up Phantra
 
-Phantra is an AI image and video generator the person already has
-an account with. This plugin works inside that account, from the chat.
+Phantra is an AI image and video studio the person already has an account
+with. This plugin works inside that account from the chat: Claude plans,
+writes, organises, prices and edits; images, clips and effects are made in
+the studio, on the person's approval there.
 
-## 1. What they can make here
+## 1. What they can do here
 
-- **A still**: an ad image, a product shot, a cover. `image_models` lists the
-  models; `generate_image` draws one image per call. With the connector on,
-  a request to draw or make an image is a Phantra still: call `generate_image`,
-  which quotes first, and wait for the person's yes.
+- **A still**: an ad image, a product shot, a cover. Write the prompt with
+  them, then `open_in_studio` (`kind` image, an `aspect`) gives a link that
+  opens the studio with the prompt in the box; they send it and approve the
+  price there. A request to draw or make an image goes this way.
 - **A video**: you write the scene with them as timed shots, `write_scene`
-  saves it, `quote` prices it and `approve` renders it, one clip per shot.
-- **A change to something made**: `edit_image`, `remove_background`, `animate_still`, `camera_move`, `upscale_clip`, `add_sound` or `reframe_clip`
-  change a still or a clip: an edit, a cut-out, a template, a camera move, an
-  upscale, added sound, a new shape.
+  saves it, `quote` prices it and answers `approve_url`, the scene's page in
+  the studio where they render it, one clip per shot.
+- **A change to something made**: an edit, a cut-out, a template, a camera
+  move, an upscale, added sound or a new shape is a studio effect;
+  `open_in_studio` with the render as `source` opens the effects on it
+  (effects).
 - **A finished file**: `reformat` (a new shape), `trim_clip`, `assemble_clips`
-  (join clips) and `share_link` (a download link). These cost no credits.
+  (join clips) and `share_link` (a download link). These run here and spend
+  no credits.
 - Everything made lands in their studio: `library` lists it, and `projects`
   keeps related scenes together with a brief and a look.
 
 Start from what they want made. A sentence is enough for a still. A scene is
 rendered against at least one picture, so before pricing one, ask for a
 product or face photo (`upload_link` for a file on their device, `add_element`
-for a picture or product page by its address), or draw a still first and keep
-it with `add_element` (`source` is its `gen:<id>`).
+for a picture or product page by its address, or a still from `library`,
+whose `gen:<id>` is its `source`).
 
 ## 2. The sign-in
 
@@ -41,17 +46,16 @@ that: sign in once on the site, then reconnect.
 
 Call `whoami` (the workspace and who is signed in), then `recent` (the latest
 projects, scenes and renders). Say in two sentences what is there. A new
-workspace is empty: say so and offer one of the three things above.
+workspace is empty: say so and offer one of the things above.
 
 ## 4. The one rule about spending
 
-Reading, writing scenes, trims, reshapes, joins and everything else spend no credits.
-Only a still (`generate_image`), an effect (one of the effect tools) and a render
-(`approve`, after `quote`) spend the account's credits, and each one is quoted first: show the person the
-price in credits and the balance, wait for their yes in this chat, and only
-then make the call that spends. Never say yes for them, and never spend
-twice. If a quote says the credits are short, say so and that credits are
-added in the studio; start nothing.
+Nothing in the chat spends credits: reading, writing scenes, quotes, studio
+links, trims, reshapes and joins all spend none. A still, an effect and a
+render spend credits in the studio, where the person sees the price and
+approves it. Never say something was made or charged until `library` or
+`scene` shows it. If a quote says the credits are short, say so and that
+credits are added in the studio.
 
 ## 5. Where to go next
 

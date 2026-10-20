@@ -1,7 +1,8 @@
-# The tools on https://api.phantra.ai/mcp, one per line (42).
-# Source: zeropage-onryo/Phantra-AI (formerly video-pipeline), src/mcp_server.py, LISTED_TOOLS.
-# Re-read on 2026-10-20: one tool per effect (Phantra-AI pull 395) replaces `effects`
-# and `apply_effect`. Re-read this list when the server changes.
+# The tools on https://api.phantra.ai/mcp/claude, one per line (33).
+# Source: zeropage-onryo/Phantra-AI src/mcp_server.py, CLAUDE_LISTED_TOOLS, on the
+# claude/open-in-studio branch (PR 398, which adds `open_in_studio`). Re-read on
+# 2026-10-20. This door makes nothing: an image, a clip or an effect is a studio link
+# (`open_in_studio`), a scene render is approved at `quote`'s approve_url.
 projects
 project
 project_chat
@@ -9,20 +10,11 @@ create_project
 elements
 add_element
 upload_link
-image_models
 video_models
-generate_image
-edit_image
-remove_background
-animate_still
-camera_move
-upscale_clip
-add_sound
-reframe_clip
 write_scene
 scene
 quote
-approve
+open_in_studio
 job
 library
 share_link

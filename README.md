@@ -1,22 +1,25 @@
 # Phantra AI
 
-Make AI images and video from an idea or a product photo, right in the chat
-with Claude. Draw a still, write a scene as timed shots held to your own
-photos and render it clip by clip, change what you made with an effect, and
-trim, reshape, join and share the result. Each piece of work lives in a
-project in [Phantra](https://phantra.ai) you can come back to.
+Plan, write and price AI images and video from your own photos, in a
+conversation with Claude. Open your projects in [Phantra](https://phantra.ai),
+bring your photos and clips in as elements, write a scene as timed shots held
+to them, see what it would cost in credits, and trim, reshape, join and share
+what you already have. Each piece of work lives in a project you can come
+back to.
 
-**Every still, clip and effect is quoted in credits first and made only on
-your yes.** Claude shows the price and your balance and waits; only then does
-it make the call that spends, with the quote's one-time token. Nothing is
-bought, posted or deleted through the plugin.
+**Images, clips and effects are made in the Phantra studio, on your approval
+there.** When you ask for one, Claude writes the prompt with you and hands
+you a link: a scene's own page in the studio (from `quote`), or the studio's
+composer with the prompt already in the box (`open_in_studio`). You see the
+price in credits there and approve it. Nothing in the chat draws, renders or
+spends credits, and nothing is bought, posted or deleted through the plugin.
 
-Documentation: https://phantra.ai/mcp
+Documentation: https://phantra.ai/mcp/claude
 
 ## What the plugin contains
 
 - **A connector**: the studio's remote MCP server at
-  `https://api.phantra.ai/mcp`. You sign in with your Phantra account; the
+  `https://api.phantra.ai/mcp/claude`. You sign in with your Phantra account; the
   tools read and write your own projects, scenes, elements and library and
   nobody else's.
 - **Thirty-two skills** that teach Claude the studio workflow. `setup` is the
@@ -30,7 +33,7 @@ Documentation: https://phantra.ai/mcp
 | covers and scripts | `thumbnails`, `youtube-script` |
 | changing what is made | `effects` |
 | writing a scene | `write-scene`, `storyboard`, `hooks-and-first-seconds`, `camera-moves`, `look-matching`, `sound-plan`, `model-prompting`, `series-and-continuity` |
-| pricing, rendering, delivering | `price-and-render`, `credits-and-limits`, `edit-and-deliver`, `platform-delivery` |
+| pricing, studio links, delivering | `price-and-render`, `credits-and-limits`, `edit-and-deliver`, `platform-delivery` |
 | a person's own style and clients | `brand-kit-from-my-work`, `client-treatment` |
 
 No skill invents testimonials, reviews, numbers or awards: claims come from
@@ -38,21 +41,18 @@ you.
 
 ## The connector's tools
 
-Forty-two. The ones marked **spends** are always two calls: the first returns
-a quote and spends nothing; only a second call with that quote's token, made
-after your yes, runs it.
+Thirty-three; none of them draws, renders or spends credits.
 
 | Tool | What it does |
 |---|---|
 | `projects` / `project` / `project_chat` / `create_project` | your projects: list, open one (brief, look, scenes, references, renders, recent chat), page its chat, start one |
 | `elements` / `add_element` / `upload_link` | the characters, products and places a scene is held to, with their photos; add a picture from an address, a product page or a render; a one-time page to upload a file from your device |
-| `image_models` / `generate_image` | the image models; draw a still (**spends**) |
 | `write_scene` / `duplicate_scene` / `scene` | save a scene Claude wrote with you, copy one with changes, read one back |
-| `quote` / `approve` / `job` | price a scene's keyframes and clips; render them (**spends**); follow a running job |
-| `video_models` / `recommend_model` | the video models and their frames and lengths; which model suits a job |
-| `edit_image` / `remove_background` / `animate_still` / `camera_move` / `upscale_clip` / `add_sound` / `reframe_clip` | the effects: edit a still by instruction, cut out a subject, animate a still with a template, a camera move, upscale a clip, add sound, reshape a clip to a new frame (each **spends**) |
+| `quote` | price a scene's keyframes and clips in credits beside your balance, with the scene's page in the studio where you render it |
+| `open_in_studio` | a link that opens the studio with a prompt in the box: an image, a clip, or an effect on one of your renders, inside a project if you like |
+| `video_models` / `recommend_model` | the video models with their frames, lengths and credits; which model suits a job |
 | `library` / `share_link` | what is in your library (renders and uploads); a download link for one of them |
-| `reformat` / `trim_clip` / `assemble_clips` | a clip or still in a new shape, a range of a clip, clips joined into one with an optional music bed |
+| `reformat` / `trim_clip` / `assemble_clips` / `job` | a clip or still in a new shape, a range of a clip, clips joined into one with an optional music bed, on the studio's server; follow the job |
 | `balance` / `credit_history` / `whoami` / `recent` / `search` | your credits and where they went; your workspace; your latest work; search your studio |
 | `preferences` / `set_preferences` | your workspace's defaults (frame, length, models, draft first) |
 | `recipes` / `recipe` / `save_recipe` | the studio's recipes and your own |
@@ -61,8 +61,8 @@ after your yes, runs it.
 
 **Projects** are the same ones on your projects page in the studio.
 `projects` lists them; `project` reopens one, whether you made it here or in
-the studio. `create_project` starts a new one, and a still, a scene or a
-render given a project's id is filed in it.
+the studio. `create_project` starts a new one; a scene saved with a project's
+id is filed in it, and a studio link with one opens inside it.
 
 ## Before you use it
 
@@ -76,20 +76,18 @@ render given a project's id is filed in it.
 ## A short demo
 
 1. "What am I working on?" → `whoami`, `recent`, `projects`.
-2. "Draw an ad still of my bottle on a wet gym floor." → `generate_image`
-   answers a quote: the model, the credits, your balance after. You say yes;
-   the same call with the quote's token draws it, and `job` brings back the
-   picture and its `gen:<id>`.
-3. "Keep that as the Bottle element." → `add_element` with the still as its
-   source.
+2. "Draw an ad still of my bottle on a wet gym floor." → Claude writes the
+   prompt with you and calls `open_in_studio`; you open the link, attach the
+   bottle's photo, see the price and approve it in the studio.
+3. "Keep that as the Bottle element." → `library` finds the still,
+   `add_element` keeps it with the still as its source.
 4. "Write a 10-second spot around it." → Claude writes the scene as timed
    shots in the chat, takes your edits and saves it with `write_scene`, held
    to the bottle's photo.
-5. "Render it." → `quote` prices the keyframes and each clip beside your
-   balance. You say yes; `approve` renders with the quote's tokens and `job`
-   follows it to the finished clip.
-6. "Give it a slow push-in and some sound." → `camera_move` and `add_sound`,
-   each quoted and run only on your yes.
+5. "What would it cost?" → `quote`: the keyframes, the clip per shot, your
+   balance, and the scene's page in the studio, where you press Render.
+6. "Give it a slow push-in and some sound." → `open_in_studio` with the clip
+   as its source opens the studio's effects on it, with the instruction ready.
 7. "A square cut of the first two seconds, and a link I can send." →
    `trim_clip`, `reformat`, `share_link`.
 
@@ -98,11 +96,11 @@ render given a project's id is filed in it.
 The connector sends to your Phantra account at `api.phantra.ai`, over HTTPS,
 with the OAuth sign-in you approve:
 
-- the prompts for the stills, scenes and effects Claude makes with you, with
-  a title, a length, a frame and what each photo is for;
+- the scene prompts Claude writes with you, with a title, a length and what
+  each photo is for, and the prompt, kind, frame and source of a studio link
+  (`open_in_studio` puts the prompt in the link's address);
 - a project's name, brief and look when you create one;
-- the ids of your projects, scenes, renders, uploads and element photos, and
-  the quote tokens you approved;
+- the ids of your projects, scenes, renders, uploads and element photos;
 - for `add_element`: the element's kind, name and a few words about it, and
   the address you gave. The studio fetches that one address itself (https
   only): an image file up to 15 MB, or a product page, whose main picture is
@@ -115,10 +113,9 @@ with the OAuth sign-in you approve:
   words of a `search`, the job you describe to `recommend_model`, and a new
   scene text you give `duplicate_scene`.
 
-It does not send the conversation. Stills, clips and effects are made by the
-studio on its AI providers, from the prompt and the reference pictures you
-chose, and are charged in credits from your balance only after the quote is
-shown and you say yes. The studio stores the scenes, elements, uploads,
+It does not send the conversation. Stills, clips and effects are made in the
+studio, on its AI providers, and are charged in credits from your balance only
+after the price is shown there and you approve it. The studio stores the scenes, elements, uploads,
 renders and projects you make under your account until you remove them in
 the studio, and keeps your preferences, recipes and feedback notes as dated
 entries (there is no page to remove those yet; ask through Support). Every
@@ -130,8 +127,8 @@ can download that file until it expires. See the studio's
 [terms](https://phantra.ai/terms) for what is kept and for how long. The
 plugin itself runs no code, stores nothing, and sends nothing anywhere else.
 
-Nothing in the plugin can buy credits, change a plan, post anywhere, or
-remove your work. Rewriting a scene replaces the text it had before.
+Nothing in the plugin can draw, render, buy credits, change a plan, post
+anywhere, or remove your work. Rewriting a scene replaces the text it had before.
 
 ## Rate limit
 
