@@ -39,9 +39,9 @@ Offer directions in craft terms, never as a brand's or an artist's name:
   headline in their words.
 
 Then say the size of the set plainly: "four stills is four approvals in the
-studio, and each video ad is its own". Agree the frame (1:1 or 3:4 for a
-feed, with 4:5 copies by `reformat`; 9:16 for a story), and keep the set together with `create_project` (a title, a
-brief, a look), passing its `project_id` on every call below.
+studio, and each video ad is its own". Agree the frame (4:5 or 1:1 for a
+feed, 9:16 for a story), and keep the set together with `create_project`
+(a title, a brief, a look), passing its `project_id` on every call below.
 
 Every headline, claim, number, price and offer on an ad comes from the
 person. Never write a discount, a review, a "best-selling" or a result they

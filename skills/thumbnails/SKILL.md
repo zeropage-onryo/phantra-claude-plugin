@@ -19,7 +19,7 @@ will be seen. Frames the studio advises (its advice, not a platform's rule):
 |---|---|
 | a YouTube video | 16:9 |
 | a Reels, TikTok or Shorts cover | 9:16 |
-| a feed post | 1:1, or 3:4 and a 4:5 copy with `reformat` |
+| a feed post | 4:5 or 1:1 |
 
 Draw the cover AT the frame it will be shown in: text placed for 16:9 does
 not survive a crop.

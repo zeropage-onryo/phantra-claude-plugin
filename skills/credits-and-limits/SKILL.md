@@ -1,6 +1,6 @@
 ---
 name: credits-and-limits
-description: Explains what costs credits and what does not in Phantra, reads the balance and where credits went, walks the quote, yes, spend flow of an effect, sets up draft-first rendering, and explains a refusal or a rate limit (429). Use when someone asks what something costs, what credits are, what their balance is, how to render cheaper, or why a call was refused. NOT for pricing and rendering one scene (price-and-render) or choosing ideas (ideas-and-projects).
+description: Explains what costs credits and what does not in Phantra, reads the balance and where credits went, explains where spending is approved (the studio), sets up draft-first rendering, and explains a refusal or a rate limit (429). Use when someone asks what something costs, what credits are, what their balance is, how to render cheaper, or why a call was refused. NOT for pricing and rendering one scene (price-and-render) or choosing ideas (ideas-and-projects).
 ---
 
 # Credits and limits
@@ -11,23 +11,23 @@ description: Explains what costs credits and what does not in Phantra, reads the
 `scene`, `quote`, `video_models`, `library`, `balance`, `credit_history`,
 `recommend_model`, `what_works`, `job`...; writes: `create_project`, `add_element`,
 `upload_link`, `write_scene`, `duplicate_scene`, `set_preferences`, `save_recipe`,
-`open_in_studio`. The edits -- `reformat`, `trim_clip`, `assemble_clips` -- run on the
-studio's own server and spend nothing: each starts a job you follow with `job` (`wait`
-holds up to 15 seconds) and makes a NEW item, the source untouched. Only an effect on
-the person's own media spends here, quoted first; new media from a prompt and scene
-renders are approved in the studio.
+`open_in_studio`. The
+edits -- `reformat`, `trim_clip`, `assemble_clips` -- run on the studio's own server
+and spend nothing: each starts a job you follow with `job` (`wait` holds up to 15 seconds)
+and makes a NEW item in the library, the source untouched. Writing the prompt happens in
+this chat. Nothing in this connector spends credits: making media is approved in the studio.
 
-## What costs credits
+## What costs credits (approved in the studio)
 
 - **A still**: drawn in the studio from the prompt `open_in_studio` puts in its box; the
   studio shows the model's credits and the person approves them there.
-- **An effect on media they provide** (`edit_image`, `remove_background`,
-  `animate_still`, `camera_move`, `upscale_clip`, `add_sound`, `reframe_clip`, on one of
-  their own images or clips by id from `library`): the call WITHOUT `quote_token` runs
-  nothing and answers the quote; on their yes, the SAME call WITH that token starts the
-  job (effects). This is the one spend that happens in the chat.
-- **Keyframes and the clip**: one still per shot, one render per shot without a clip.
-  `quote` gives `each` still's credits and `clip.renders` (part, seconds, credits).
+- **An effect** (an edit, a cut-out, a template, a camera move, an upscale, sound, a new
+  shape): `open_in_studio` with the render as `source` opens the studio's effects on it,
+  each with its price (effects).
+- **Keyframes**: one still per shot. `quote` says how many are still to draw and the
+  credits for `each`.
+- **The clip**: one render per shot still without a clip, priced by model, length and
+  frame. `quote` lists `clip.renders` (part, seconds, credits) and the total.
 
 Keyframes and the clip are approved on the scene's page in the studio, `quote`'s
 `approve_url`, where the price is shown again. Credit is held when a render starts and
@@ -40,9 +40,11 @@ never convert to money.
 - `balance`: what is available, what is held by renders in flight, the plan, and each
   credit lot with what is left and when it expires. Call it when the person asks what they
   have; never guess from an old quote.
-- `credit_history`: every hold, charge, return, grant and expiry, newest first, with what
-  it was for; pass `next` as `before` to page back. It answers "what did that cost me".
-- `quote` also returns `balance`, `credits_needed` and `affordable`; say them beside the price.
+- `credit_history`: every hold, charge, return, grant and expiry, newest first, each with
+  what it was for and the balance it left. Pass the reply's `next` as `before` to page
+  back. This answers "what did that cost me".
+- `quote` also returns `balance`, `credits_needed` and `affordable` for one scene; report
+  those three plainly beside the price (price-and-render).
 
 ## Draft first: a cheaper frame to check a take
 
@@ -56,21 +58,19 @@ has one. Drafting pays when not every take is kept:
    makes `quote` (called with no renderer choice) price the draft frame and say so in
    `preference`; a value the catalogue lacks is refused.
 3. Show the draft price and give `approve_url`; the person renders the draft in the
-   studio. A take they like is finished with `upscale_clip` on its `gen:<id>` (effects).
+   studio. A take they like is **finished (upscaled) in the studio**, not here.
 
-## Say the cost, then wait (an effect) or hand over the link (the studio)
+## Say the cost, then hand over the link
 
-Say what it would cost from the quote, in credits beside the balance. For an effect,
-WAIT for an explicit yes in this chat before the call with the token: never on the
-person's behalf, never twice. For a scene or new media, give the studio link. Never say
-something was charged until `job`, `scene` or `credit_history` shows it.
+Before the person goes to make anything, say what it would cost from the quote, in
+credits beside the balance, then give the studio link. Never say something was made or
+charged until `scene`, `library` or `credit_history` shows it. If `affordable` is false,
+say so first and that credits are added in the studio.
 
 ## Refusals you will see (repeat them in their own words; never retry the same call)
 
 - `insufficient_credits` (`needs`, `available`): stop; nothing was charged. Say `needs`
   against `available` and that credits are added in the studio; pass on no link.
-- `already_used` on an effect's token: the first call started the job; poll `job`.
-  Nothing new was charged; a changed request needs a new quote and a new yes.
 - `open_in_studio` refused: an empty prompt, a frame not on its list, or a `source`
   that is not one of their renders in `library`. Fix that one argument.
 - `needs_reference` on a saved scene: it has no photos, so it waits as a draft scene. Add
@@ -94,7 +94,7 @@ something was charged until `job`, `scene` or `credit_history` shows it.
 
 ## What is never charged or changed through this connector
 
-Nothing is posted or removed, no payment method is touched, and nothing is charged
-without a quote shown and a yes. Every edit and effect makes a new item; rewriting
+Nothing is posted or removed, no payment method is touched, and nothing is rendered,
+drawn or charged from the chat: making is approved in the studio. Every edit makes a new item; rewriting
 a scene with `write_scene` replaces the text it had, so show the new version and get a yes
 first. Buying credits and changing a plan happen in the studio, never here.

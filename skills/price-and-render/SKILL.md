@@ -1,21 +1,20 @@
 ---
 name: price-and-render
-description: Prices a Phantra scene in credits and sends the person to the studio to render it, opens a new still or clip from a prompt in the studio with its prompt ready, and reports where a scene stands. `quote` gives the scene's studio page, `open_in_studio` a studio link; neither spends. Use when someone says render it, draw it or how much will it cost, or asks whether a scene is done. NOT for writing the scene (write-scene), effects on their own media (effects) or credits (credits-and-limits).
+description: Prices a Phantra scene in credits and sends the person to the studio to render it, opens a still or an effect in the studio with its prompt ready, and reports where a scene stands. Nothing here makes or spends: `quote` gives the scene's studio page, `open_in_studio` a studio link. Use when someone says render it, draw it or how much will it cost, or asks whether a scene is done. NOT for writing the scene (write-scene), effects (effects) or credits in general (credits-and-limits).
 ---
 
 # Price and render
 
-Rendering a scene, or making a new image or clip from a prompt, costs
-credits and is approved **in the studio**, where the price is shown before
-anything is spent. (An effect on the person's own image or clip runs here, on
-their yes: see effects.) What you do here:
+Rendering costs credits, and on this connector it is approved **in the
+studio**, where the price is shown again before anything is spent. Nothing in
+the chat renders, draws or spends. What you do here:
 
 | step | tool | what it costs |
 |---|---|---|
 | price a scene's keyframes and clip, get its studio page | `quote` | nothing |
-| a new still or clip from a prompt: a studio link | `open_in_studio` | nothing |
+| a still, a clip from a prompt, or an effect: a studio link | `open_in_studio` | nothing |
 | see where a scene stands, and its clips | `scene` | nothing |
-| follow a reshape, trim, join or effect while it runs | `job` | nothing |
+| follow a reshape, trim or join while it runs | `job` | nothing |
 
 ## A scene
 
@@ -40,18 +39,19 @@ their yes: see effects.) What you do here:
 5. When they ask how it went, call `scene`: the status, the shots, the
    keyframe and the clips that have landed, with the studio link.
 
-## A new still or clip from a prompt (`open_in_studio`)
+## A still, a clip from a prompt, or an effect (`open_in_studio`)
 
-Nothing here makes an image or a clip from a prompt alone. When the person
-asks for one (or a quick clip without a saved scene), write the prompt with
-them in the chat first, as you would for the studio. Then `open_in_studio` with:
+When the person asks for an image, a quick clip without a saved scene, or a
+change to one of their renders, write the prompt with them in the chat first,
+as you would for the studio. Then `open_in_studio` with:
 
 - `prompt`: what to make, up to 4,000 characters;
 - `kind`: `image` or `video`;
-- `aspect`: 9:16, 16:9, 1:1, 4:3, 3:4 or 21:9 (omit for the studio's default);
+- `aspect`: an image 4:5, 1:1, 16:9 or 9:16; a video 9:16, 16:9, 1:1, 4:3, 3:4
+  or 21:9 (omit for the studio's default);
 - `project_id` (from `projects`) to open it inside that project;
-- `source`: a render's `gen:<id>` from `library`, when they would rather
-  pick an effect in the studio's gallery than here.
+- `source`: a render's `gen:<id>` from `library`, to edit or animate it (the
+  studio opens its effects on that render).
 
 It answers a `url`. Give it to the person: the studio opens with the prompt in
 the box; they send it, see the price in credits and approve it there. Nothing
@@ -60,8 +60,8 @@ is made, written or spent here. A still made there lands in `library` as a
 
 ## What you can and cannot do
 
-- You cannot approve, start or cancel a scene's render or a still from a
-  prompt. "Go ahead" or "render it" gets the link (`approve_url` or `open_in_studio`'s
+- You cannot approve, start or cancel a render, a still or an effect. "Go
+  ahead" or "render it" gets the link (`approve_url` or `open_in_studio`'s
   `url`) and the words "it starts when you approve it in the studio".
 - If `affordable` is false, say the numbers before giving the link and that
   credits are added in the studio. Never pass on a link to buy credits or
@@ -81,13 +81,13 @@ is made, written or spent here. A still made there lands in `library` as a
 `scene` reads one scene back in a short form: its status, its shots, the
 keyframe and the clips so far, and its studio link. It is the status that
 lasts: read it rather than assuming a render finished because time has passed.
-Renders take a minute or more per shot. A still made from a link shows up in
-`library` once it lands.
+Renders take a minute or more per shot. A still or an effect made from a link
+shows up in `library` once it lands.
 
 ## What not to do
 
-- Never say a scene's render or a still from a link has started; the person
-  starts it in the studio. Say it finished only when `scene` or `library` shows it.
+- Never say a render, a still or an effect has started; the person starts it
+  in the studio. Say it finished only when `scene` or `library` shows it.
 - Never print an image or clip address the tools did not return.
 - Never promise a delivery time.
 - Never name a plan or a price in general; the quote's own numbers, said to
