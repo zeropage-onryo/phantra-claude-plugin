@@ -1,6 +1,6 @@
 ---
 name: camera-moves
-description: A vocabulary of camera moves and framings for Phantra scene prompts (push-in, pull-back, orbit, handheld, locked-off, rack focus, whip pan, crane, top-down, POV; close, medium, wide), with when each works in a 2-10 second shot and the rule of one move per shot. Use when someone asks how to shoot a beat, names a move, or wants a shot calmer or more alive. NOT for the whole scene (write-scene), the light and palette of a look (look-matching) or the order of scenes (storyboard).
+description: A vocabulary of camera moves and framings for Phantra scene prompts (push-in, pull-back, orbit, handheld, locked-off, rack focus, whip pan, crane, top-down, POV; close, medium, wide), with when each works in a 2-10 second shot and the rule of one move per shot. Use when someone asks how to shoot a beat, names a move, or wants a shot calmer or more alive. NOT for a camera move on an existing still (effects), the whole scene (write-scene) or the light and palette of a look (look-matching).
 ---
 
 # Camera moves
@@ -62,15 +62,18 @@ Big moves (an orbit, a rise, a walk) show more of the frame and ask more of
 the model than a locked-off close; a push-in on a face keeps a likeness best.
 `recommend_model` reads the JOB off `what`, not the move -- a face or hands in
 it, sound, a long take, a cheap test or a final deliverable -- and with
-`seconds` ranks the models with a reason each ("a handheld walking shot with a
-face in it", "a final product spot, realistic, with sound"); `video_models`
-lists their lengths and frames. Say the reason; the person picks the model
-when they approve the render in the studio.
+`seconds` ranks the models with a reason and its credits each ("a handheld
+walking shot with a face in it", "a final product spot, realistic, with
+sound"); `video_models` lists their lengths and frames. Say the reason; the
+person picks the model, and that pick goes on `quote` as `model`, so the price
+they see is for that model; they pick the same one in the studio when they
+render it at the quote's `approve_url` (price-and-render).
 
 ## Then
 
 Fold the beats into the full scene (opening line, style, beats, sound, avoid)
-and save it with `write_scene` (write-scene). Pricing is price-and-hand-off.
+and save it with `write_scene` (write-scene). Pricing and the render --
+`quote` and its `approve_url` in the studio -- are price-and-render.
 
 ## Do not
 

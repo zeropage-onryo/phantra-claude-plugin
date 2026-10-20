@@ -9,7 +9,8 @@ The studio renders each scene, and each shot in it, on its own; no render
 remembers the last one. What makes two scenes read as one series is what you
 carry across on purpose: the same photos in the same order with the same
 roles, the same style block word for word, the same length, frame and model.
-Nothing here renders or spends.
+Setting a series up and writing its episodes spends nothing; a render is
+`quote`, then the person renders it in the studio (price-and-render).
 
 ## Set up once
 
@@ -41,7 +42,14 @@ Nothing here renders or spends.
 3. In the new prompt change only the beats. Keep the opening line and the
    style block word for word, keep the sound line's shape, keep the avoid
    list, and name the same photos the same way.
-4. Show it to the person, then `quote` it (price-and-hand-off).
+4. Show it to the person, then `quote` it: the keyframes (the credits for
+   `each` still) and the clip, one render per shot with its credits,
+   against the balance; with a series default set,
+   `preference` says which model it priced. Say the price in credits.
+5. Give the quote's `approve_url`: the person renders the episode in the
+   studio on the same model and frame as the others; `scene` shows the clips
+   once they land. `affordable` false means say so: credits are added in the
+   studio (price-and-render).
 
 Episode 2 from scene 418, with episode 1's opening line and style block
 pasted in unchanged (replace the beats):
@@ -67,8 +75,9 @@ the series rules: the same frame and length, the anchor's face or product in
 every episode, the same light and palette. A clip that drifted is not edited
 here: say what drifted (a changed style sentence, a ref in a different order,
 a different model or frame), fix the prompt or the refs, and `duplicate_scene`
-again as a new scene. Over time `what_works` says which model and preset the
-person kept most, which is the one to hold the series to.
+again as a new scene, quoted and approved on a yes like any episode. Over
+time `what_works` says which model and preset the person kept most, which is
+the one to hold the series to.
 
 ## Do not
 
@@ -82,6 +91,7 @@ person kept most, which is the one to hold the series to.
 - Never move one episode to another model or frame to save credits without
   saying the look will shift; price the draft frame instead, where the series'
   model has one (`video_models` says which do):
-  `set_preferences` with `draft_first` true, then `quote` with no renderer named.
+  `set_preferences` with `draft_first` true, then `quote` with no renderer
+  named, and say which model and frame to pick in the studio.
 - Never promise two renders will match exactly. What you can promise is the
   same photos, words, length, frame and model.

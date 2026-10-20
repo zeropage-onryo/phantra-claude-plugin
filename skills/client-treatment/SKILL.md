@@ -44,7 +44,7 @@ here renders or spends.
    its length from `scene` on that id (`seconds`, and the shots' windows):
    "1. Kitchen (8s) -- Sam finds the tin." Say which are rendered.
 6. **Deliverables.** The shapes and lengths they get. Any cut can be copied
-   into 9:16, 16:9, 1:1 or 4:5 with `reformat`, free, as a new item.
+   into 9:16, 16:9, 1:1 or 4:5 with `reformat`, at no credits, as a new item.
 7. **What we need from you.** Photos of the people, product and place the
    scenes are held to, approvals, and when the first cut is due.
 8. **Next step.** One sentence: what the client says yes to, and by when.

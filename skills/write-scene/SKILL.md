@@ -1,34 +1,30 @@
 ---
 name: write-scene
-description: Writes the scene prompt for an idea the person chose, in the shape Phantra renders from, and saves it with the `write_scene` tool against their elements. Use when someone asks to write the scene, the prompt, the shots or the script, says "make the scene" after choosing an idea, or wants a saved scene changed. NOT for choosing between ideas (ideas-and-projects), pricing or rendering (price-and-hand-off), or choosing photos or a look (look-matching).
+description: Writes the scene prompt for an idea the person chose, in the shape Phantra renders from, and saves it with the `write_scene` tool against their elements. Use when someone asks to write the scene, the prompt, the shots or the script, says "make the scene" after choosing an idea, or wants a saved scene changed. NOT for choosing between ideas (ideas-and-projects), pricing or rendering (price-and-render), or choosing photos or a look (look-matching).
 ---
 
 # Write the scene
 
 A scene in Phantra is ONE paste-ready prompt a video model reads top
-to bottom. The studio renders it one timed shot at a time, against the
-elements the person added. You write the prompt in the chat
-(no model credit is spent for that), then save it with `write_scene`.
+to bottom, rendered one timed shot at a time against the elements the
+person added. You write it in the chat (no credits), then `write_scene` saves it.
 
 ## Before writing
 
-1. Have the idea in one or two sentences: what we see, and why it holds. It
-   comes from this conversation (ideas-and-projects) or from the person. When
-   the scene belongs to a project, `project` with its id gives the brief and
-   the look the scene must keep to.
+1. Have the idea in one or two sentences: what we see, and why it holds
+   (ideas-and-projects, or the person). Inside a project, `project` gives the
+   brief and the look the scene must keep to.
 2. `elements`: the person's characters, props and places with their photo
-   refs. Decide which photos the scene needs. If the scene needs a face, a
-   product or a room and no element has a photo of it, ask the person for one:
-   a picture they give you can be added with `add_element` (look-matching),
-   or they can upload it in the studio (Elements). A scene is never rendered
-   from a name, and not at all until it is held to at least one photo.
+   refs. A scene is never rendered from a name, and not at all until it is
+   held to at least one photo. A face, product or room with no photo: ask for
+   one (`add_element`, or `upload_link` for a file on their device).
 3. Settle the length in seconds (4 to 30; 10 is the default) and whether the
    idea wants cuts or one continuous take. Default to cuts: two or more shots.
    One continuous shot only when the person asked for one.
 
 ## The shape (five parts, in this order)
 
-Write every look in cinematography and colour-grade terms. Never name a film,
+Write every look in cinematography and colour-grade terms; never name a film,
 a director, a brand or a real person.
 
 1. **Opening line.** "Ultra-realistic grounded [tone] video in 9:16," then say
@@ -38,18 +34,16 @@ a director, a brand or a real person.
    photos for a character, describe the person plainly.
 2. **Style.** The look in two or three sentences: palette, light (source,
    direction, colour, hardness), lens and framing height, depth of field,
-   finish and grade. Realism comes from practical light, believable physics
-   and bodies, and restraint. Do not reach for "raw handheld, matte, muted"
-   by habit.
+   finish and grade. Realism is practical light, believable physics and
+   restraint; never "raw handheld, matte, muted" by habit.
 3. **Beats, as timed shots.** Each shot opens with its window, written like
    `(0-4s)`. Windows start at 0s, are contiguous, never overlap, and end at the
    total length. Each window is rendered as its own clip by a model that sees
    only that window, so **each window is ONE shot**: one camera setup, one
    clear action that fits its length, 2 to 10 seconds. Cuts and location
    changes happen between windows, never inside one; say them ("hard cut to",
-   "reverse on"). Open on an arresting image, turn or reveal, and end abruptly.
-   Reactions are serious and physically believable, never cartoon. Use as many
-   shots as the idea needs, not a habitual three.
+   "reverse on"). Open on an arresting image, turn or reveal; end abruptly;
+   reactions serious, never cartoon. As many shots as the idea needs.
 4. **Sound.** Begin "No background music." then only the diegetic sound: what
    you would hear in that scene, nothing else.
 5. **Avoid.** "Avoid: plastic AI sheen, CGI-looking skin or fabric, cartoon
@@ -74,38 +68,31 @@ dramatic slow motion, named films, brands or actors.
 
 ## Save it
 
-Show the prompt to the person first and take their edits. Then call
-`write_scene` with:
+Show the prompt to the person first and take their edits. Then `write_scene`
+with `prompt` (all five parts), `seconds`, `refs` (the photo refs exactly as
+`elements` lists them, **the most important one first** -- the first ref is
+what the render anchors on: the face before the room), `roles` when a photo is
+for its light or palette only, a `title`, and `project_id` when it belongs to
+a project. The reply gives the scene's id, how many shots were written and its
+link in the studio. Nothing is spent.
 
-- `prompt`: the full scene, all five parts.
-- `seconds`: its total length.
-- `refs`: the photo refs from `elements` (or from an `add_element` reply),
-  exactly as listed, **the most important one first**. The first ref is what
-  the render anchors on: the face before the room.
-- `title`: a few words to call it.
-- `project_id`: when it belongs to a project (from `projects`).
+**A scene with no photos is saved as a draft** (`needs_reference`): it cannot
+be priced; add a photo and `write_scene` again with its `scene_id` and `refs`.
 
-The reply gives the scene's id, how many shots were written, and its link in
-the studio. Nothing is spent.
-
-**A scene with no photos is saved as a draft.** The reply says so
-(`needs_reference`) and what to do next. A draft cannot be priced or
-rendered: add a photo (`add_element`, or one already in `elements`) and call
-`write_scene` again with the draft's `scene_id` and the `refs`.
-
-**To change a scene**, call `write_scene` with its `scene_id` and the whole
-new prompt. This replaces the text the scene had, so show the person the new
-version and get their yes first. A ref `elements` did not list is refused.
+**To change a scene**, `write_scene` with its `scene_id` and the whole new
+prompt: it replaces the text, so show the new version and get a yes first.
 
 ## Then
 
-Hand over to price-and-hand-off: `quote` the scene, say the price, and give
-the person the studio link where they approve the render. Nothing renders
-from this connector.
+Price-and-render: `quote` the scene (keyframes and clip in credits, beside the
+balance); say the price and give its `approve_url`, the scene's page in the
+studio, where the person renders it after seeing the price again. Nothing
+renders from the chat; `scene` shows the clips once they land. If `affordable`
+is false, say so and that credits are added in the studio.
 
 ## Do not
 
-- Never invent a photo ref, and never pass a URL.
-- Never leave a `{placeholder}` in the prompt; the tool refuses it.
-- Never write a window longer than 10 seconds or shorter than 2.
-- Never describe the look by naming a film, a brand or a person.
+- Never invent a photo ref, never pass a URL, and never leave a
+  `{placeholder}` in the prompt (the tool refuses it).
+- Never write a window over 10 seconds or under 2, and never describe the look
+  by naming a film, a brand or a person.

@@ -1,14 +1,14 @@
 ---
 name: sound-plan
-description: Plans the sound of a Phantra scene: writes the "No background music. Only diegetic sound:" line and each shot's own sound, says which models render sound with the picture, and where music and voice go (a music bed through `assemble_clips`; a voice the person records). Use when someone asks what a scene will sound like, wants music or a voice-over, or asks why a clip is silent. NOT for the whole scene (write-scene), a full explainer (explainer) or pricing (price-and-hand-off).
+description: Plans the sound of a Phantra scene: writes the "No background music. Only diegetic sound:" line and each shot's own sound, says which models render sound with the picture, and where music and voice go (a music bed through `assemble_clips`; a voice the person records). Use when someone asks what a scene will sound like, wants music or a voice-over, or asks why a clip is silent. NOT for the whole scene (write-scene), a full explainer (explainer) or sound added to a finished clip (effects).
 ---
 
 # Sound plan
 
 A scene's sound is written into the prompt as DIEGETIC sound: what you would
 hear standing in that scene. Music, narration and captions are not in the
-prompt. Nothing in this connector generates a voice, a song or a sound
-effect, and nothing here renders or spends credits.
+prompt. Nothing in this plugin generates a voice or a song. Ambience can be
+added to a finished clip with an effect, quoted first like a render (effects).
 
 ## Where each sound comes from
 
@@ -17,6 +17,7 @@ effect, and nothing here renders or spends credits.
 | what the scene itself makes (steps, a kettle, rain) | the prompt's sound line, rendered with the picture by a model that does sound |
 | music | a bed under the clips: the studio's editor, or `assemble_clips` with `music` = an audio `asset:<id>` |
 | a voice, narration, a spoken line | recorded by the person and laid on in the studio's editor |
+| ambience or sound effects on a finished clip | an effect, quoted in credits first (effects) |
 
 `upload_link` takes pictures and clips, never audio: a music file goes in
 through the studio's editor, and `library` with `kind` audio lists it as an
@@ -54,9 +55,8 @@ No background music. Only diegetic sound: the pot, the rain, her breath.
 Avoid: ...
 ```
 
-Save with `write_scene`. A change to a saved scene goes in with its
-`scene_id` and the whole new prompt: show the new version and get a yes
-first.
+Save with `write_scene`. A change to a saved scene goes in with its `scene_id`
+and the whole new prompt: show the new version and get a yes first.
 
 ## Which models render sound
 
@@ -64,15 +64,23 @@ first.
 takes. `recommend_model` with "with sound" in `what` ("a product clip with
 sound") ranks the ones whose catalogue line says they render sound with the
 picture, one reason each. A model not described that way is not promised to
-have sound: plan for its sound to be laid on in the editor. `quote` with
-`model` prices the scene on the one chosen; the person picks the renderer and
-approves on the scene's page in the studio, where `approve_url` leads.
+have sound: plan for its sound to be laid on in the editor.
+
+`quote` with `model` prices the scene on the one chosen and spends nothing:
+`keyframes` (the stills to draw, `each` in credits), `clip` (one render per
+timed shot, each with its credits), `balance` and
+`credits_needed`. Repeat the quote's own numbers -- `each` for a still, the
+credits of each shot's render -- never a guess, and give its
+`approve_url`: the person renders it in the studio on the same model, where
+the price is shown again. `scene` shows the keyframe, the clips and the
+scene's studio link once they land. `affordable` false: say credits are added
+in the studio.
 
 ## Music and voice, after the render
 
 1. Music: `assemble_clips` over the rendered `gen:<id>`s with `music` = the
    audio `asset:<id>` from `library`. The bed is trimmed to the picture and
-   lowered under the clips' own sound. Free; poll `job` with `wait`. The
+   lowered under the clips' own sound. No credits; poll `job` with `wait`. The
    result is a new `gen:<id>` and an editable cut in the studio's editor,
    where the person balances it. For one clip alone, the editor.
 2. The voice: the person records it (a phone in a quiet room is enough) and
@@ -86,3 +94,4 @@ approves on the scene's page in the studio, where `approve_url` leads.
 - Never say a voice or a track was generated here; nothing is.
 - Never pass audio through `upload_link` or `add_element`.
 - Never promise a clip has sound unless the model's catalogue line says so.
+- Never say a render started; it is approved in the studio.

@@ -1,0 +1,47 @@
+# The tools on https://api.phantra.ai/mcp/claude, one per line (40).
+# Source: zeropage-onryo/Phantra-AI src/mcp_server.py, CLAUDE_LISTED_TOOLS, on the
+# claude/open-in-studio branch (PR 398, which adds `open_in_studio`). Re-read on
+# 2026-10-20 (its second commit adds the seven effect tools). This door works on media
+# the person provides: the effect tools make a new version of one of their own images
+# or clips, quoted first and run on their yes. A new image or clip from a prompt is a
+# studio link (`open_in_studio`); a scene render is approved at `quote`'s approve_url.
+projects
+project
+project_chat
+create_project
+elements
+add_element
+upload_link
+video_models
+edit_image
+remove_background
+animate_still
+camera_move
+upscale_clip
+add_sound
+reframe_clip
+write_scene
+scene
+quote
+open_in_studio
+job
+library
+share_link
+reformat
+trim_clip
+assemble_clips
+balance
+search
+whoami
+recent
+credit_history
+recommend_model
+duplicate_scene
+feedback
+preferences
+set_preferences
+recipes
+recipe
+save_recipe
+what_works
+score_caption

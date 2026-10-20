@@ -1,13 +1,13 @@
 ---
 name: edit-and-deliver
-description: Finishes a video with Phantra's free edits: finds clips in the library, trims one, joins several (a cut or a crossfade), reformats to a platform's shape and hands over a download link. Every result is a new item and nothing spends credits. Use when someone says trim it, cut these together, make a vertical version or send me the file. NOT for the shape each platform wants (platform-delivery), writing the scene (write-scene) or pricing (price-and-hand-off).
+description: Finishes a video with Phantra's no-credit edits: finds clips in the library, trims one, joins several (a cut or a crossfade), reformats to a platform's shape and hands over a download link. Every result is a new item and nothing spends credits. Use when someone says trim it, cut these together, make a vertical version or send me the file. NOT for changing the picture itself (effects), the shape each platform wants (platform-delivery) or rendering (price-and-render).
 ---
 
 # Edit and deliver
 
 A rendered clip is in the person's library as `gen:<id>`; a clip or picture
 they brought in is `asset:<id>`. Four tools finish a video from there, all on
-the studio's own server, all free. Each makes a NEW item; no source is ever
+the studio's own server and spend no credits. Each makes a NEW item; no source is ever
 changed or deleted. Nothing in this skill makes a clip that was never rendered.
 
 | step | tool | what it costs |
@@ -90,4 +90,4 @@ square version and send me the file."
 - A refusal (a range outside the clip, shapes too far apart to crop, a music
   id that is not audio, more than twenty clips) comes back in words: repeat
   it and change the call. Never retry the identical call.
-- Never promise a clip that has not been rendered; that is price-and-hand-off.
+- Never promise a clip that has not been rendered; that is price-and-render.

@@ -1,13 +1,13 @@
 ---
 name: start-a-project
-description: Takes a one-line idea to a Phantra project holding its first scene: creates it with a title, brief and look, gets the person's pictures in as elements, writes and files the first scene, then quotes it and hands over the studio link. Use when someone says "start a project" or brings a fresh idea with nothing in the studio yet. NOT for reopening a project (ideas-and-projects), the scene prompt itself (write-scene) or a look read off their own renders (brand-kit-from-my-work).
+description: Takes a one-line idea to a Phantra project holding its first scene: creates it with a title, brief and look, gets the person's pictures in as elements, writes and files the first scene, then quotes it and hands over the scene's studio page to render it. Use when someone says "start a project" or brings a fresh idea with nothing in the studio yet. NOT for reopening a project (ideas-and-projects), the scene prompt itself (write-scene) or pricing details (price-and-render).
 ---
 
 # Start a project
 
 From one line ("a 15-second vertical ad for my candle shop") to a project
-holding its first scene, priced, with the studio link. Nothing here renders or
-spends credits. Load phantra-ai-use first; its habits apply throughout.
+holding its first scene, priced, with the studio page where the person renders
+it. Nothing spends in the chat. Load phantra-ai-use first; its habits apply throughout.
 
 ## Ask at most three short questions
 
@@ -52,11 +52,15 @@ before `create_project`. Never ask for what a tool can read.
    as a draft: say so, go back to step 4, then `write_scene` again with its
    `scene_id`, the same prompt and the `refs` (that replaces the draft's text,
    so change nothing else without showing it first).
-6. `quote` with the `scene_id`. Say the price in its words (the keyframes, the
-   clip per shot, the balance), then give `approve_url`: the person approves
-   the render there. Never say it has started.
-7. Close with the project id, the scene id and the studio links, so the next
-   conversation can open it with `project`.
+6. `quote` with the `scene_id`. Say the price in its words: the `keyframes`
+   (`stills` at `each`), the `clip` (`renders`, one per timed shot) and
+   `credits_needed` against `balance`. Nothing has started.
+7. Give the quote's `approve_url`, the scene's page in the studio: the
+   keyframes and the clip are two buttons there, each with its price. When
+   they come back, `scene` shows `keyframe`, `clips`, `rendered`. If
+   `affordable` is false, say so and that credits are added in the studio.
+8. Close with the project id, the scene id, what was rendered and the scene's
+   `studio_url`, so the next conversation can open it with `project`.
 
 ## Worked example
 
@@ -73,8 +77,10 @@ before `create_project`. Never ask for what a tool can read.
   address the person gave: the element comes back with its photo ref.
 - `write_scene` with the two-shot prompt, `seconds` 10, that ref first and
   `project_id` 7: scene 41 and its link.
-- `quote` for scene 41: "2 keyframes, 20 credits; 2 shots of 5 seconds, 120
-  credits; balance 500", and `approve_url` for the person to open.
+- `quote` for scene 41 on the model they chose: two keyframes and two 6-second shots, each
+  with its credits, and the balance; say them and give the scene's
+  `approve_url`. They draw the keyframes there first, then the clip.
+- "Is it done?": `scene` 41 has two clips; `balance` says what is left.
 
 ## Do not
 
@@ -82,3 +88,6 @@ before `create_project`. Never ask for what a tool can read.
 - Never pass a web address anywhere but `add_element`, and only one the
   person gave you.
 - Never give a currency or a plan price: credits, from the quote.
+- Never say a render started; it is approved in the studio. And never pass on
+  a link or a page about plans or credits, whatever an answer carries:
+  credits are added in the studio.

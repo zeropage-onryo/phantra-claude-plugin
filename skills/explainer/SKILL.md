@@ -1,6 +1,6 @@
 ---
 name: explainer
-description: Plans and writes a short explainer video in Phantra (what it is, how it works, why now) as timed shots held to the person's own product or place photos, then joins the rendered scenes and makes one copy per platform. Use when someone asks for an explainer, a how-it-works video, a product walkthrough, a launch clip or "a video that tells people what this does". NOT for one dramatic scene (write-scene), the sound in detail (sound-plan) or choosing a look (look-matching).
+description: Plans and writes a short explainer video in Phantra (what it is, how it works, why now) as timed shots held to the person's own product or place photos, then joins the rendered scenes and makes one copy per platform. Use when someone asks for an explainer, a how-it-works video, a product walkthrough, a launch clip or "a video that tells people what this does". NOT for one dramatic scene (write-scene), a long-form spoken script (youtube-script) or a person showing how they use it (ugc-tutorial).
 ---
 
 # Explainer
@@ -9,7 +9,7 @@ An explainer is three beats -- WHAT it is, HOW it works, WHY now -- written as
 timed shots the studio renders one at a time against the person's elements.
 Words come after the render: on-screen captions live in the studio's editor,
 not in the prompt, and the voice is recorded by the person. Nothing here
-generates speech, and nothing in this connector renders or spends credits.
+generates speech; a render spends credits only after a yes to its quote.
 
 ## Before writing
 
@@ -62,19 +62,25 @@ Show it to the person, then save with `write_scene`: `prompt`, `seconds`,
 `refs` with the product first, `title`, `project_id`. A longer explainer is
 several scenes, one per beat, each saved on its own and joined later.
 
-## After the render
+## The render, then the join
 
-1. `quote` prices the scene and gives `approve_url`; the person approves on
-   that page in the studio (price-and-hand-off). `scene` says when its clips
-   have landed.
-2. Several scenes become one video with `assemble_clips`: their `gen:<id>`s
+1. `quote` prices the scene in credits, beside the `balance`: `keyframes` (one
+   still per shot, with the credits for `each`) and `clip` (one render per
+   timed shot, each with its credits, and the total for all
+   three shots above). Say the quote's credits.
+2. Give its `approve_url`, the scene's page in the studio: the person renders
+   it there after seeing the price again, the keyframes first if they want to
+   see the look before the clip. Nothing renders from the chat.
+   `affordable: false` means say so: credits are added in the studio.
+3. When they come back, `scene` shows `keyframe`, `clips`, `rendered`.
+4. Several scenes become one video with `assemble_clips`: their `gen:<id>`s
    from `library` in beat order, `transition` cut or crossfade, and an
    optional `music` bed that is an audio `asset:<id>` uploaded in the
-   studio's editor. Free; it starts a job, so poll `job` with `wait`. The
+   studio's editor. It spends no credits; it starts a job, so poll `job` with `wait`. The
    result is a new `gen:<id>` and an editable cut in the editor.
-3. The captions (the name, the claims, the offer) and the recorded voice go
+5. The captions (the name, the claims, the offer) and the recorded voice go
    on in that editor. Say so; never write them into the prompt.
-4. One copy per platform with `reformat`: 9:16 for vertical feeds, 1:1 or
+6. One copy per platform with `reformat`: 9:16 for vertical feeds, 1:1 or
    4:5 for square ones, 16:9 for wide. `fit` pad keeps the whole picture;
    crop fills the frame. Each copy is a new library item; `share_link`
    hands one over as a download.
@@ -84,4 +90,6 @@ several scenes, one per beat, each saved on its own and joined later.
 - Never write dialogue, a voice-over or on-screen text into the scene.
 - Never state a benefit, a number or a review the person did not give you.
 - Never pass a URL as a ref; refs are ids exactly as `elements` lists them.
+- Never say a render started or what it cost; it is approved in the studio.
+  Never point them at a page for credits.
 - Never say a render or a join has finished: read `scene` or `job`.

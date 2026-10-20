@@ -10,7 +10,7 @@ model is handed the same scene text, with the studio's own continuity line in
 front of each shot; you never write a model's own syntax. What changes with
 the model is what it can take (length, frame) and what it does with the words
 (sound, one long take). Read those off the catalogue, never from memory.
-Nothing here renders or spends.
+Reading the catalogue spends nothing; a render is priced by a quote and approved in the studio.
 
 ## Read the catalogue
 
@@ -50,7 +50,7 @@ Nothing here renders or spends.
   model's draft frame; a `quote` passed `model` or `frame` ignores the
   preference, so for one scene pass the draft frame as `frame` yourself.
 
-## Choose, then save
+## Choose, then approve
 
 1. `recommend_model`; say the top pick, its reason and its credits, and the
    runner-up when the reasons differ.
@@ -58,8 +58,11 @@ Nothing here renders or spends.
    default, or pass `model` (and `frame`) to `quote` for this one scene.
 3. Write the scene as write-scene says. The words do not change by model
    beyond the two points above.
-4. `quote` with `model` and `frame`; give the `approve_url` and the price
-   from the quote (price-and-hand-off).
+4. `quote` with `model` and `frame`. Say the price from the quote (each
+   shot's seconds and credits, the keyframes, the balance) and give its
+   `approve_url`: the person renders it in the studio on the same model and
+   frame; `scene` shows the clips once they land (price-and-render). If
+   `affordable` is false, say so: credits are added in the studio.
 
 A worked exchange, with the names and numbers taken from the tools' replies:
 
@@ -70,6 +73,12 @@ kitchen", seconds=10, budget_credits=300)
 Say: "For a spot with sound the catalogue ranks <first pick> first: <its
 reason>, <its credits> credits for 10 seconds at <its frame>. <Runner-up>
 is <its reason> at <its credits>. Which one? I can set it as your default."
+
+quote(scene_id=411, model="<id from video_models>", frame="1080p")
+-> clip: one 6s shot with its credits; keyframes: 1 still; the balance
+Say: "On <model> at 1080p that is one 6-second shot for <its credits> (its
+still would be <each> more); you have <balance>. Render it here, on the
+same model and frame: <approve_url>". Then scene(scene_id=411) when they ask.
 ```
 
 ## Do not
@@ -79,6 +88,8 @@ is <its reason> at <its credits>. Which one? I can set it as your default."
   the same scene text.
 - Never quote credits per second from memory; read `video_models` or `quote`.
 - Never pick for the person: rank, say why, and let them choose. A changed
-  model or frame re-prices the scene, so `quote` again before the hand-off.
+  model or frame re-prices the scene, so `quote` again and say which model
+  and frame to pick in the studio.
+- Never say a render started; the person approves it in the studio.
 - Never pass a length or frame a model does not list, and never promise a
   model will match a render made on another one.
