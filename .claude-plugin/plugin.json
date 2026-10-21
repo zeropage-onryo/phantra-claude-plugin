@@ -17,5 +17,7 @@
     "scene-planning",
     "ai-video",
     "creators"
-  ]
+  ],
+  "icon": ".claude-plugin/icon.png",
+  "privacyPolicyUrl": "https://phantra.ai/privacy"
 }
