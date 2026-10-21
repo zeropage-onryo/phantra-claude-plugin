@@ -10,10 +10,10 @@ Run `claude plugin validate .` as well: this checks what that does not.
 Ported from the ChatGPT plugin's scripts/check.py (zeropage-onryo/phantra-chatgpt-plugin),
 which checks OpenAI's limits; this one checks the same skills against the same tool list
 (scripts/mcp-tools.txt, read off the studio server's code) and Claude's listing rules:
-  - the connector is the Claude door, https://api.phantra.ai/mcp/claude, which works on
-    media the person provides (the seven effect tools) and makes nothing from a prompt:
-    no skill names `generate_image`, `image_models` or `approve`, not even unquoted; a
-    new image or clip is `open_in_studio`, a scene render `quote`'s approve_url;
+  - the connector is the Claude door, https://api.phantra.ai/mcp/claude, which makes
+    nothing: a skill names none of the render door's making tools (`generate_image`,
+    `approve`, the effect tools, ...; scripts/other-tools.txt), not even unquoted, and
+    never a quote token for one; an image, a clip or an effect is `open_in_studio`;
   - the listing text (plugin.json description, README) and every skill name no other
     company's model and no price or promotion ("free", a plan price);
   - a skill description is at most 500 characters (this package's own rule since 0.6.0);
@@ -39,8 +39,10 @@ MODEL_NAMES = re.compile(r"\b(kling|veo|seedance|ltx|wan|flux|seedream|gpt[- ]im
                          r"|higgsfield|sora|midjourney|minimax|hailuo|recraft|bria"
                          r"|openai|google|bytedance|alibaba|black forest|fal)\b", re.I)
 FREE = re.compile(r"\bfree\b", re.I)   # a skill may say "never write a discount"
-# the render door's tools that make from a prompt or render in the chat, matched anywhere
-MAKERS = re.compile(r"\b(generate_image|image_models|apply_effect)\b|\bapprove\(|`approve`")
+# the render door's making tools, matched anywhere (a code block, a bare word)
+MAKERS = re.compile(r"\b(generate_image|image_models|edit_image|remove_background|animate_still"
+                    r"|camera_move|upscale_clip|add_sound|reframe_clip|apply_effect"
+                    r"|quote_token)\b|\bapprove\(|`approve`")
 
 fails: list[str] = []
 warns: list[str] = []

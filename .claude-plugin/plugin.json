@@ -1,8 +1,8 @@
 {
   "name": "phantra-ai",
   "displayName": "Phantra AI",
-  "version": "0.7.0",
-  "description": "Work on your own images and clips with Claude: edit a still, cut out a subject, animate it, add a camera move or sound, upscale or reshape a clip, each quoted in credits and made only on your yes. Plan and price video scenes held to your photos, and trim, join and share. New images and video from a prompt are made in the Phantra studio, from a link with the prompt ready.",
+  "version": "0.7.1",
+  "description": "Plan, write and price AI images and video from your own photos in a conversation with Claude: projects, elements, timed-shot scenes, and studio links that open a new image or clip, or a change to one you made, in the Phantra studio with its prompt ready, where you see the price in credits and approve it. Trims, reshapes, joins and download links happen in the chat.",
   "author": {
     "name": "Phantra",
     "url": "https://phantra.ai"

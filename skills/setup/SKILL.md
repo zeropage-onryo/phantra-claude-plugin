@@ -7,9 +7,8 @@ description: The first minutes with Phantra in Claude: what the person can plan 
 
 Phantra is an AI image and video studio the person already has an account
 with. This plugin works inside that account from the chat: Claude plans,
-writes, organises, prices and edits, and works on media the person provides;
-new images and clips from a prompt are made in the studio, on their approval
-there.
+writes, organises, prices and edits; images, clips and effects are made in
+the studio, on the person's approval there.
 
 ## 1. What they can do here
 
@@ -20,10 +19,10 @@ there.
 - **A video**: you write the scene with them as timed shots, `write_scene`
   saves it, `quote` prices it and answers `approve_url`, the scene's page in
   the studio where they render it, one clip per shot.
-- **A change to their own image or clip**: `edit_image`, `remove_background`,
-  `animate_still`, `camera_move`, `upscale_clip`, `add_sound` or
-  `reframe_clip` make a new version of it here, by id from `library`, quoted
-  first and run on their yes (effects).
+- **A change to something made**: an edit, a cut-out, a template, a camera
+  move, an upscale, added sound or a new shape is a studio effect;
+  `open_in_studio` with the render as `source` opens the effects on it
+  (effects).
 - **A finished file**: `reformat` (a new shape), `trim_clip`, `assemble_clips`
   (join clips) and `share_link` (a download link). These run here and spend
   no credits.
@@ -51,13 +50,12 @@ workspace is empty: say so and offer one of the things above.
 
 ## 4. The one rule about spending
 
-Reading, writing scenes, quotes, studio links, trims, reshapes and joins
-spend nothing. An effect on their own media spends credits here: its first
-call is the quote; show the price and the balance, wait for their yes in this
-chat, and only then call again with its `quote_token`. Never say yes for them,
-and never spend twice. A new still from a prompt and a scene's render spend
-credits in the studio, where they see the price and approve it. If a quote
-says the credits are short, say so and that credits are added in the studio.
+Nothing in the chat spends credits: reading, writing scenes, quotes, studio
+links, trims, reshapes and joins all spend none. A still, an effect and a
+render spend credits in the studio, where the person sees the price and
+approves it. Never say something was made or charged until `library` or
+`scene` shows it. If a quote says the credits are short, say so and that
+credits are added in the studio.
 
 ## 5. Where to go next
 

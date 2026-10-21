@@ -1,7 +1,6 @@
 # Tools the studio has on ANOTHER door (its desktop server), or had once.
 # None of them is on /mcp/claude, so a skill in this package must not name one as a tool.
-# The first block is on the render door (/mcp) but NOT on the Claude door: it makes
-# media from a prompt, or renders a scene from the chat.
+# The first block is on the render door (/mcp) but NOT on the Claude door: it makes media.
 # Source: video-pipeline src/mcp_server.py at 572d5cb (TITLES and STUDIO_TOOLS minus
 # LISTED_TOOLS) and the idea-board tools removed on 2026-10-11.
 #
@@ -11,6 +10,13 @@
 generate_image
 image_models
 approve
+edit_image
+remove_background
+animate_still
+camera_move
+upscale_clip
+add_sound
+reframe_clip
 effects
 apply_effect
 cancel_job
